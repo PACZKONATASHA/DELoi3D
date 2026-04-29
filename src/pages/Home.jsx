@@ -1,8 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, Leaf, Truck, Sparkles, Users } from 'lucide-react';
 import { products, categories } from '../data/products';
-import { useCart } from '../context/CartContext';
 import HeroSlider from '../components/HeroSlider';
 import './Home.css';
 
@@ -29,7 +28,6 @@ const FEATURES = [
 export default function Home() {
   const carouselRef = useRef(null);
   const navigate = useNavigate();
-  const { addItem } = useCart();
   const featured = products.filter(p => p.featured);
   const displayCategories = categories.filter(c => c.id !== 'todos');
 
@@ -112,7 +110,7 @@ export default function Home() {
 
           <div className="featured__grid">
             {featured.map(p => (
-              <ProductCard key={p.id} product={p} onAdd={addItem} navigate={navigate} />
+              <ProductCard key={p.id} product={p} navigate={navigate} />
             ))}
           </div>
 
@@ -145,16 +143,7 @@ export default function Home() {
   );
 }
 
-function ProductCard({ product, onAdd, navigate }) {
-  const [added, setAdded] = useState(false);
-
-  const handleAdd = (e) => {
-    e.stopPropagation();
-    onAdd(product, 1);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
-  };
-
+function ProductCard({ product, navigate }) {
   return (
     <div className="product-card card" onClick={() => navigate(`/producto/${product.slug}`)}>
       <div className="product-card__img-wrap">
@@ -167,11 +156,10 @@ function ProductCard({ product, onAdd, navigate }) {
         <p className="product-card__price price">${product.price.toLocaleString('es-AR')}</p>
         <div className="product-card__actions">
           <button
-            className={`btn btn-primary product-card__btn${added ? ' product-card__btn--added' : ''}`}
-            onClick={handleAdd}
-            disabled={!product.inStock}
+            className="btn btn-primary product-card__btn"
+            onClick={(e) => { e.stopPropagation(); navigate(`/producto/${product.slug}`); }}
           >
-            {added ? '✓ Agregado' : 'Ver'}
+            Ver
           </button>
         </div>
       </div>

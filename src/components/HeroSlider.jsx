@@ -1,27 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import './HeroSlider.css';
 
 const SLIDES = [
-  {
-    src: '/hero-1.png',
-    alt: 'Florero 3D terracota con ramo de flores',
-  },
-  {
-    src: '/hero-2.png',
-    alt: 'Difusor 3D geométrico con palitos',
-  },
-  {
-    src: '/hero-3.png',
-    alt: 'Florero 3D blanco texturado con espigas',
-  },
+  { src: '/hero-1.png', alt: 'Florero 3D terracota con ramo de flores' },
+  { src: '/hero-2.png', alt: 'Difusor 3D geométrico con palitos' },
+  { src: '/hero-3.png', alt: 'Florero 3D blanco texturado con espigas' },
 ];
 
-const INTERVAL = 5000;
+const INTERVAL = 4500;
 
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent(prev => (prev + 1) % SLIDES.length);
@@ -29,59 +21,38 @@ export default function HeroSlider() {
     return () => clearInterval(timer);
   }, []);
 
-  const scrollDown = () => {
-    const el = document.querySelector('.features');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <section className="hero-slider">
-      {/* Slides */}
-      <div className="hero-slider__track">
-        {SLIDES.map((slide, i) => (
-          <div
-            key={i}
-            className={`hero-slider__slide${i === current ? ' hero-slider__slide--active' : ''}`}
-          >
-            <img
-              src={slide.src}
-              alt={slide.alt}
-              className="hero-slider__img"
-            />
-            <div className="hero-slider__overlay" />
-          </div>
-        ))}
-      </div>
+    <section className="hero-split">
+      {/* ── LEFT: text ── */}
+      <div className="hero-split__text">
+        <span className="hero-split__tag">Impresión 3D · Fabricación propia</span>
 
-      {/* Content */}
-      <div className="hero-slider__content container">
-        <span className="hero-slider__tag">Impresión 3D Premium · Fabricación Propia</span>
-
-        <h1 className="hero-slider__title">
-          Impresiones en<br />
-          <em>3D a medida</em>
+        <h1 className="hero-split__title">
+          Impresiones<br />
+          en <em>3D</em>
         </h1>
 
-        <p className="hero-slider__sub">
-          Nos dedicamos a realizar piezas funcionales, de diseño que hablan por sí solas.
-          Moderno, original y 100&nbsp;% fabricación propia.
+        <p className="hero-split__sub">
+          Nos dedicamos a realizar piezas funcionales, de diseño
+          que hablan por sí solas. Moderno, original y 100&nbsp;%
+          fabricación propia.
         </p>
 
-        <div className="hero-slider__actions">
-          <Link to="/catalogo" className="hero-slider__btn hero-slider__btn--primary">
-            Ver catálogo <ArrowRight size={17} />
+        <div className="hero-split__actions">
+          <Link to="/catalogo" className="hero-split__btn hero-split__btn--primary">
+            Ver catálogo <ArrowRight size={16} />
           </Link>
-          <Link to="/galeria" className="hero-slider__btn hero-slider__btn--ghost">
+          <Link to="/galeria" className="hero-split__btn hero-split__btn--ghost">
             Ver galería
           </Link>
         </div>
 
-        {/* Navigation dots */}
-        <div className="hero-slider__dots">
+        {/* Dots */}
+        <div className="hero-split__dots">
           {SLIDES.map((_, i) => (
             <button
               key={i}
-              className={`hero-slider__dot${i === current ? ' hero-slider__dot--active' : ''}`}
+              className={`hero-split__dot${i === current ? ' hero-split__dot--active' : ''}`}
               onClick={() => setCurrent(i)}
               aria-label={`Imagen ${i + 1}`}
             />
@@ -89,11 +60,24 @@ export default function HeroSlider() {
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <button className="hero-slider__scroll" onClick={scrollDown} aria-label="Ver más">
-        <span className="hero-slider__scroll-label">Descubrí más</span>
-        <ChevronDown size={20} className="hero-slider__scroll-icon" />
-      </button>
+      {/* ── RIGHT: image slider ── */}
+      <div className="hero-split__visual">
+        <div className="hero-split__slider">
+          {SLIDES.map((slide, i) => (
+            <img
+              key={i}
+              src={slide.src}
+              alt={slide.alt}
+              className={`hero-split__img${i === current ? ' hero-split__img--active' : ''}`}
+            />
+          ))}
+        </div>
+
+        {/* Counter */}
+        <span className="hero-split__counter">
+          {String(current + 1).padStart(2, '0')} / {String(SLIDES.length).padStart(2, '0')}
+        </span>
+      </div>
     </section>
   );
 }
