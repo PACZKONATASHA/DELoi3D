@@ -99,6 +99,87 @@ export default function Home() {
       {/* ── Hero slider ── */}
       <HeroSlider />
 
+      {/* ── Featured products ── */}
+      <section className="featured section">
+        <div className="container">
+          <div className="section-header">
+            <div>
+              <h2 className="section-title">Productos destacados</h2>
+              <p className="section-sub">Nuestras piezas más elegidas por nuestros clientes.</p>
+            </div>
+            <Link to="/catalogo" className="ver-todas">Ver todos →</Link>
+          </div>
+
+          <div className="featured__grid">
+            {featured.map(p => (
+              <ProductCard key={p.id} product={p} navigate={navigate} />
+            ))}
+          </div>
+
+          <div className="featured__cta">
+            <Link to="/catalogo" className="btn btn-primary">
+              Ver catálogo completo <ArrowRight size={18} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Occasions (interactive) ── */}
+      <section className="occasions section">
+        <div className="container">
+          <div className="occasions__header">
+            <h2 className="section-title">Para cada momento especial</h2>
+            <p className="section-sub">
+              Porque los detalles hacen la diferencia — elegí la ocasión y descubrí las piezas que creamos para ese momento.
+            </p>
+          </div>
+
+          <div className="occasions__tabs">
+            {OCCASIONS.map(o => (
+              <button
+                key={o.key}
+                className={`occ-tab${activeOccasion === o.key ? ' occ-tab--active' : ''}`}
+                onClick={() => setActiveOccasion(o.key)}
+              >
+                {o.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="occasions__grid" key={activeOccasion}>
+            {currentOccasion?.items.map((item, i) => (
+              <div key={i} className="occ-card">
+                <div className="occ-card__img-wrap">
+                  <img src={item.img} alt={item.name} className="occ-card__img" loading="lazy" />
+                </div>
+                <div className="occ-card__body">
+                  <h3 className="occ-card__name">{item.name}</h3>
+                  <div className="occ-card__colors">
+                    {item.colors.map((hex, j) => (
+                      <span
+                        key={j}
+                        className="occ-card__color"
+                        style={{ background: hex }}
+                      />
+                    ))}
+                    <span className="occ-card__colors-more">+ colores</span>
+                  </div>
+                  <p className="occ-card__price">{item.price}</p>
+                  <a
+                    href={`https://wa.me/5491100000000?text=Hola!+Me+interesa+el+producto:+${encodeURIComponent(item.name)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline occ-card__btn"
+                  >
+                    Consultar
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Custom orders ── */}
       <section className="custom-orders section">
         <div className="container">
@@ -172,87 +253,6 @@ export default function Home() {
                 </div>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Occasions (interactive) ── */}
-      <section className="occasions section">
-        <div className="container">
-          <div className="occasions__header">
-            <h2 className="section-title">Para cada momento especial</h2>
-            <p className="section-sub">
-              Porque los detalles hacen la diferencia — elegí la ocasión y descubrí las piezas que creamos para ese momento.
-            </p>
-          </div>
-
-          <div className="occasions__tabs">
-            {OCCASIONS.map(o => (
-              <button
-                key={o.key}
-                className={`occ-tab${activeOccasion === o.key ? ' occ-tab--active' : ''}`}
-                onClick={() => setActiveOccasion(o.key)}
-              >
-                {o.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="occasions__grid" key={activeOccasion}>
-            {currentOccasion?.items.map((item, i) => (
-              <div key={i} className="occ-card">
-                <div className="occ-card__img-wrap">
-                  <img src={item.img} alt={item.name} className="occ-card__img" loading="lazy" />
-                </div>
-                <div className="occ-card__body">
-                  <h3 className="occ-card__name">{item.name}</h3>
-                  <div className="occ-card__colors">
-                    {item.colors.map((hex, j) => (
-                      <span
-                        key={j}
-                        className="occ-card__color"
-                        style={{ background: hex }}
-                      />
-                    ))}
-                    <span className="occ-card__colors-more">+ colores</span>
-                  </div>
-                  <p className="occ-card__price">{item.price}</p>
-                  <a
-                    href={`https://wa.me/5491100000000?text=Hola!+Me+interesa+el+producto:+${encodeURIComponent(item.name)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-outline occ-card__btn"
-                  >
-                    Consultar
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Featured products ── */}
-      <section className="featured section">
-        <div className="container">
-          <div className="section-header">
-            <div>
-              <h2 className="section-title">Productos destacados</h2>
-              <p className="section-sub">Nuestras piezas más elegidas por nuestros clientes.</p>
-            </div>
-            <Link to="/catalogo" className="ver-todas">Ver todos →</Link>
-          </div>
-
-          <div className="featured__grid">
-            {featured.map(p => (
-              <ProductCard key={p.id} product={p} navigate={navigate} />
-            ))}
-          </div>
-
-          <div className="featured__cta">
-            <Link to="/catalogo" className="btn btn-primary">
-              Ver catálogo completo <ArrowRight size={18} />
-            </Link>
           </div>
         </div>
       </section>
