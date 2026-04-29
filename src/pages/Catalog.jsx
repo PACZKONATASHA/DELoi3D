@@ -2,7 +2,6 @@ import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SlidersHorizontal, X, Eye } from 'lucide-react';
 import { products, categories } from '../data/products';
-import { useCart } from '../context/CartContext';
 import './Catalog.css';
 
 const SORT_OPTIONS = [
@@ -16,7 +15,6 @@ export default function Catalog() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState('relevance');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { addItem } = useCart();
   const navigate = useNavigate();
 
   const activeCat = searchParams.get('cat') || 'todos';
@@ -140,7 +138,6 @@ export default function Catalog() {
                 <CatalogCard
                   key={p.id}
                   product={p}
-                  onAdd={addItem}
                   onClick={() => navigate(`/producto/${p.slug}`)}
                 />
               ))}
@@ -152,35 +149,25 @@ export default function Catalog() {
   );
 }
 
-function CatalogCard({ product, onAdd, onClick }) {
-  const [added, setAdded] = useState(false);
-
-  const handleAdd = (e) => {
-    e.stopPropagation();
-    if (!product.inStock) return;
-    onAdd(product, 1);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
-  };
-
+function CatalogCard({ product, onClick }) {
   return (
     <div className="cat-card card" onClick={onClick}>
       <div className="cat-card__img-wrap">
         <img src={product.images[0]} alt={product.name} className="cat-card__img" loading="lazy" />
         {!product.inStock && <span className="cat-card__no-stock">Sin Stock</span>}
-        <button className="cat-card__quick-view" onClick={onClick} aria-label="Ver producto">
-          <Eye size={16} />
-        </button>
+        <div className="cat-card__quick-view">
+          <Eye size={16} /> Ver producto
+        </div>
       </div>
       <div className="cat-card__body">
         <h3 className="cat-card__name">{product.name}</h3>
         <p className="cat-card__price price">${product.price.toLocaleString('es-AR')}</p>
         <button
-          className={`btn btn-primary cat-card__btn${added ? ' cat-card__btn--added' : ''}`}
-          onClick={handleAdd}
+          className={`btn btn-primary cat-card__btn${!product.inStock ? ' cat-card__btn--disabled' : ''}`}
+          onClick={(e) => { e.stopPropagation(); onClick(); }}
           disabled={!product.inStock}
         >
-          {added ? '✓ Agregado' : !product.inStock ? 'Sin stock' : 'Ver'}
+          {!product.inStock ? 'Sin stock' : 'Ver'}
         </button>
       </div>
     </div>
