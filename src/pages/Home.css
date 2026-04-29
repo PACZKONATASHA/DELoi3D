@@ -304,7 +304,9 @@
     grid-template-columns: 1fr;
     gap: 0;
   }
-  .featured__grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  /* Destacados: SIEMPRE 2 columnas en mobile */
+  .featured__grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
   .feature-card {
     display: grid;
     grid-template-columns: 48px 1fr;
@@ -323,7 +325,12 @@
   .feature-card__title { margin-bottom: 4px; }
 }
 
+/* Mantener 2 columnas incluso en pantallas muy pequeñas */
 @media (max-width: 400px) {
-  .featured__grid { grid-template-columns: 1fr; }
+  .featured__grid { grid-template-columns: 1fr 1fr; gap: 8px; }
   .category-card { flex: 0 0 160px; height: 200px; }
+  /* Texto del card más compacto */
+  .product-card__name { font-size: .78rem; }
+  .product-card__price { font-size: .85rem; }
+  .product-card__btn { padding: 8px 6px; font-size: .7rem; letter-spacing: .5px; }
 }
