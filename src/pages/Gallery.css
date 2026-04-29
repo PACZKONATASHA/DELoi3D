@@ -49,7 +49,7 @@
   transition: var(--transition);
 }
 .gallery-tab:hover { border-color: var(--olive); color: var(--olive); }
-.gallery-tab--active { background: var(--olive); border-color: var(--olive); color: var(--white); }
+.gallery-tab--active { background: var(--sand); border-color: var(--sand); color: var(--black); }
 
 /* ── Count ── */
 .gallery-count {
