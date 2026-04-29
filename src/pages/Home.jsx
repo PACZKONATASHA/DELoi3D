@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, Leaf, Truck, Sparkles, Users } from 'lucide-react';
 import { products, categories } from '../data/products';
 import { useCart } from '../context/CartContext';
+import HeroSlider from '../components/HeroSlider';
 import './Home.css';
 
 const CATEGORY_IMAGES = {
@@ -39,26 +40,9 @@ export default function Home() {
 
   return (
     <main className="home">
-      {/* ── Hero ── */}
-      <section className="hero">
-        <div className="hero__content container">
-          <span className="hero__tag">Impresión 3D Premium</span>
-          <h1 className="hero__title">Lo mejor en<br /><span>Regalos y Souvenirs</span></h1>
-          <p className="hero__sub">
-            Macetas únicas, accesorios personalizados y piezas decorativas
-            hechas a pedido con filamento Eco-Friendly PLA.
-          </p>
-          <div className="hero__actions">
-            <Link to="/catalogo" className="btn btn-primary hero__cta">
-              Ver catálogo <ArrowRight size={18} />
-            </Link>
-            <Link to="/galeria" className="btn hero__cta hero__cta-olive">
-              Ver galería
-            </Link>
-          </div>
-        </div>
-        <div className="hero__bg" aria-hidden="true" />
-      </section>
+
+      {/* ── Hero slider ── */}
+      <HeroSlider />
 
       {/* ── Features ── */}
       <section className="features section">
@@ -140,7 +124,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Banner ── */}
+      {/* ── Banner mayorista ── */}
       <section className="banner">
         <div className="container banner__inner">
           <div>
@@ -151,7 +135,7 @@ export default function Home() {
             href="https://wa.me/5491100000000?text=Hola!+Me+interesa+información+sobre+venta+por+mayor"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-primary banner__btn"
+            className="btn banner__btn"
           >
             Consultanos por WhatsApp
           </a>
