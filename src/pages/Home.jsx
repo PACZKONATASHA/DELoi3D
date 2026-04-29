@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, MessageCircle, PenLine, Package } from 'lucide-react';
 import { products, categories } from '../data/products';
 import HeroSlider from '../components/HeroSlider';
+import ReviewsCarousel from '../components/ReviewsCarousel';
 import './Home.css';
 
 const CATEGORY_IMAGES = {
@@ -99,6 +100,83 @@ export default function Home() {
       {/* ── Hero slider ── */}
       <HeroSlider />
 
+      {/* ── Custom orders ── */}
+      <section className="custom-orders section">
+        <div className="container">
+          <div className="custom-orders__intro">
+            <h2 className="section-title">Diseñamos lo que imaginás</h2>
+            <p className="section-sub">
+              Si tenés una idea, nosotros la hacemos realidad. Nos contás qué necesitás
+              y te damos presupuesto sin compromiso.
+            </p>
+          </div>
+          <div className="custom-steps">
+            {CUSTOM_STEPS.map((step, i) => (
+              <div key={i} className="custom-step">
+                <span className="custom-step__number">{i + 1}</span>
+                <div className="custom-step__content">
+                  <div className="custom-step__icon">{step.icon}</div>
+                  <div className="custom-step__text">
+                    <h3 className="custom-step__title">{step.title}</h3>
+                    <p className="custom-step__desc">{step.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="custom-orders__cta">
+            <a
+              href="https://wa.me/5491100000000?text=Hola!+Quiero+consultar+por+un+producto+personalizado"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+            >
+              Pedí tu presupuesto por WhatsApp <ArrowRight size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Categories carousel ── */}
+      <section className="categories section">
+        <div className="container">
+          <div className="section-header">
+            <div>
+              <h2 className="section-title">Explorá nuestras categorías</h2>
+              <p className="section-sub">Encontrá el regalo perfecto según tus intereses.</p>
+            </div>
+            <div className="carousel-controls">
+              <button className="carousel-btn" onClick={() => scrollCarousel(-1)} aria-label="Anterior">
+                <ChevronLeft size={20} />
+              </button>
+              <button className="carousel-btn" onClick={() => scrollCarousel(1)} aria-label="Siguiente">
+                <ChevronRight size={20} />
+              </button>
+              <Link to="/catalogo" className="ver-todas">Ver todas →</Link>
+            </div>
+          </div>
+
+          <div className="carousel" ref={carouselRef}>
+            {displayCategories.map(cat => (
+              <Link
+                key={cat.id}
+                to={`/catalogo?cat=${cat.slug}`}
+                className="category-card"
+              >
+                <img
+                  src={CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGES['bazar']}
+                  alt={cat.name}
+                  className="category-card__img"
+                />
+                <div className="category-card__overlay">
+                  <span className="category-card__name">{cat.name}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Featured products ── */}
       <section className="featured section">
         <div className="container">
@@ -180,82 +258,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Custom orders ── */}
-      <section className="custom-orders section">
-        <div className="container">
-          <div className="custom-orders__intro">
-            <h2 className="section-title">Diseñamos lo que imaginás</h2>
-            <p className="section-sub">
-              Si tenés una idea, nosotros la hacemos realidad. Nos contás qué necesitás
-              y te damos presupuesto sin compromiso.
-            </p>
-          </div>
-          <div className="custom-steps">
-            {CUSTOM_STEPS.map((step, i) => (
-              <div key={i} className="custom-step">
-                <span className="custom-step__number">{i + 1}</span>
-                <div className="custom-step__content">
-                  <div className="custom-step__icon">{step.icon}</div>
-                  <div className="custom-step__text">
-                    <h3 className="custom-step__title">{step.title}</h3>
-                    <p className="custom-step__desc">{step.desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="custom-orders__cta">
-            <a
-              href="https://wa.me/5491100000000?text=Hola!+Quiero+consultar+por+un+producto+personalizado"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
-              Pedí tu presupuesto por WhatsApp <ArrowRight size={18} />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Categories carousel ── */}
-      <section className="categories section">
-        <div className="container">
-          <div className="section-header">
-            <div>
-              <h2 className="section-title">Explorá nuestras categorías</h2>
-              <p className="section-sub">Encontrá el regalo perfecto según tus intereses.</p>
-            </div>
-            <div className="carousel-controls">
-              <button className="carousel-btn" onClick={() => scrollCarousel(-1)} aria-label="Anterior">
-                <ChevronLeft size={20} />
-              </button>
-              <button className="carousel-btn" onClick={() => scrollCarousel(1)} aria-label="Siguiente">
-                <ChevronRight size={20} />
-              </button>
-              <Link to="/catalogo" className="ver-todas">Ver todas →</Link>
-            </div>
-          </div>
-
-          <div className="carousel" ref={carouselRef}>
-            {displayCategories.map(cat => (
-              <Link
-                key={cat.id}
-                to={`/catalogo?cat=${cat.slug}`}
-                className="category-card"
-              >
-                <img
-                  src={CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGES['bazar']}
-                  alt={cat.name}
-                  className="category-card__img"
-                />
-                <div className="category-card__overlay">
-                  <span className="category-card__name">{cat.name}</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── Reviews Carousel ── */}
+      <ReviewsCarousel />
 
       {/* ── Banner mayorista ── */}
       <section className="banner">

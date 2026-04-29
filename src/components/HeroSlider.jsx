@@ -27,9 +27,9 @@ export default function HeroSlider() {
       <div className="hero-split__text">
         <span className="hero-split__tag">Impresión 3D · Fabricación propia</span>
 
-        <h1 className="hero-split__title">
-          Impresiones<br />
-          en <em>3D</em>
+        <h1 className="hero-split__title hero-split__title--thin">
+          Productos<br />
+          impresos en <em>3D</em>
         </h1>
 
         <p className="hero-split__sub">
