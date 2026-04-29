@@ -51,6 +51,7 @@ export default function Navbar() {
     { to: '/', label: 'Inicio' },
     { to: '/catalogo', label: 'Catálogo' },
     { to: '/galeria', label: 'Galería' },
+    { to: '/mayoristas', label: 'Mayoristas' },
   ];
 
   return (

@@ -15,6 +15,7 @@ export default function ProductDetail() {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const [lightbox, setLightbox] = useState(false);
+  const [selectedColor, setSelectedColor] = useState(null);
 
   useEffect(() => {
     setActiveImg(0);
@@ -110,6 +111,30 @@ export default function ProductDetail() {
             <div className="pd-info__desc">
               <p>{product.description}</p>
             </div>
+
+            {/* Color selector */}
+            {product.colors?.length > 0 && (
+              <div className="pd-colors">
+                <p className="pd-colors__label">
+                  Color:{' '}
+                  <span className="pd-colors__selected">
+                    {selectedColor ? selectedColor.name : 'Elegí un color'}
+                  </span>
+                </p>
+                <div className="pd-colors__swatches">
+                  {product.colors.map((c, i) => (
+                    <button
+                      key={i}
+                      className={`pd-color-swatch${selectedColor?.name === c.name ? ' pd-color-swatch--active' : ''}`}
+                      style={{ background: c.hex }}
+                      title={c.name}
+                      onClick={() => setSelectedColor(c)}
+                      aria-label={c.name}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Qty + Add to cart */}
             <div className="pd-info__actions">

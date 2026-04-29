@@ -30,6 +30,13 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: true,
     inStock: true,
+    colors: [
+      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Negro', hex: '#1A1A1A' },
+      { name: 'Verde oliva', hex: '#6B705C' },
+      { name: 'Terracota', hex: '#C0714A' },
+      { name: 'Gris', hex: '#9E9E9E' },
+    ],
   },
   {
     id: 2,
@@ -48,6 +55,13 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: true,
     inStock: true,
+    colors: [
+      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Negro', hex: '#1A1A1A' },
+      { name: 'Verde oliva', hex: '#6B705C' },
+      { name: 'Terracota', hex: '#C0714A' },
+      { name: 'Beige', hex: '#D4B896' },
+    ],
   },
   {
     id: 3,
@@ -66,6 +80,12 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: true,
     inStock: true,
+    colors: [
+      { name: 'Negro', hex: '#1A1A1A' },
+      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Gris oscuro', hex: '#616161' },
+      { name: 'Champán', hex: '#F7E7CE' },
+    ],
   },
   {
     id: 4,
@@ -83,6 +103,12 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: true,
     inStock: true,
+    colors: [
+      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Gris', hex: '#9E9E9E' },
+      { name: 'Azul', hex: '#1565C0' },
+      { name: 'Verde', hex: '#4CAF50' },
+    ],
   },
   {
     id: 5,
@@ -100,6 +126,13 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: true,
     inStock: true,
+    colors: [
+      { name: 'Rojo', hex: '#D32F2F' },
+      { name: 'Negro', hex: '#1A1A1A' },
+      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Amarillo', hex: '#F9A825' },
+      { name: 'Azul', hex: '#1565C0' },
+    ],
   },
   {
     id: 6,
@@ -117,6 +150,13 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: true,
     inStock: true,
+    colors: [
+      { name: 'Rosa', hex: '#E88EA8' },
+      { name: 'Lila', hex: '#9575CD' },
+      { name: 'Celeste', hex: '#7EC8E3' },
+      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Amarillo', hex: '#F9A825' },
+    ],
   },
   {
     id: 7,
@@ -134,6 +174,13 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: true,
     inStock: true,
+    colors: [
+      { name: 'Azul', hex: '#1565C0' },
+      { name: 'Rojo', hex: '#D32F2F' },
+      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Verde', hex: '#4CAF50' },
+      { name: 'Naranja', hex: '#E65100' },
+    ],
   },
   {
     id: 8,
@@ -151,6 +198,12 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: true,
     inStock: true,
+    colors: [
+      { name: 'Negro', hex: '#1A1A1A' },
+      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Cobre', hex: '#B87333' },
+      { name: 'Gris', hex: '#9E9E9E' },
+    ],
   },
   {
     id: 9,
@@ -168,6 +221,12 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: false,
     inStock: true,
+    colors: [
+      { name: 'Negro', hex: '#1A1A1A' },
+      { name: 'Gris', hex: '#9E9E9E' },
+      { name: 'Azul marino', hex: '#0D2B5E' },
+      { name: 'Blanco', hex: '#F5F5F5' },
+    ],
   },
   {
     id: 10,
@@ -185,6 +244,14 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: false,
     inStock: true,
+    colors: [
+      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Negro', hex: '#1A1A1A' },
+      { name: 'Rojo', hex: '#D32F2F' },
+      { name: 'Azul', hex: '#1565C0' },
+      { name: 'Rosa', hex: '#E88EA8' },
+      { name: 'Amarillo', hex: '#F9A825' },
+    ],
   },
   {
     id: 11,
@@ -202,6 +269,13 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: false,
     inStock: true,
+    colors: [
+      { name: 'Negro', hex: '#1A1A1A' },
+      { name: 'Gris', hex: '#9E9E9E' },
+      { name: 'Naranja', hex: '#E65100' },
+      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Morado', hex: '#6A1B9A' },
+    ],
   },
   {
     id: 12,
@@ -219,6 +293,12 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: false,
     inStock: true,
+    colors: [
+      { name: 'Beige', hex: '#D4B896' },
+      { name: 'Gris', hex: '#9E9E9E' },
+      { name: 'Azul', hex: '#1565C0' },
+      { name: 'Verde', hex: '#4CAF50' },
+    ],
   },
   {
     id: 13,
@@ -236,6 +316,13 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: false,
     inStock: false,
+    colors: [
+      { name: 'Azul', hex: '#1565C0' },
+      { name: 'Verde', hex: '#4CAF50' },
+      { name: 'Gris', hex: '#9E9E9E' },
+      { name: 'Negro', hex: '#1A1A1A' },
+      { name: 'Blanco', hex: '#F5F5F5' },
+    ],
   },
   {
     id: 14,
@@ -253,6 +340,13 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: false,
     inStock: true,
+    colors: [
+      { name: 'Verde', hex: '#4CAF50' },
+      { name: 'Gris', hex: '#9E9E9E' },
+      { name: 'Naranja', hex: '#E65100' },
+      { name: 'Azul', hex: '#1565C0' },
+      { name: 'Rojo', hex: '#D32F2F' },
+    ],
   },
   {
     id: 15,
@@ -270,6 +364,13 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: false,
     inStock: true,
+    colors: [
+      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Negro', hex: '#1A1A1A' },
+      { name: 'Terracota', hex: '#C0714A' },
+      { name: 'Verde salvia', hex: '#8A9179' },
+      { name: 'Rosa pálido', hex: '#F8BBD0' },
+    ],
   },
 ];
 

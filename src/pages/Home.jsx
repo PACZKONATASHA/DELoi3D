@@ -1,6 +1,6 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, ArrowRight, Leaf, Truck, Sparkles, Users } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight, MessageCircle, PenLine, Package } from 'lucide-react';
 import { products, categories } from '../data/products';
 import HeroSlider from '../components/HeroSlider';
 import './Home.css';
@@ -18,16 +18,71 @@ const CATEGORY_IMAGES = {
   'vasos': 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&q=80',
 };
 
-const FEATURES = [
-  { icon: <Sparkles size={28} />, title: 'Calidad Premium', desc: 'Impresión 3D de alta resolución con materiales certificados.' },
-  { icon: <Leaf size={28} />, title: 'Eco-Friendly PLA', desc: 'Filamento biodegradable, responsable con el medio ambiente.' },
-  { icon: <Truck size={28} />, title: 'Envíos a todo el país', desc: 'Mandamos a cualquier punto de Argentina con seguimiento.' },
-  { icon: <Users size={28} />, title: 'Venta x Mayor', desc: 'Precios especiales para comercios y revendedores.' },
+const CUSTOM_STEPS = [
+  {
+    icon: <MessageCircle size={32} />,
+    title: 'Contanos tu idea',
+    desc: 'Describinos qué necesitás — por WhatsApp o mensaje, sin formalidades.',
+  },
+  {
+    icon: <PenLine size={32} />,
+    title: 'Lo diseñamos en 3D',
+    desc: 'Modelamos la pieza antes de imprimirla para que veas cómo queda.',
+  },
+  {
+    icon: <Package size={32} />,
+    title: 'Lo fabricamos y enviamos',
+    desc: 'Producción propia con control de calidad, envío a todo el país.',
+  },
+];
+
+const OCCASIONS = [
+  {
+    key: 'pascua',
+    label: 'Pascua',
+    items: [
+      { img: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&q=80', name: 'Porta Huevos 3D', price: 'desde $5.500', colors: ['#F5F5F5', '#F8BBD0', '#7EC8E3', '#F9A825'] },
+      { img: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=400&q=80', name: 'Conejito Impreso 3D', price: 'desde $6.000', colors: ['#F5F5F5', '#F8BBD0', '#C8E6C9', '#FFF9C4'] },
+      { img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80', name: 'Figura Pascual 3D', price: 'desde $8.500', colors: ['#F5F5F5', '#8A9179', '#F8BBD0', '#7EC8E3'] },
+      { img: 'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=400&q=80', name: 'Canasta Deco 3D', price: 'desde $7.000', colors: ['#F5F5F5', '#C8E6C9', '#F9A825', '#F8BBD0'] },
+    ],
+  },
+  {
+    key: 'navidad',
+    label: 'Navidad',
+    items: [
+      { img: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&q=80', name: 'Adorno Navideño 3D', price: 'desde $3.500', colors: ['#F5F5F5', '#D32F2F', '#2E7D32', '#B87333'] },
+      { img: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80', name: 'Figura Navideña 3D', price: 'desde $8.000', colors: ['#1A1A1A', '#F5F5F5', '#D32F2F', '#B87333'] },
+      { img: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=400&q=80', name: 'Estrella Impresa 3D', price: 'desde $5.000', colors: ['#B87333', '#F5F5F5', '#D32F2F', '#9E9E9E'] },
+      { img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80', name: 'Muñeco de Nieve 3D', price: 'desde $7.500', colors: ['#F5F5F5', '#1A1A1A', '#D32F2F', '#2E7D32'] },
+    ],
+  },
+  {
+    key: 'san-valentin',
+    label: 'San Valentín',
+    items: [
+      { img: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80', name: 'Corazón Personalizado 3D', price: 'desde $4.500', colors: ['#D32F2F', '#F5F5F5', '#E88EA8', '#1A1A1A'] },
+      { img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80', name: 'Mate del Amor 3D', price: 'desde $11.000', colors: ['#D32F2F', '#E88EA8', '#F5F5F5', '#1A1A1A'] },
+      { img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&q=80', name: 'Caja Romántica 3D', price: 'desde $6.500', colors: ['#E88EA8', '#D32F2F', '#F5F5F5', '#9575CD'] },
+      { img: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&q=80', name: 'Figura Pareja 3D', price: 'desde $9.000', colors: ['#D32F2F', '#F5F5F5', '#E88EA8', '#B87333'] },
+    ],
+  },
+  {
+    key: 'cumpleanos',
+    label: 'Cumpleaños',
+    items: [
+      { img: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400&q=80', name: 'Figura Personalizada 3D', price: 'desde $7.000', colors: ['#7EC8E3', '#E88EA8', '#9575CD', '#F9A825'] },
+      { img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80', name: 'Souvenir con Nombre 3D', price: 'desde $3.000', colors: ['#F5F5F5', '#7EC8E3', '#E88EA8', '#9575CD'] },
+      { img: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&q=80', name: 'Topper para Torta 3D', price: 'desde $4.500', colors: ['#F5F5F5', '#B87333', '#E88EA8', '#7EC8E3'] },
+      { img: 'https://images.unsplash.com/photo-1509557965875-b88c97052f0e?w=400&q=80', name: 'Llavero Recordatorio 3D', price: 'desde $2.500', colors: ['#7EC8E3', '#E88EA8', '#F5F5F5', '#9575CD'] },
+    ],
+  },
 ];
 
 export default function Home() {
   const carouselRef = useRef(null);
   const navigate = useNavigate();
+  const [activeOccasion, setActiveOccasion] = useState('pascua');
   const featured = products.filter(p => p.featured);
   const displayCategories = categories.filter(c => c.id !== 'todos');
 
@@ -36,23 +91,47 @@ export default function Home() {
     carouselRef.current.scrollBy({ left: dir * 280, behavior: 'smooth' });
   };
 
+  const currentOccasion = OCCASIONS.find(o => o.key === activeOccasion);
+
   return (
     <main className="home">
 
       {/* ── Hero slider ── */}
       <HeroSlider />
 
-      {/* ── Features ── */}
-      <section className="features section">
+      {/* ── Custom orders ── */}
+      <section className="custom-orders section">
         <div className="container">
-          <div className="features__grid">
-            {FEATURES.map((f, i) => (
-              <div key={i} className="feature-card">
-                <div className="feature-card__icon">{f.icon}</div>
-                <h3 className="feature-card__title">{f.title}</h3>
-                <p className="feature-card__desc">{f.desc}</p>
+          <div className="custom-orders__intro">
+            <h2 className="section-title">Diseñamos lo que imaginás</h2>
+            <p className="section-sub">
+              Si tenés una idea, nosotros la hacemos realidad. Nos contás qué necesitás
+              y te damos presupuesto sin compromiso.
+            </p>
+          </div>
+          <div className="custom-steps">
+            {CUSTOM_STEPS.map((step, i) => (
+              <div key={i} className="custom-step">
+                <span className="custom-step__number">{i + 1}</span>
+                <div className="custom-step__content">
+                  <div className="custom-step__icon">{step.icon}</div>
+                  <div className="custom-step__text">
+                    <h3 className="custom-step__title">{step.title}</h3>
+                    <p className="custom-step__desc">{step.desc}</p>
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+          <div className="custom-orders__cta">
+            <a
+              href="https://wa.me/5491100000000?text=Hola!+Quiero+consultar+por+un+producto+personalizado"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+            >
+              Pedí tu presupuesto por WhatsApp <ArrowRight size={18} />
+            </a>
           </div>
         </div>
       </section>
@@ -92,6 +171,62 @@ export default function Home() {
                   <span className="category-card__name">{cat.name}</span>
                 </div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Occasions (interactive) ── */}
+      <section className="occasions section">
+        <div className="container">
+          <div className="occasions__header">
+            <h2 className="section-title">Para cada momento especial</h2>
+            <p className="section-sub">
+              Porque los detalles hacen la diferencia — elegí la ocasión y descubrí las piezas que creamos para ese momento.
+            </p>
+          </div>
+
+          <div className="occasions__tabs">
+            {OCCASIONS.map(o => (
+              <button
+                key={o.key}
+                className={`occ-tab${activeOccasion === o.key ? ' occ-tab--active' : ''}`}
+                onClick={() => setActiveOccasion(o.key)}
+              >
+                {o.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="occasions__grid" key={activeOccasion}>
+            {currentOccasion?.items.map((item, i) => (
+              <div key={i} className="occ-card">
+                <div className="occ-card__img-wrap">
+                  <img src={item.img} alt={item.name} className="occ-card__img" loading="lazy" />
+                </div>
+                <div className="occ-card__body">
+                  <h3 className="occ-card__name">{item.name}</h3>
+                  <div className="occ-card__colors">
+                    {item.colors.map((hex, j) => (
+                      <span
+                        key={j}
+                        className="occ-card__color"
+                        style={{ background: hex }}
+                      />
+                    ))}
+                    <span className="occ-card__colors-more">+ colores</span>
+                  </div>
+                  <p className="occ-card__price">{item.price}</p>
+                  <a
+                    href={`https://wa.me/5491100000000?text=Hola!+Me+interesa+el+producto:+${encodeURIComponent(item.name)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline occ-card__btn"
+                  >
+                    Consultar
+                  </a>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -153,6 +288,13 @@ function ProductCard({ product, navigate }) {
       </div>
       <div className="product-card__body">
         <h3 className="product-card__name">{product.name}</h3>
+        {product.colors && (
+          <div className="product-card__colors">
+            {product.colors.slice(0, 5).map((c, i) => (
+              <span key={i} className="product-card__color" style={{ background: c.hex }} title={c.name} />
+            ))}
+          </div>
+        )}
         <p className="product-card__price price">${product.price.toLocaleString('es-AR')}</p>
         <div className="product-card__actions">
           <button

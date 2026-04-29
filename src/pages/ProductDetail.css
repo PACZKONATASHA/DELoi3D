@@ -198,6 +198,55 @@
 .pd-info__add--added { background: var(--olive); border-color: var(--olive); }
 .pd-info__add:disabled { background: var(--gray-400); border-color: var(--gray-400); cursor: not-allowed; }
 
+/* ── Color selector ── */
+.pd-colors {
+  margin-bottom: 24px;
+}
+
+.pd-colors__label {
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.pd-colors__selected {
+  font-weight: 400;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--olive);
+}
+
+.pd-colors__swatches {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pd-color-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,.1);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  flex-shrink: 0;
+}
+
+.pd-color-swatch:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+
+.pd-color-swatch--active {
+  border-color: var(--olive);
+  box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--olive);
+  transform: scale(1.1);
+}
+
 /* ── Legal ── */
 .pd-info__legal {
   font-size: .78rem;

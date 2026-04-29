@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import ProductDetail from './pages/ProductDetail';
 import Gallery from './pages/Gallery';
+import Mayoristas from './pages/Mayoristas';
 
 function Layout({ children }) {
   return (
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/catalogo" element={<Catalog />} />
             <Route path="/producto/:slug" element={<ProductDetail />} />
             <Route path="/galeria" element={<Gallery />} />
+            <Route path="/mayoristas" element={<Mayoristas />} />
             <Route path="*" element={
               <div style={{ textAlign: 'center', padding: '80px 24px' }}>
                 <h2 style={{ fontSize: '2rem', marginBottom: '16px' }}>404 — Página no encontrada</h2>

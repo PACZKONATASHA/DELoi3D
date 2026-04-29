@@ -2,8 +2,8 @@
   background: var(--black);
   color: rgba(250,247,242,.55);
   padding: 64px 0 0;
-  margin-top: 80px;
-  border-top: 2px solid var(--olive-dark);
+  margin-top: 0;
+  border-top: 1px solid rgba(250,247,242,.08);
 }
 
 .footer__grid {

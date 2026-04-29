@@ -1,0 +1,356 @@
+/* ── Hero ───────────────────────────────────────────────────── */
+.may-hero {
+  background: var(--sand-light);
+  border-bottom: 1px solid var(--sand);
+  padding: 88px 0 100px;
+  text-align: center;
+}
+
+.may-hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.may-badge {
+  display: inline-block;
+  background: var(--olive);
+  color: var(--white);
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+}
+
+.may-hero__title {
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--black);
+  line-height: 1.2;
+  max-width: 620px;
+}
+
+.may-hero__sub {
+  font-size: .98rem;
+  color: var(--gray-700);
+  font-style: italic;
+  line-height: 1.75;
+  max-width: 500px;
+}
+
+/* ── Shared titles ──────────────────────────────────────────── */
+.may-section-header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.may-title {
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--black);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.may-sub {
+  font-size: .88rem;
+  color: var(--gray-700);
+  font-style: italic;
+}
+
+/* ── Benefits ───────────────────────────────────────────────── */
+.may-benefits { background: var(--white); }
+
+.may-benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.may-benefit-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 36px 24px 28px;
+  text-align: center;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.may-benefit-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.may-benefit-card__icon {
+  color: var(--olive);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.may-benefit-card__title {
+  font-size: .76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.may-benefit-card__desc {
+  font-size: .85rem;
+  color: var(--gray-700);
+  font-style: italic;
+  line-height: 1.65;
+}
+
+/* ── Productos disponibles ──────────────────────────────────── */
+.may-available { background: var(--bg); }
+
+.may-available__card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-left: 4px solid var(--olive);
+  border-radius: var(--radius-md);
+  padding: 52px 56px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.may-available__text {
+  font-size: .95rem;
+  color: var(--gray-700);
+  font-style: italic;
+  line-height: 1.8;
+  margin: 14px 0 28px;
+  max-width: 580px;
+}
+
+.may-available__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ── Pasos ──────────────────────────────────────────────────── */
+.may-steps {
+  background: var(--sand-light);
+  border-top: 1px solid var(--sand);
+  border-bottom: 1px solid var(--sand);
+}
+
+.may-steps__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.may-step {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 36px 20px 28px;
+  text-align: center;
+}
+
+.may-step__num {
+  font-size: 2.2rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--olive);
+  line-height: 1;
+  margin-bottom: 16px;
+  opacity: .65;
+}
+
+.may-step__title {
+  font-size: .76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.may-step__desc {
+  font-size: .83rem;
+  color: var(--gray-700);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ── Formulario ─────────────────────────────────────────────── */
+.may-form-section { background: var(--white); }
+
+.may-form-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 56px;
+  max-width: 840px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.may-form-card__header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.may-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.may-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.may-field--full {
+  grid-column: 1 / -1;
+}
+
+.may-label {
+  font-size: .73rem;
+  font-weight: 700;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  color: var(--dark);
+}
+
+.may-label span {
+  color: var(--olive);
+  margin-left: 2px;
+}
+
+.may-input {
+  background: var(--gray-100);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 11px 16px;
+  font-size: .9rem;
+  color: var(--dark);
+  transition: border-color var(--transition), background var(--transition);
+  outline: none;
+  width: 100%;
+}
+
+.may-input:focus {
+  border-color: var(--olive);
+  background: var(--white);
+}
+
+.may-input::placeholder {
+  color: var(--gray-500);
+  font-style: italic;
+}
+
+.may-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.may-field--error .may-input {
+  border-color: #B03030;
+  background: #FEF8F8;
+}
+
+.may-error {
+  font-size: .75rem;
+  color: #B03030;
+  font-style: italic;
+}
+
+.may-form__submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.may-submit-btn {
+  padding: 14px 44px;
+  font-size: .88rem;
+}
+
+.may-form__note {
+  font-size: .74rem;
+  color: var(--gray-500);
+  font-style: italic;
+}
+
+/* ── CTA final ──────────────────────────────────────────────── */
+.may-cta {
+  background: var(--olive-dark);
+  padding: 64px 0;
+}
+
+.may-cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.may-cta__title {
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.may-cta__sub {
+  font-size: .88rem;
+  color: rgba(255, 255, 255, .72);
+  font-style: italic;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.may-cta__btn {
+  background: var(--white);
+  color: var(--olive-dark);
+  border: 1.5px solid var(--white);
+  white-space: nowrap;
+  padding: 14px 32px;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.may-cta__btn:hover {
+  background: var(--sand-light);
+  border-color: var(--sand-light);
+  transform: translateY(-1px);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .may-benefits__grid { grid-template-columns: repeat(2, 1fr); }
+  .may-steps__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .may-hero { padding: 56px 0 72px; }
+  .may-available__card { padding: 32px 24px; }
+  .may-form-card { padding: 36px 24px; }
+  .may-form__grid { grid-template-columns: 1fr; }
+  .may-cta__inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 600px) {
+  .may-benefits__grid { grid-template-columns: 1fr; }
+  .may-steps__grid { grid-template-columns: 1fr; }
+  .may-available__actions { flex-direction: column; }
+  .may-available__actions .btn { text-align: center; justify-content: center; }
+}
