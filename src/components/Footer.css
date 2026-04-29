@@ -1,16 +1,28 @@
 .footer {
   background: var(--black);
-  color: rgba(250,247,242,.55);
-  padding: 64px 0 0;
+  color: rgba(250,247,242,.7);
+  padding: 100px 0 40px;
   margin-top: 0;
-  border-top: 1px solid rgba(250,247,242,.08);
+  border-top: 2px solid rgba(216, 195, 165, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216, 195, 165, 0.4), transparent);
 }
 
 .footer__grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  gap: 56px;
-  padding-bottom: 56px;
+  gap: 80px;
+  padding-bottom: 60px;
   border-bottom: 1px solid rgba(250,247,242,.08);
 }
 
@@ -19,102 +31,151 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 18px;
+  margin-bottom: 28px;
 }
 
 .footer__logo-pill {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: var(--olive-dark);
+  gap: 12px;
+  background: transparent;
+  border: 2px solid var(--sand);
   color: var(--white);
-  padding: 8px 18px;
-  border-radius: 3px;
-  letter-spacing: 1px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  letter-spacing: 2px;
 }
 
 .footer__logo-brand {
-  font-family: 'Georgia', serif;
-  font-size: .95rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
   font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .footer__logo-sub {
-  font-size: .58rem;
+  font-size: 0.65rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--sand);
   line-height: 1;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
 }
 
 .footer__desc {
-  font-size: .88rem;
-  line-height: 1.75;
-  max-width: 300px;
-  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  max-width: 320px;
+  font-style: normal;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: rgba(250,247,242,.65);
 }
 
 /* ── Columns ── */
 .footer__heading {
-  color: rgba(250,247,242,.9);
-  font-size: .7rem;
+  color: rgba(250,247,242,.95);
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2.5px;
-  margin-bottom: 20px;
-  font-family: 'Georgia', serif;
+  margin-bottom: 24px;
+  font-family: 'Poppins', sans-serif;
   font-style: normal;
+  color: var(--sand);
 }
 
 .footer__links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
-.footer__links a { font-size: .88rem; font-style: italic; transition: color var(--transition); }
-.footer__links a:hover { color: var(--sand); }
+.footer__links a {
+  font-size: 0.95rem;
+  font-style: normal;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  transition: all var(--transition);
+  color: rgba(250,247,242,.75);
+}
+.footer__links a:hover {
+  color: var(--sand);
+  padding-left: 8px;
+}
 
 .footer__info {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 .footer__info li {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  font-size: .88rem;
-  font-style: italic;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-style: normal;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: rgba(250,247,242,.75);
 }
-.footer__info li svg { flex-shrink: 0; margin-top: 3px; opacity: .6; }
-.footer__info a { transition: color var(--transition); }
-.footer__info a:hover { color: var(--sand); }
+.footer__info li svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  opacity: 0.8;
+  color: var(--sand);
+  stroke-width: 2.5;
+}
+.footer__info a {
+  transition: all var(--transition);
+  color: rgba(250,247,242,.75);
+}
+.footer__info a:hover {
+  color: var(--sand);
+}
 
 /* ── Bottom ── */
 .footer__bottom {
-  padding: 20px 0;
+  padding: 28px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: .78rem;
+  font-size: 0.85rem;
   flex-wrap: wrap;
-  gap: 8px;
-  font-style: italic;
+  gap: 16px;
+  font-style: normal;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: rgba(250,247,242,.5);
 }
 
-.footer__terms { transition: color var(--transition); }
-.footer__terms:hover { color: var(--sand); }
+.footer__terms {
+  transition: all var(--transition);
+  color: rgba(250,247,242,.5);
+}
+.footer__terms:hover {
+  color: var(--sand);
+}
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 48px; }
   .footer__brand { grid-column: 1 / -1; }
 }
 
 @media (max-width: 600px) {
-  .footer__grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer {
+    padding: 60px 0 30px;
+  }
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
   .footer__bottom { flex-direction: column; align-items: flex-start; }
-  .footer { margin-top: 48px; }
+  .footer__logo-pill {
+    padding: 10px 18px;
+  }
 }
