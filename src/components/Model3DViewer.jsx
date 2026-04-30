@@ -55,7 +55,7 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
         );
         const fov = cameraRef.current.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-        cameraZ *= 1.5;
+        cameraZ *= 2.8; // Más zoom out para objeto más compacto
         cameraRef.current.position.z = cameraZ;
 
         setIsLoading(false);
