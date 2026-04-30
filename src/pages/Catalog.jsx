@@ -1,17 +1,19 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SlidersHorizontal, X, Eye } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import { products, categories } from '../data/products';
 import './Catalog.css';
 
-const SORT_OPTIONS = [
-  { value: 'relevance', label: 'Relevancia / Nuevos' },
-  { value: 'price-asc', label: 'Precio: Menor a Mayor' },
-  { value: 'price-desc', label: 'Precio: Mayor a Menor' },
-  { value: 'name-az', label: 'Nombre A-Z' },
+const SORT_OPTIONS_KEYS = [
+  { value: 'relevance', labelKey: 'masPopular' },
+  { value: 'price-asc', labelKey: 'menorPrecio' },
+  { value: 'price-desc', labelKey: 'mayorPrecio' },
+  { value: 'name-az', labelKey: 'masNuevo' },
 ];
 
 export default function Catalog() {
+  const { t } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState('relevance');
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -59,10 +61,10 @@ export default function Catalog() {
       {/* Hero banner */}
       <div className="catalog-hero">
         <div className="container">
-          <h1 className="catalog-hero__title">Catálogo</h1>
+          <h1 className="catalog-hero__title">{t('catalogo')}</h1>
           {searchQuery && (
             <p className="catalog-hero__search">
-              Resultados para: <strong>"{searchQuery}"</strong>
+              {t('resultados')}: <strong>"{searchQuery}"</strong>
             </p>
           )}
         </div>
@@ -74,7 +76,7 @@ export default function Catalog() {
           <div className="catalog-sidebar__header">
             <div className="catalog-sidebar__title">
               <SlidersHorizontal size={16} />
-              CATEGORÍAS
+              {t('filtrar').toUpperCase()}
             </div>
             <button className="catalog-sidebar__close" onClick={() => setSidebarOpen(false)}>
               <X size={20} />
@@ -110,10 +112,10 @@ export default function Catalog() {
                 onClick={() => setSidebarOpen(o => !o)}
               >
                 <SlidersHorizontal size={16} />
-                Filtrar productos
+                {t('filtrar')}
               </button>
               <span className="catalog-count">
-                — <strong>{filtered.length}</strong> producto{filtered.length !== 1 ? 's' : ''}
+                — <strong>{filtered.length}</strong> {filtered.length !== 1 ? t('productos') : t('producto')}
               </span>
             </div>
             <select
@@ -121,8 +123,8 @@ export default function Catalog() {
               value={sortBy}
               onChange={e => setSortBy(e.target.value)}
             >
-              {SORT_OPTIONS.map(o => (
-                <option key={o.value} value={o.value}>{o.label}</option>
+              {SORT_OPTIONS_KEYS.map(o => (
+                <option key={o.value} value={o.value}>{t(o.labelKey)}</option>
               ))}
             </select>
           </div>
@@ -130,7 +132,7 @@ export default function Catalog() {
           {/* Product grid */}
           {filtered.length === 0 ? (
             <div className="catalog-empty">
-              <p>No se encontraron productos{searchQuery ? ` para "${searchQuery}"` : ''}.</p>
+              <p>{t('noResultados')}{searchQuery ? ` "${searchQuery}"` : ''}.</p>
             </div>
           ) : (
             <div className="catalog-grid">
@@ -139,6 +141,7 @@ export default function Catalog() {
                   key={p.id}
                   product={p}
                   onClick={() => navigate(`/producto/${p.slug}`)}
+                  t={t}
                 />
               ))}
             </div>
@@ -149,14 +152,14 @@ export default function Catalog() {
   );
 }
 
-function CatalogCard({ product, onClick }) {
+function CatalogCard({ product, onClick, t }) {
   return (
     <div className="cat-card card" onClick={onClick}>
       <div className="cat-card__img-wrap">
         <img src={product.images[0]} alt={product.name} className="cat-card__img" loading="lazy" />
-        {!product.inStock && <span className="cat-card__no-stock">Sin Stock</span>}
+        {!product.inStock && <span className="cat-card__no-stock">{t('sinStock')}</span>}
         <div className="cat-card__quick-view">
-          <Eye size={16} /> Ver producto
+          <Eye size={16} /> {t('verProducto')}
         </div>
       </div>
       <div className="cat-card__body">
@@ -167,7 +170,7 @@ function CatalogCard({ product, onClick }) {
           onClick={(e) => { e.stopPropagation(); onClick(); }}
           disabled={!product.inStock}
         >
-          {!product.inStock ? 'Sin stock' : 'Ver'}
+          {!product.inStock ? t('sinStock') : t('ver')}
         </button>
       </div>
     </div>
