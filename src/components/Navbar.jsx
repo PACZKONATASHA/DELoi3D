@@ -69,7 +69,11 @@ export default function Navbar() {
             </div>
             <div className="navbar__logo-divider" />
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity=".7">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+              <g>
+                <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#00A9CE" fill="#00A9CE" fillOpacity="0.3"/>
+                <path d="M2 17l10 5 10-5" stroke="#6B2C42" fill="none"/>
+                <path d="M2 12l10 5 10-5" stroke="#D8C3A5" fill="none"/>
+              </g>
             </svg>
           </div>
         </Link>

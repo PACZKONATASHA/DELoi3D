@@ -6,6 +6,25 @@ import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
 import './ProductDetail.css';
 
+// Función para convertir hex a hue rotation
+const hexToHue = (hex) => {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  let h = 0;
+  if (max !== min) {
+    const d = max - min;
+    switch (max) {
+      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+      case g: h = ((b - r) / d + 2) / 6; break;
+      case b: h = ((r - g) / d + 4) / 6; break;
+    }
+  }
+  return h * 360;
+};
+
 export default function ProductDetail() {
   const { t } = useLanguage();
   const { slug } = useParams();
@@ -67,6 +86,9 @@ export default function ProductDetail() {
                 src={product.images[activeImg]}
                 alt={product.name}
                 className="pd-gallery__img"
+                style={selectedColor ? {
+                  filter: `hue-rotate(${hexToHue(selectedColor.hex) - hexToHue('#F5F5F5')}deg) saturate(1.3)`,
+                } : {}}
               />
               {product.images.length > 1 && (
                 <>
