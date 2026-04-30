@@ -29,9 +29,9 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
         geometry.center();
 
         const material = new THREE.MeshStandardMaterial({
-          color: 0x00a9ce,
-          metalness: 0.4,
-          roughness: 0.6,
+          color: 0x2c3e50, // Color oscuro para mejor contraste con fondo blanco
+          metalness: 0.6,
+          roughness: 0.4,
         });
 
         // Remove old mesh
