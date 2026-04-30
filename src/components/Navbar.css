@@ -21,7 +21,7 @@
   align-items: center;
   gap: 10px;
   background: var(--black);
-  border: 2px solid var(--sand);
+  border: 2px solid var(--celeste);
   color: var(--white);
   padding: 8px 20px;
   border-radius: 4px;
@@ -30,7 +30,7 @@
   white-space: nowrap;
   transition: border-color var(--transition);
 }
-.navbar__logo:hover .navbar__logo-pill { border-color: var(--olive-dark); }
+.navbar__logo:hover .navbar__logo-pill { border-color: var(--granate); }
 
 .navbar__logo-brand {
   font-family: 'Poppins', sans-serif;
@@ -81,12 +81,12 @@
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--olive);
+  background: var(--celeste);
   transition: width var(--transition);
 }
-.navbar__link:hover { color: var(--olive); }
+.navbar__link:hover { color: var(--granate); }
 .navbar__link:hover::after { width: 100%; }
-.navbar__link--active { color: var(--olive); }
+.navbar__link--active { color: var(--granate); }
 .navbar__link--active::after { width: 100%; }
 
 /* ── Search ── */
@@ -107,7 +107,7 @@
   gap: 8px;
   transition: border-color var(--transition);
 }
-.navbar__search-form:focus-within { border-color: var(--sand-dark); }
+.navbar__search-form:focus-within { border-color: var(--celeste); }
 
 .navbar__search-icon { color: var(--gray-500); flex-shrink: 0; }
 
@@ -156,7 +156,7 @@
 }
 
 .navbar__suggestion-name { font-size: .85rem; font-weight: 600; color: var(--dark); }
-.navbar__suggestion-price { font-size: .8rem; color: var(--olive); font-style: italic; margin-top: 2px; }
+.navbar__suggestion-price { font-size: .8rem; color: var(--granate); font-style: italic; margin-top: 2px; }
 
 /* ── Cart ── */
 .navbar__cart {
@@ -165,13 +165,13 @@
   color: var(--dark);
   transition: color var(--transition);
 }
-.navbar__cart:hover { color: var(--olive); }
+.navbar__cart:hover { color: var(--granate); }
 
 .navbar__cart-badge {
   position: absolute;
   top: 2px;
   right: 2px;
-  background: var(--olive);
+  background: var(--granate);
   color: var(--white);
   font-size: .6rem;
   font-weight: 700;
