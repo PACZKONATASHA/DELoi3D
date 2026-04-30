@@ -1,0 +1,140 @@
+.model-3d-viewer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.model-3d-viewer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.model-3d-viewer__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin: 0;
+}
+
+.model-3d-viewer__upload {
+  cursor: pointer;
+}
+
+.model-3d-viewer__upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #00A9CE 0%, #0088A8 100%);
+  color: var(--white);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition);
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+.model-3d-viewer__upload-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 169, 206, 0.3);
+}
+
+.model-3d-viewer__canvas {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  background: var(--white);
+  cursor: grab;
+  overflow: hidden;
+}
+
+.model-3d-viewer__canvas:active {
+  cursor: grabbing;
+}
+
+.model-3d-viewer__loading,
+.model-3d-viewer__error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--gray-200);
+  border-top-color: var(--olive);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.model-3d-viewer__loading p,
+.model-3d-viewer__error p {
+  font-size: 0.95rem;
+  color: var(--dark);
+  margin: 0;
+}
+
+.model-3d-viewer__error {
+  background: rgba(255, 107, 107, 0.05);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+.model-3d-viewer__error p {
+  color: #FF6B6B;
+}
+
+.model-3d-viewer__info {
+  padding: 12px 16px;
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  text-align: center;
+  font-style: italic;
+}
+
+.model-3d-viewer__info p {
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .model-3d-viewer__header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .model-3d-viewer__canvas {
+    min-height: 300px;
+  }
+}

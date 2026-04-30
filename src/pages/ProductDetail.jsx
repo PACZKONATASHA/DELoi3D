@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { ShoppingCart, Clock, Ruler, Leaf, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
+import Model3DViewer from '../components/Model3DViewer';
 import './ProductDetail.css';
 
 // Función para convertir hex a HSL
@@ -226,6 +227,17 @@ export default function ProductDetail() {
             </div>
           </div>
         </div>
+
+        {/* Visor 3D */}
+        <section className="pd-3d-section">
+          <h2 className="pd-3d-section__title">Visualizador 3D</h2>
+          <p className="pd-3d-section__desc">
+            Carga un archivo STL u OBJ para visualizar el modelo en 3D. Arrastra para rotar, usa el scroll para zoom.
+          </p>
+          <div className="pd-3d-viewer-container">
+            <Model3DViewer title={product.name} />
+          </div>
+        </section>
 
         {/* Related products */}
         {related.length > 0 && (
