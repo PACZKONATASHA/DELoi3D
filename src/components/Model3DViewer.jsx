@@ -14,6 +14,7 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
 
   const loadModel = useCallback((modelUrl) => {
     if (!modelUrl || !sceneRef.current) return;
@@ -177,6 +178,30 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
     setIsDragging(false);
   };
 
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 1) {
+      setIsDragging(true);
+      setTouchStart({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging || !meshRef.current || e.touches.length !== 1) return;
+    e.preventDefault();
+
+    const deltaX = e.touches[0].clientX - touchStart.x;
+    const deltaY = e.touches[0].clientY - touchStart.y;
+
+    meshRef.current.rotation.y += deltaX * 0.01;
+    meshRef.current.rotation.x += deltaY * 0.01;
+
+    setTouchStart({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
   const handleFileUpload = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -215,6 +240,10 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        style={{ touchAction: 'none' }}
       >
         {isLoading && (
           <div className="model-3d-viewer__loading">

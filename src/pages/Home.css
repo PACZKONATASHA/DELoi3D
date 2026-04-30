@@ -601,10 +601,10 @@
 }
 
 /* ── Custom orders (dark — matches hero) ── */
-.custom-orders { background: var(--black); }
+.custom-orders { background: var(--white); }
 
-.custom-orders .section-title { color: var(--white); }
-.custom-orders .section-sub   { color: rgba(255,255,255,.55); }
+.custom-orders .section-title { color: var(--dark); }
+.custom-orders .section-sub   { color: var(--gray-600); }
 
 .custom-orders__intro {
   text-align: center;
@@ -623,30 +623,32 @@
 .custom-step {
   display: flex;
   align-items: stretch;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: var(--radius-sm);
+  background: var(--granate);
+  border: none;
+  border-radius: var(--radius-md);
   overflow: hidden;
   transition: background var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 16px rgba(107, 44, 66, 0.25);
 }
 .custom-step:hover {
-  background: rgba(255,255,255,.07);
-  box-shadow: 0 8px 32px rgba(0,0,0,.5);
+  background: #8B3A52;
+  box-shadow: 0 12px 32px rgba(107, 44, 66, 0.4);
+  transform: translateY(-3px);
 }
 
 .custom-step__number {
   font-size: 3.8rem;
   font-weight: 700;
   font-style: italic;
-  color: var(--sand);
+  color: var(--white);
   line-height: 1;
   min-width: 88px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px 16px;
-  border-right: 1px solid rgba(255,255,255,.07);
-  background: rgba(0,0,0,.25);
+  border-right: 1px solid rgba(255,255,255,.15);
+  background: rgba(0,0,0,.1);
   flex-shrink: 0;
 }
 
@@ -659,7 +661,7 @@
 }
 
 .custom-step__icon {
-  color: var(--sand);
+  color: var(--white);
   flex-shrink: 0;
   display: flex;
 }
@@ -677,7 +679,7 @@
 
 .custom-step__desc {
   font-size: .85rem;
-  color: rgba(255,255,255,.55);
+  color: rgba(255, 255, 255, 0.9);
   font-style: italic;
   line-height: 1.6;
 }
@@ -685,15 +687,16 @@
 .custom-orders__cta { text-align: center; }
 
 .custom-orders__cta .btn-primary {
-  background: var(--white);
-  color: var(--black);
-  border-color: var(--white);
+  background: var(--celeste);
+  color: var(--white);
+  border-color: var(--celeste);
 }
 .custom-orders__cta .btn-primary:hover {
-  background: var(--sand-light);
-  border-color: var(--sand-light);
-  color: var(--dark);
-  transform: translateY(-1px);
+  background: #0098B5;
+  border-color: #0098B5;
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 169, 206, 0.3);
 }
 
 /* ── Special dates ── */
