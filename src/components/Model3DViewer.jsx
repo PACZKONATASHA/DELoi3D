@@ -82,7 +82,7 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
       window.removeEventListener('resize', handleResize);
       renderer.dispose();
     };
-  }, []);
+  }, [url]);
 
   const loadModel = (modelUrl) => {
     setIsLoading(true);
