@@ -11,6 +11,18 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
+@media (max-width: 768px) {
+  .model-3d-viewer {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .model-3d-viewer {
+    min-height: 350px;
+  }
+}
+
 .model-3d-viewer__header {
   display: flex;
   align-items: center;

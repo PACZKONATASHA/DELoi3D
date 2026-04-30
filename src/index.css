@@ -2,40 +2,40 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Palette */
-  --bg:          #FAF7F2;
-  --sand:        #D8C3A5;
-  --sand-light:  #EDE4D4;
-  --sand-dark:   #C4A882;
+  /* Palette - Negro, Granate, Blanco, Celeste */
+  --bg:          #FFFFFF;
+  --sand:        #F5F5F5;
+  --sand-light:  #F9F9F9;
+  --sand-dark:   #E8E8E8;
   --olive:       #6B2C42;
   --olive-dark:  #4A1F2E;
   --olive-light: #8B3A52;
   --dark:        #111111;
   --black:       #111111;
   --white:       #FFFFFF;
-  --warm-white:  #FAF7F2;
+  --warm-white:  #FFFFFF;
   --granate:     #6B2C42;
   --celeste:     #00A9CE;
 
   /* Semantic aliases used across components */
   --primary:     var(--granate);
   --primary-dark: var(--granate);
-  --primary-light: #E8F5FA;
+  --primary-light: #F0F8FC;
   --accent:      var(--celeste);
   --text:        var(--dark);
-  --text-muted:  #7A7A72;
+  --text-muted:  #666666;
 
   /* Neutrals */
-  --gray-100: #F4F1EC;
-  --gray-200: #EAE6DF;
-  --gray-300: #D8D4CC;
-  --gray-500: #A8A49C;
-  --gray-700: #6A6660;
+  --gray-100: #F5F5F5;
+  --gray-200: #E8E8E8;
+  --gray-300: #CCCCCC;
+  --gray-500: #999999;
+  --gray-700: #333333;
 
   /* Shadows */
-  --shadow-sm:  0 1px 4px rgba(47,47,47,.06);
-  --shadow-md:  0 4px 16px rgba(47,47,47,.10);
-  --shadow-lg:  0 8px 32px rgba(47,47,47,.14);
+  --shadow-sm:  0 1px 4px rgba(17,17,17,.06);
+  --shadow-md:  0 4px 16px rgba(17,17,17,.10);
+  --shadow-lg:  0 8px 32px rgba(17,17,17,.14);
 
   /* Shapes */
   --radius-sm:  6px;
