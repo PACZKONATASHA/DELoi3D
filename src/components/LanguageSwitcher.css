@@ -1,9 +1,9 @@
 .language-switcher {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: nowrap;
 }
 
 .lang-btn {
@@ -75,59 +75,66 @@
 /* Móviles medianos (480px a 600px) */
 @media (max-width: 600px) {
   .language-switcher {
-    gap: 5px;
+    gap: 4px;
   }
 
   .lang-btn {
-    padding: 4px 8px;
-    font-size: 0.65rem;
-    min-height: 32px;
+    padding: 3px 6px;
+    font-size: 0.6rem;
+    min-height: 28px;
   }
 
   .lang-flag {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 
   .lang-code {
-    letter-spacing: 0.5px;
+    letter-spacing: 0px;
+    font-size: 0.55rem;
   }
 }
 
 /* Móviles pequeños (menos de 480px) */
 @media (max-width: 480px) {
   .language-switcher {
-    gap: 4px;
+    gap: 3px;
   }
 
   .lang-btn {
-    padding: 4px 6px;
-    font-size: 0.6rem;
-    min-height: 32px;
-    gap: 4px;
+    padding: 2px 5px;
+    font-size: 0.55rem;
+    min-height: 26px;
+    gap: 3px;
   }
 
   .lang-flag {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   .lang-code {
     letter-spacing: 0px;
+    font-size: 0.5rem;
   }
 }
 
 /* Ultra pequeños (menos de 360px) */
 @media (max-width: 360px) {
   .language-switcher {
-    gap: 3px;
+    gap: 2px;
   }
 
   .lang-btn {
-    padding: 3px 5px;
-    font-size: 0.55rem;
-    min-height: 30px;
+    padding: 2px 4px;
+    font-size: 0.5rem;
+    min-height: 24px;
+    gap: 2px;
   }
 
   .lang-flag {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
+  }
+
+  .lang-code {
+    font-size: 0.48rem;
   }
 }
