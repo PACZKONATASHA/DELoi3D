@@ -309,12 +309,32 @@
   gap: 24px;
 }
 
+@media (max-width: 1024px) {
+  .ofertas__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .ofertas__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .ofertas__grid { grid-template-columns: 1fr; gap: 12px; }
+}
+
 .oferta-card {
   position: relative;
-  border: 1px solid var(--gray-200);
+  border: none;
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: var(--white);
+  background: var(--granate);
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 16px rgba(107, 44, 66, 0.25);
+  cursor: pointer;
+}
+
+.oferta-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(107, 44, 66, 0.4);
 }
 
 .oferta-card__img-wrap {
@@ -339,17 +359,20 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  background: linear-gradient(135deg, var(--olive), #8B9B8B);
-  color: var(--white);
+  background: var(--white);
+  color: var(--granate);
   font-weight: 700;
   font-size: 0.75rem;
   padding: 8px 12px;
   border-radius: 4px;
   letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(107, 44, 66, 0.3);
 }
 
 .oferta-card__body {
   padding: 16px;
+  background: var(--white);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
 }
 
 .oferta-card__name {
@@ -376,7 +399,7 @@
 
 .oferta-card__discount {
   font-size: 1.1rem;
-  color: var(--olive);
+  color: var(--granate);
   font-weight: 700;
   letter-spacing: -0.5px;
 }
