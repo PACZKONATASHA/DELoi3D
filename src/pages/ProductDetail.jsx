@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import { ShoppingCart, Clock, Ruler, Leaf, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
 import './ProductDetail.css';
 
 export default function ProductDetail() {
+  const { t } = useLanguage();
   const { slug } = useParams();
   const navigate = useNavigate();
   const { addItem } = useCart();
@@ -26,8 +28,8 @@ export default function ProductDetail() {
   if (!product) {
     return (
       <div className="not-found container">
-        <h2>Producto no encontrado</h2>
-        <Link to="/catalogo" className="btn btn-primary">Volver al catálogo</Link>
+        <h2>{t('error404')}</h2>
+        <Link to="/catalogo" className="btn btn-primary">{t('volverAlInicio')}</Link>
       </div>
     );
   }
@@ -50,9 +52,9 @@ export default function ProductDetail() {
       <div className="container">
         {/* Breadcrumb */}
         <nav className="pd-breadcrumb">
-          <Link to="/">Inicio</Link>
+          <Link to="/">{t('inicio')}</Link>
           <span>/</span>
-          <Link to="/catalogo">Catálogo</Link>
+          <Link to="/catalogo">{t('catalogo')}</Link>
           <span>/</span>
           <span>{product.name}</span>
         </nav>
@@ -102,10 +104,10 @@ export default function ProductDetail() {
 
           {/* Info */}
           <div className="pd-info">
-            <span className="pd-info__tag">Impresión 3D Premium</span>
+            <span className="pd-info__tag">{t('impresion3D')}</span>
             <h1 className="pd-info__title">{product.name}</h1>
             <p className="pd-info__price price">${product.price.toLocaleString('es-AR')}
-              <span className="pd-info__unit"> / unidad (Minorista)</span>
+              <span className="pd-info__unit"> / {t('unidad')}</span>
             </p>
 
             <div className="pd-info__desc">
@@ -116,9 +118,9 @@ export default function ProductDetail() {
             {product.colors?.length > 0 && (
               <div className="pd-colors">
                 <p className="pd-colors__label">
-                  Color:{' '}
+                  {t('color')}:{' '}
                   <span className="pd-colors__selected">
-                    {selectedColor ? selectedColor.name : 'Elegí un color'}
+                    {selectedColor ? selectedColor.name : t('elegirColor')}
                   </span>
                 </p>
                 <div className="pd-colors__swatches">
@@ -157,22 +159,22 @@ export default function ProductDetail() {
                 disabled={!product.inStock}
               >
                 <ShoppingCart size={18} />
-                {!product.inStock ? 'Sin stock' : added ? '¡Agregado!' : 'AGREGAR AL CARRITO'}
+                {!product.inStock ? t('sinStock') : added ? t('agregado') : t('agregarAlCarrito').toUpperCase()}
               </button>
             </div>
 
             {/* Legal */}
             <p className="pd-info__legal">
-              Al comprar aceptás nuestros{' '}
-              <Link to="/terminos" className="pd-info__legal-link">Términos y Condiciones</Link>.
-              Productos hechos a pedido · Tiempo de producción: 24/48 hs.
+              {t('alComprar')} {' '}
+              <Link to="/terminos" className="pd-info__legal-link">{t('terminos')}</Link>
+              . {t('productosAPedido')}
             </p>
 
             {/* Specs */}
             <div className="pd-specs">
               <div className="pd-spec">
                 <Clock size={22} className="pd-spec__icon" />
-                <span className="pd-spec__val">{product.days} DÍA{product.days !== 1 ? 'S' : ''} HÁBIL{product.days !== 1 ? 'ES' : ''}</span>
+                <span className="pd-spec__val">{product.days} {product.days !== 1 ? t('diasHabiles') : t('diaHabil')}</span>
               </div>
               <div className="pd-spec">
                 <Ruler size={22} className="pd-spec__icon" />
@@ -189,7 +191,7 @@ export default function ProductDetail() {
         {/* Related products */}
         {related.length > 0 && (
           <section className="pd-related">
-            <h2 className="pd-related__title">También te puede interesar</h2>
+            <h2 className="pd-related__title">{t('productosRelacionados')}</h2>
             <div className="pd-related__grid">
               {related.map(p => (
                 <div
