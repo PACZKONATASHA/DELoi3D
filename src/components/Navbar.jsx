@@ -2,11 +2,14 @@ import { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Search, Menu, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 import { products } from '../data/products';
 import './Navbar.css';
 
 export default function Navbar() {
   const { count, setIsOpen } = useCart();
+  const { t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -48,10 +51,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { to: '/', label: 'Inicio' },
-    { to: '/catalogo', label: 'Catálogo' },
-    { to: '/galeria', label: 'Galería' },
-    { to: '/mayoristas', label: 'Mayoristas' },
+    { to: '/', label: t('inicio') },
+    { to: '/catalogo', label: t('catalogo') },
+    { to: '/galeria', label: t('galeria') },
+    { to: '/mayoristas', label: t('mayoristas') },
   ];
 
   return (
@@ -91,7 +94,7 @@ export default function Navbar() {
             <Search size={16} className="navbar__search-icon" />
             <input
               type="text"
-              placeholder="Buscar..."
+              placeholder={t('buscar')}
               value={query}
               onChange={e => setQuery(e.target.value)}
               className="navbar__search-input"
@@ -111,6 +114,9 @@ export default function Navbar() {
             </div>
           )}
         </div>
+
+        {/* Language switcher */}
+        <LanguageSwitcher />
 
         {/* Cart button */}
         <button className="navbar__cart" onClick={() => setIsOpen(true)} aria-label="Carrito">
@@ -149,7 +155,7 @@ export default function Navbar() {
             <input
               autoFocus
               type="text"
-              placeholder="Buscar productos..."
+              placeholder={t('buscar')}
               value={query}
               onChange={e => setQuery(e.target.value)}
               className="navbar__search-input"
