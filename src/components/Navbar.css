@@ -12,6 +12,7 @@
   align-items: center;
   gap: 32px;
   height: var(--nav-h);
+  padding: 0 20px;
 }
 
 /* ── Logo alargado ── */
@@ -227,13 +228,95 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  .navbar__inner {
+    gap: 12px;
+  }
+
   .navbar__links,
   .navbar__search,
   .navbar__cart:not(.navbar__cart--mobile) { display: none; }
   .navbar__mobile-controls { display: flex; }
 }
 
+@media (max-width: 600px) {
+  .navbar__inner {
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .navbar__logo-pill {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .navbar__logo-brand {
+    font-size: 0.75rem;
+  }
+
+  .navbar__logo-sub {
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+  }
+
+  .navbar__logo-divider {
+    height: 20px;
+  }
+
+  .navbar__mobile-controls {
+    gap: 2px;
+  }
+
+  .navbar__mobile-search-btn {
+    padding: 6px;
+  }
+
+  .navbar__cart {
+    padding: 6px;
+  }
+
+  .navbar__hamburger {
+    padding: 6px;
+  }
+}
+
 @media (max-width: 480px) {
-  .navbar__logo-pill { padding: 7px 14px; }
-  .navbar__logo-brand { font-size: .88rem; }
+  .navbar__inner {
+    gap: 6px;
+    padding: 0 8px;
+  }
+
+  .navbar__logo-pill {
+    padding: 5px 8px;
+    gap: 4px;
+  }
+
+  .navbar__logo-brand {
+    font-size: 0.68rem;
+  }
+
+  .navbar__logo-sub {
+    font-size: 0.45rem;
+    letter-spacing: 1px;
+  }
+
+  .navbar__logo-divider {
+    height: 18px;
+    width: 0.5px;
+  }
+
+  .navbar__mobile-controls {
+    gap: 0;
+  }
+
+  .navbar__mobile-search-btn {
+    padding: 4px;
+  }
+
+  .navbar__cart {
+    padding: 4px;
+  }
+
+  .navbar__hamburger {
+    padding: 4px;
+  }
 }
