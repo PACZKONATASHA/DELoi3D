@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './HeroSlider.css';
 
 const SLIDES = [
@@ -12,6 +13,7 @@ const SLIDES = [
 const INTERVAL = 4500;
 
 export default function HeroSlider() {
+  const { t } = useLanguage();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -25,25 +27,22 @@ export default function HeroSlider() {
     <section className="hero-split">
       {/* ── LEFT: text ── */}
       <div className="hero-split__text">
-        <span className="hero-split__tag">Impresión 3D · Fabricación propia</span>
+        <span className="hero-split__tag">3D Printing · Own manufacturing</span>
 
         <h1 className="hero-split__title hero-split__title--thin">
-          Productos<br />
-          impresos en <em>3D</em>
+          {t('heroTitle')}<br />
         </h1>
 
         <p className="hero-split__sub">
-          Nos dedicamos a realizar piezas funcionales, de diseño
-          que hablan por sí solas. Moderno, original y 100&nbsp;%
-          fabricación propia.
+          {t('heroSubtitle')}
         </p>
 
         <div className="hero-split__actions">
           <Link to="/catalogo" className="hero-split__btn hero-split__btn--primary">
-            Ver catálogo <ArrowRight size={16} />
+            {t('explorar')} <ArrowRight size={16} />
           </Link>
           <Link to="/galeria" className="hero-split__btn hero-split__btn--ghost">
-            Ver galería
+            {t('verGaleria')}
           </Link>
         </div>
 
