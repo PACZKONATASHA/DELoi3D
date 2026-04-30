@@ -10,13 +10,21 @@ export default function LanguageSwitcher() {
     { code: 'zh', name: 'ZH', flag: '🇨🇳' },
   ];
 
+  const handleLanguageChange = (code) => {
+    setLanguage(code);
+    // Forzar recarga de página después de cambiar idioma
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  };
+
   return (
     <div className="language-switcher">
       {languages.map((lang) => (
         <button
           key={lang.code}
           className={`lang-btn ${language === lang.code ? 'active' : ''}`}
-          onClick={() => setLanguage(lang.code)}
+          onClick={() => handleLanguageChange(lang.code)}
           title={lang.name}
         >
           <span className="lang-flag">{lang.flag}</span>
