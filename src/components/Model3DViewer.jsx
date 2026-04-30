@@ -29,9 +29,9 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
         geometry.center();
 
         const material = new THREE.MeshStandardMaterial({
-          color: 0x2c3e50, // Color oscuro para mejor contraste con fondo blanco
-          metalness: 0.6,
-          roughness: 0.4,
+          color: 0x00A9CE, // Celeste - tu color de marca
+          metalness: 0.3,
+          roughness: 0.5,
         });
 
         // Remove old mesh
@@ -100,11 +100,11 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
     rendererRef.current = renderer;
 
     // ── Lighting ──
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(50, 50, 50);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    directionalLight.position.set(100, 100, 100);
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.width = 2048;
     directionalLight.shadow.mapSize.height = 2048;
