@@ -235,7 +235,7 @@ export default function ProductDetail() {
             Carga un archivo STL u OBJ para visualizar el modelo en 3D. Arrastra para rotar, usa el scroll para zoom.
           </p>
           <div className="pd-3d-viewer-container">
-            <Model3DViewer title={product.name} url="/models/ejemplo-cubo.stl" />
+            <Model3DViewer title={product.name} url="/models/esfera-demo.stl" />
           </div>
         </section>
 
