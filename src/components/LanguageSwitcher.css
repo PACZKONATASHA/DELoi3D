@@ -24,6 +24,9 @@
   min-height: 36px;
   white-space: nowrap;
   touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .lang-btn:hover {
@@ -79,9 +82,10 @@
   }
 
   .lang-btn {
-    padding: 3px 6px;
-    font-size: 0.6rem;
-    min-height: 28px;
+    padding: 4px 8px;
+    font-size: 0.62rem;
+    min-height: 32px;
+    min-width: 50px;
   }
 
   .lang-flag {
@@ -90,7 +94,7 @@
 
   .lang-code {
     letter-spacing: 0px;
-    font-size: 0.55rem;
+    font-size: 0.6rem;
   }
 }
 
@@ -101,9 +105,10 @@
   }
 
   .lang-btn {
-    padding: 2px 5px;
-    font-size: 0.55rem;
-    min-height: 26px;
+    padding: 3px 6px;
+    font-size: 0.58rem;
+    min-height: 30px;
+    min-width: 48px;
     gap: 3px;
   }
 
@@ -113,7 +118,7 @@
 
   .lang-code {
     letter-spacing: 0px;
-    font-size: 0.5rem;
+    font-size: 0.55rem;
   }
 }
 

@@ -11,11 +11,15 @@ export default function LanguageSwitcher() {
   ];
 
   const handleLanguageChange = (code) => {
+    // Limpiar y guardar el nuevo idioma
+    localStorage.removeItem('language');
+    localStorage.setItem('language', code);
     setLanguage(code);
+    
     // Forzar recarga de página después de cambiar idioma
     setTimeout(() => {
       window.location.reload();
-    }, 100);
+    }, 150);
   };
 
   return (
