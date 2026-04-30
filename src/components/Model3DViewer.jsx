@@ -93,7 +93,6 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
     renderer.setSize(width, height);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.shadowMap.enabled = true;
-    renderer.outputEncoding = THREE.sRGBEncoding;
     
     // Limpiar container antes de agregar nuevo renderer
     containerRef.current.innerHTML = '';
