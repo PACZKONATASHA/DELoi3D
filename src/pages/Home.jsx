@@ -306,7 +306,7 @@ function ProductCard({ product, navigate, t }) {
             className="btn btn-primary product-card__btn"
             onClick={(e) => { e.stopPropagation(); navigate(`/producto/${product.slug}`); }}
           >
-            Ver
+            {t('ver')}
           </button>
         </div>
       </div>
