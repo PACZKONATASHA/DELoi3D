@@ -25,6 +25,10 @@ export default function Footer() {
                   <div className="footer__logo-brand">DELoi3D</div>
                   <div className="footer__logo-sub">Impresión 3D</div>
                 </div>
+                <div className="footer__logo-divider" />
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity=".7">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                </svg>
               </div>
             </div>
             <p className="footer__desc">

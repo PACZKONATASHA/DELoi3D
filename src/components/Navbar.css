@@ -20,20 +20,22 @@
   align-items: center;
   gap: 10px;
   background: var(--black);
+  border: 2px solid var(--sand);
   color: var(--white);
   padding: 8px 20px;
   border-radius: 4px;
   letter-spacing: 2px;
   text-transform: uppercase;
   white-space: nowrap;
-  transition: background var(--transition);
+  transition: border-color var(--transition);
 }
-.navbar__logo:hover .navbar__logo-pill { background: var(--olive-dark); }
+.navbar__logo:hover .navbar__logo-pill { border-color: var(--olive-dark); }
 
 .navbar__logo-brand {
-  font-family: 'Georgia', serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1rem;
   font-weight: 700;
+  letter-spacing: -0.5px;
   line-height: 1;
 }
 
@@ -44,6 +46,7 @@
   color: var(--sand);
   font-weight: 400;
   line-height: 1;
+  font-family: 'Poppins', sans-serif;
 }
 
 .navbar__logo-divider {

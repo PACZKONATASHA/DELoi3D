@@ -37,30 +37,45 @@
 .footer__logo-pill {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: transparent;
+  gap: 10px;
+  background: var(--black);
   border: 2px solid var(--sand);
   color: var(--white);
-  padding: 12px 24px;
+  padding: 8px 20px;
   border-radius: 4px;
   letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: border-color var(--transition);
 }
 
 .footer__logo-brand {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.5px;
+  line-height: 1;
 }
 
 .footer__logo-sub {
-  font-size: 0.65rem;
-  letter-spacing: 2px;
+  font-size: .6rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  color: var(--sand);
+  font-weight: 400;
+  line-height: 1;
+  font-family: 'Poppins', sans-serif;
+}
   color: var(--sand);
   line-height: 1;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
+}
+
+.footer__logo-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255,255,255,.25);
 }
 
 .footer__desc {
