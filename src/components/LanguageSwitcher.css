@@ -1,4 +1,10 @@
-.language-switcher {
+/* ========== CONTAINER ========== */
+.language-switcher-container {
+  position: relative;
+}
+
+/* ========== DESKTOP: 3 BOTONES EN LÍNEA ========== */
+.language-switcher-desktop {
   display: flex;
   gap: 6px;
   align-items: center;
@@ -58,9 +64,105 @@
   display: inline-block;
 }
 
-/* Tablets (768px y menores) */
+/* ========== MOBILE: MENÚ DESPLEGABLE ========== */
+.language-switcher-mobile {
+  display: none;
+  position: relative;
+}
+
+.lang-btn-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--sand);
+  color: var(--black);
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+  min-height: 36px;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lang-btn-mobile:hover {
+  background: var(--sand);
+  border-color: var(--sand);
+  box-shadow: 0 4px 12px rgba(216, 195, 165, 0.3);
+}
+
+.lang-btn-mobile.open {
+  background: var(--sand);
+  border-color: var(--sand);
+  box-shadow: 0 4px 12px rgba(216, 195, 165, 0.4);
+}
+
+.dropdown-icon {
+  font-size: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.lang-btn-mobile.open .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+/* Menú desplegable */
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid var(--sand);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  min-width: 100px;
+  overflow: hidden;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--black);
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.2s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-align: left;
+}
+
+.dropdown-item:hover {
+  background: var(--sand);
+  color: var(--black);
+}
+
+.dropdown-item:active {
+  transform: scale(0.98);
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* Tablets (768px y menores) - Mantener desktop */
 @media (max-width: 768px) {
-  .language-switcher {
+  .language-switcher-desktop {
     gap: 6px;
   }
 
@@ -75,71 +177,66 @@
   }
 }
 
-/* Móviles medianos (480px a 600px) */
+/* Móviles medianos (480px a 600px) - Cambiar a mobile */
 @media (max-width: 600px) {
-  .language-switcher {
-    gap: 4px;
+  .language-switcher-desktop {
+    display: none;
   }
 
-  .lang-btn {
-    padding: 4px 8px;
-    font-size: 0.62rem;
-    min-height: 32px;
-    min-width: 50px;
+  .language-switcher-mobile {
+    display: block;
+  }
+
+  .lang-btn-mobile {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    min-height: 34px;
   }
 
   .lang-flag {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
   }
 
-  .lang-code {
-    letter-spacing: 0px;
-    font-size: 0.6rem;
+  .language-dropdown {
+    margin-top: 4px;
+  }
+
+  .dropdown-item {
+    padding: 10px 12px;
+    font-size: 0.75rem;
   }
 }
 
 /* Móviles pequeños (menos de 480px) */
 @media (max-width: 480px) {
-  .language-switcher {
-    gap: 3px;
+  .language-switcher-desktop {
+    display: none;
   }
 
-  .lang-btn {
-    padding: 3px 6px;
-    font-size: 0.58rem;
-    min-height: 30px;
-    min-width: 48px;
-    gap: 3px;
+  .language-switcher-mobile {
+    display: block;
   }
 
-  .lang-flag {
+  .lang-btn-mobile {
+    padding: 5px 8px;
     font-size: 0.7rem;
-  }
-
-  .lang-code {
-    letter-spacing: 0px;
-    font-size: 0.55rem;
-  }
-}
-
-/* Ultra pequeños (menos de 360px) */
-@media (max-width: 360px) {
-  .language-switcher {
-    gap: 2px;
-  }
-
-  .lang-btn {
-    padding: 2px 4px;
-    font-size: 0.5rem;
-    min-height: 24px;
-    gap: 2px;
+    min-height: 32px;
   }
 
   .lang-flag {
-    font-size: 0.65rem;
+    font-size: 0.85rem;
   }
 
-  .lang-code {
-    font-size: 0.48rem;
+  .dropdown-icon {
+    font-size: 0.45rem;
+  }
+
+  .language-dropdown {
+    margin-top: 3px;
+  }
+
+  .dropdown-item {
+    padding: 8px 10px;
+    font-size: 0.7rem;
   }
 }
