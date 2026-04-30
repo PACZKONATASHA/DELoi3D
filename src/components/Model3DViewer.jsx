@@ -79,8 +79,11 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
     sceneRef.current = scene;
 
     // ── Setup Camera ──
-    const width = containerRef.current.clientWidth;
-    const height = containerRef.current.clientHeight;
+    const width = containerRef.current.clientWidth || 500;
+    const height = containerRef.current.clientHeight || 500;
+    
+    console.log('Canvas dimensions:', width, 'x', height);
+    
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     camera.position.set(0, 0, 50);
     cameraRef.current = camera;
@@ -90,6 +93,10 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
     renderer.setSize(width, height);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.shadowMap.enabled = true;
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    
+    // Limpiar container antes de agregar nuevo renderer
+    containerRef.current.innerHTML = '';
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
