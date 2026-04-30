@@ -1,14 +1,32 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import { galleryImages, categories } from '../data/products';
 import './Gallery.css';
 
 export default function Gallery() {
+  const { t } = useLanguage();
   const [activeCat, setActiveCat] = useState('todas');
   const [lightbox, setLightbox] = useState(null);
 
+  // Mapping for gallery image names
+  const imageNameMap = {
+    'Macetas Robert Plant': 'galeriaMacetasRobert',
+    'Macetas de diseño': 'galeriaMacetasDiseno',
+    'Gato deco': 'galeriaGatoDeco',
+    'Iluminación': 'galeriaIluminacion',
+    'Maceta Mickey': 'galeriaMacetaMickey',
+    'Mates diseño': 'galeriaMatesDiseno',
+    'Llaveros': 'galeriaLlaveros',
+    'Productos mascotas': 'galeriaProductosMascotas',
+    'Macetas suculentas': 'galeriaMacetasSuculentas',
+    'Bazar productos': 'galeriaBazarProductos',
+    'Juguetes': 'galeriaJuguetes',
+    'Soportes': 'galeriaSoportes',
+  };
+
   const galleryCategories = [
-    { slug: 'todas', name: 'Todas' },
+    { slug: 'todas', name: t('todas') },
     ...categories.filter(c => c.id !== 'todos'),
   ];
 
@@ -26,8 +44,8 @@ export default function Gallery() {
       {/* Hero */}
       <div className="gallery-hero">
         <div className="container">
-          <h1 className="gallery-hero__title">Galería</h1>
-          <p className="gallery-hero__sub">Mirá nuestros trabajos terminados.</p>
+          <h1 className="gallery-hero__title">{t('galeriaTitulo')}</h1>
+          <p className="gallery-hero__sub">{t('galeriaDesc')}</p>
         </div>
       </div>
 
@@ -46,7 +64,7 @@ export default function Gallery() {
         </div>
 
         {/* Count */}
-        <p className="gallery-count">{filtered.length} foto{filtered.length !== 1 ? 's' : ''}</p>
+        <p className="gallery-count">{filtered.length} {filtered.length !== 1 ? t('fotos') : t('foto')}</p>
 
         {/* Masonry grid */}
         <div className="gallery-grid">
@@ -55,11 +73,11 @@ export default function Gallery() {
               key={img.id}
               className="gallery-item"
               onClick={() => openLightbox(i)}
-              aria-label={img.alt}
+              aria-label={t(imageNameMap[img.alt] || img.alt)}
             >
               <img src={img.src} alt={img.alt} loading="lazy" className="gallery-item__img" />
               <div className="gallery-item__overlay">
-                <span className="gallery-item__label">{img.alt}</span>
+                <span className="gallery-item__label">{t(imageNameMap[img.alt] || img.alt)}</span>
               </div>
             </button>
           ))}

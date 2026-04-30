@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import { TrendingUp, BarChart3, Package, MessageSquare, ArrowRight } from 'lucide-react';
 import './Mayoristas.css';
 
@@ -8,31 +9,31 @@ const WHATSAPP_NUMBER = "549XXXXXXXXXX";
 const BENEFITS = [
   {
     icon: <TrendingUp size={28} />,
-    title: 'Precios por volumen',
-    desc: 'Comprá en mayor cantidad y accedé a precios especiales.',
+    titleKey: 'preciosEspeciales',
+    descKey: 'beneficio1Desc',
   },
   {
     icon: <BarChart3 size={28} />,
-    title: 'Mayor margen de ganancia',
-    desc: 'Ideal para revender o sumar productos a tu emprendimiento.',
+    titleKey: 'beneficio2',
+    descKey: 'beneficio2Desc',
   },
   {
     icon: <Package size={28} />,
-    title: 'Stock para tu negocio',
-    desc: 'Planificá tus compras y asegurá disponibilidad.',
+    titleKey: 'beneficio3',
+    descKey: 'beneficio3Desc',
   },
   {
     icon: <MessageSquare size={28} />,
-    title: 'Atención personalizada',
-    desc: 'Te asesoramos según los productos que buscás.',
+    titleKey: 'asesoramiento',
+    descKey: 'beneficio4Desc',
   },
 ];
 
 const STEPS = [
-  { num: '01', title: 'Completá tus datos', desc: 'Llenás el formulario con tu información y lo que necesitás.' },
-  { num: '02', title: 'Validamos tu solicitud', desc: 'Revisamos tu consulta y te contactamos a la brevedad.' },
-  { num: '03', title: 'Recibís el catálogo', desc: 'Te enviamos precios, condiciones y productos disponibles.' },
-  { num: '04', title: 'Coordinamos todo', desc: 'Acordamos forma de pago y entrega según tus necesidades.' },
+  { num: '01', titleKey: 'paso1', descKey: 'paso1Desc' },
+  { num: '02', titleKey: 'paso2', descKey: 'paso2Desc' },
+  { num: '03', titleKey: 'paso3', descKey: 'paso3Desc' },
+  { num: '04', titleKey: 'paso4', descKey: 'paso4Desc' },
 ];
 
 const REQUIRED_FIELDS = ['nombre', 'telefono', 'email', 'producto'];
@@ -44,6 +45,7 @@ const INITIAL_FORM = {
 };
 
 export default function Mayoristas() {
+  const { t } = useLanguage();
   const [form, setForm] = useState(INITIAL_FORM);
   const [errors, setErrors] = useState({});
 
@@ -104,16 +106,15 @@ export default function Mayoristas() {
       {/* ── Hero ── */}
       <section className="may-hero">
         <div className="container may-hero__inner">
-          <span className="may-badge">Ventas mayoristas</span>
+          <span className="may-badge">{t('mayorista')}</span>
           <h1 className="may-hero__title">
-            Comprá al por mayor para tu emprendimiento
+            {t('mayoristasTitle')}
           </h1>
           <p className="may-hero__sub">
-            Accedé a productos seleccionados con condiciones especiales
-            para emprendedores, comercios y revendedores.
+            {t('mayoristasDesc')}
           </p>
           <button className="btn btn-primary" onClick={scrollToForm}>
-            Solicitar catálogo mayorista <ArrowRight size={18} />
+            {t('contactarMayor')} <ArrowRight size={18} />
           </button>
         </div>
       </section>
@@ -122,15 +123,15 @@ export default function Mayoristas() {
       <section className="may-benefits section">
         <div className="container">
           <div className="may-section-header">
-            <h2 className="may-title">¿Por qué comprar al por mayor?</h2>
-            <p className="may-sub">Beneficios pensados para hacer crecer tu negocio.</p>
+            <h2 className="may-title">{t('beneficios')}</h2>
+            <p className="may-sub">{t('beneficiosSub')}</p>
           </div>
           <div className="may-benefits__grid">
             {BENEFITS.map((b, i) => (
               <div key={i} className="may-benefit-card">
                 <div className="may-benefit-card__icon">{b.icon}</div>
-                <h3 className="may-benefit-card__title">{b.title}</h3>
-                <p className="may-benefit-card__desc">{b.desc}</p>
+                <h3 className="may-benefit-card__title">{t(b.titleKey)}</h3>
+                <p className="may-benefit-card__desc">{t(b.descKey)}</p>
               </div>
             ))}
           </div>
@@ -142,17 +143,16 @@ export default function Mayoristas() {
         <div className="container">
           <div className="may-available__card">
             <div className="may-available__content">
-              <h2 className="may-title">¿Qué productos están disponibles?</h2>
+              <h2 className="may-title">{t('productosDisponibles')}</h2>
               <p className="may-available__text">
-                No todos los productos de la tienda están habilitados para venta mayorista.
-                Para conocer el catálogo actualizado, contactanos y te enviamos las opciones disponibles.
+                {t('productosDisponiblesDesc')}
               </p>
               <div className="may-available__actions">
                 <button className="btn btn-olive" onClick={scrollToForm}>
-                  Consultar productos disponibles
+                  {t('consultarProductos')}
                 </button>
                 <Link to="/catalogo" className="btn btn-outline">
-                  Ver catálogo →
+                  {t('verCatalogo')} →
                 </Link>
               </div>
             </div>
@@ -164,15 +164,15 @@ export default function Mayoristas() {
       <section className="may-steps section">
         <div className="container">
           <div className="may-section-header">
-            <h2 className="may-title">Cómo comprar al por mayor</h2>
-            <p className="may-sub">Simple y rápido, en cuatro pasos.</p>
+            <h2 className="may-title">{t('comoComprar')}</h2>
+            <p className="may-sub">{t('comoComprarSub')}</p>
           </div>
           <div className="may-steps__grid">
             {STEPS.map((s, i) => (
               <div key={i} className="may-step">
                 <div className="may-step__num">{s.num}</div>
-                <h3 className="may-step__title">{s.title}</h3>
-                <p className="may-step__desc">{s.desc}</p>
+                <h3 className="may-step__title">{t(s.titleKey)}</h3>
+                <p className="may-step__desc">{t(s.descKey)}</p>
               </div>
             ))}
           </div>
@@ -184,9 +184,9 @@ export default function Mayoristas() {
         <div className="container">
           <div className="may-form-card">
             <div className="may-form-card__header">
-              <h2 className="may-title">Solicitá información mayorista</h2>
+              <h2 className="may-title">{t('solicitarInfo')}</h2>
               <p className="may-sub">
-                Dejanos tus datos y te contactamos para enviarte el catálogo y las condiciones.
+                {t('solicitarInfoSub')}
               </p>
             </div>
 
@@ -194,27 +194,27 @@ export default function Mayoristas() {
               <div className="may-form__grid">
 
                 <div className={`may-field${errors.nombre ? ' may-field--error' : ''}`}>
-                  <label className="may-label">Nombre y apellido <span>*</span></label>
+                  <label className="may-label">{t('nombreApellido')} <span>*</span></label>
                   <input
                     className="may-input"
                     type="text"
                     name="nombre"
                     value={form.nombre}
                     onChange={handle}
-                    placeholder="Tu nombre completo"
+                    placeholder={t('placeholderNombre')}
                   />
-                  {errors.nombre && <p className="may-error">{errors.nombre}</p>}
+                  {errors.nombre && <p className="may-error">{t('campoObligatorio')}</p>}
                 </div>
 
                 <div className="may-field">
-                  <label className="may-label">Emprendimiento / Razón social</label>
+                  <label className="may-label">{t('emprendimiento')}</label>
                   <input
                     className="may-input"
                     type="text"
                     name="emprendimiento"
                     value={form.emprendimiento}
                     onChange={handle}
-                    placeholder="Nombre de tu negocio (opcional)"
+                    placeholder={t('placeholderEmprendimiento')}
                   />
                 </div>
 
@@ -226,24 +226,24 @@ export default function Mayoristas() {
                     name="cuit"
                     value={form.cuit}
                     onChange={handle}
-                    placeholder="XX-XXXXXXXX-X (opcional)"
+                    placeholder={t('placeholderCUIT')}
                   />
                 </div>
 
                 <div className="may-field">
-                  <label className="may-label">Domicilio comercial</label>
+                  <label className="may-label">{t('domicilio')}</label>
                   <input
                     className="may-input"
                     type="text"
                     name="domicilio"
                     value={form.domicilio}
                     onChange={handle}
-                    placeholder="Dirección (opcional)"
+                    placeholder={t('placeholderDomicilio')}
                   />
                 </div>
 
                 <div className={`may-field${errors.telefono ? ' may-field--error' : ''}`}>
-                  <label className="may-label">Teléfono / WhatsApp <span>*</span></label>
+                  <label className="may-label">{t('telefonoWhatsApp')} <span>*</span></label>
                   <input
                     className="may-input"
                     type="tel"
@@ -252,7 +252,7 @@ export default function Mayoristas() {
                     onChange={handle}
                     placeholder="+54 9 11 XXXX-XXXX"
                   />
-                  {errors.telefono && <p className="may-error">{errors.telefono}</p>}
+                  {errors.telefono && <p className="may-error">{t('campoObligatorio')}</p>}
                 </div>
 
                 <div className={`may-field${errors.email ? ' may-field--error' : ''}`}>
@@ -265,42 +265,42 @@ export default function Mayoristas() {
                     onChange={handle}
                     placeholder="tu@email.com"
                   />
-                  {errors.email && <p className="may-error">{errors.email}</p>}
+                  {errors.email && <p className="may-error">{t('emailInvalido')}</p>}
                 </div>
 
                 <div className={`may-field may-field--full${errors.producto ? ' may-field--error' : ''}`}>
-                  <label className="may-label">Producto o categoría de interés <span>*</span></label>
+                  <label className="may-label">{t('productoInteres')} <span>*</span></label>
                   <input
                     className="may-input"
                     type="text"
                     name="producto"
                     value={form.producto}
                     onChange={handle}
-                    placeholder="Ej: Macetas, mates, llaveros..."
+                    placeholder={t('placeholderProducto')}
                   />
-                  {errors.producto && <p className="may-error">{errors.producto}</p>}
+                  {errors.producto && <p className="may-error">{t('campoObligatorio')}</p>}
                 </div>
 
                 <div className="may-field may-field--full">
-                  <label className="may-label">Cantidad estimada</label>
+                  <label className="may-label">{t('cantidadEstimada')}</label>
                   <input
                     className="may-input"
                     type="text"
                     name="cantidad"
                     value={form.cantidad}
                     onChange={handle}
-                    placeholder="Ej: 50 unidades (opcional)"
+                    placeholder={t('placeholderCantidad')}
                   />
                 </div>
 
                 <div className="may-field may-field--full">
-                  <label className="may-label">Mensaje adicional</label>
+                  <label className="may-label">{t('mensajeAdicional')}</label>
                   <textarea
                     className="may-input may-textarea"
                     name="mensaje"
                     value={form.mensaje}
                     onChange={handle}
-                    placeholder="Contanos más sobre lo que necesitás..."
+                    placeholder={t('placeholderMensaje')}
                     rows={4}
                   />
                 </div>
@@ -309,10 +309,10 @@ export default function Mayoristas() {
 
               <div className="may-form__submit">
                 <button type="submit" className="btn btn-primary may-submit-btn">
-                  Enviar consulta mayorista <ArrowRight size={18} />
+                  {t('enviarConsulta')} <ArrowRight size={18} />
                 </button>
                 <p className="may-form__note">
-                  * Campos obligatorios. Tu consulta se enviará por WhatsApp.
+                  {t('notaFormulario')}
                 </p>
               </div>
             </form>
