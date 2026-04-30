@@ -302,6 +302,160 @@
   box-shadow: 0 12px 32px rgba(216, 195, 165, 0.4), 0 0 20px rgba(216, 195, 165, 0.3);
 }
 
+/* ── Ofertas ── */
+.ofertas__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.oferta-card {
+  position: relative;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.oferta-card__img-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.oferta-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.oferta-card:hover .oferta-card__img {
+  transform: scale(1.05);
+}
+
+.oferta-card__badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, var(--olive), #8B9B8B);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 8px 12px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+.oferta-card__body {
+  padding: 16px;
+}
+
+.oferta-card__name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.oferta-card__prices {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.oferta-card__original {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.oferta-card__discount {
+  font-size: 1.1rem;
+  color: var(--olive);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.oferta-card__colors {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.oferta-card__color {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--gray-300);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.oferta-card__color:hover {
+  transform: scale(1.15);
+}
+
+.oferta-card__btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.85rem;
+}
+
+/* ── Shipping Info ── */
+.shipping-info {
+  background: linear-gradient(135deg, rgba(216, 195, 165, 0.08), rgba(107, 112, 92, 0.05));
+  border: 1px solid var(--sand);
+}
+
+.shipping-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.shipping-card {
+  background: var(--white);
+  padding: 32px 24px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.shipping-card:hover {
+  border-color: var(--sand);
+  box-shadow: 0 8px 24px rgba(216, 195, 165, 0.12);
+  transform: translateY(-4px);
+}
+
+.shipping-card__icon {
+  color: var(--olive);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.shipping-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.shipping-card__desc {
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
 /* ── Occasions (interactive tabs) ── */
 .occasions { background: var(--sand-light); border-top: 1px solid var(--sand); border-bottom: 1px solid var(--sand); }
 
@@ -599,11 +753,14 @@
 /* ── Responsive ── */
 @media (max-width: 1200px) {
   .featured__grid { grid-template-columns: repeat(3, 1fr); }
+  .ofertas__grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 900px) {
   .features__grid { grid-template-columns: repeat(2, 1fr); }
   .featured__grid { grid-template-columns: repeat(2, 1fr); }
+  .ofertas__grid { grid-template-columns: repeat(2, 1fr); }
+  .shipping-cards { grid-template-columns: repeat(2, 1fr); }
   .custom-steps { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
   .dates-grid { grid-template-columns: repeat(2, 1fr); }
   .occasions__grid { grid-template-columns: repeat(2, 1fr); }

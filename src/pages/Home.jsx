@@ -127,7 +127,7 @@ export default function Home() {
           </div>
           <div className="custom-orders__cta">
             <a
-              href="https://wa.me/5491100000000?text=Hola!+Quiero+consultar+por+un+producto+personalizado"
+              href="https://wa.me/1161307110?text=Hola!+Quiero+consultar+por+un+producto+personalizado"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
@@ -203,6 +203,92 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Ofertas ── */}
+      <section className="ofertas section">
+        <div className="container">
+          <div className="section-header">
+            <div>
+              <h2 className="section-title">{t('ofertas')}</h2>
+              <p className="section-sub">{t('ofertasDesc')}</p>
+            </div>
+          </div>
+
+          <div className="ofertas__grid">
+            {products.filter(p => p.offer).map(p => (
+              <div key={p.id} className="oferta-card card" onClick={() => navigate(`/producto/${p.slug}`)}>
+                <div className="oferta-card__img-wrap">
+                  <img src={p.images[0]} alt={p.name} className="oferta-card__img" loading="lazy" />
+                  <span className="oferta-card__badge">{p.offer}% OFF</span>
+                </div>
+                <div className="oferta-card__body">
+                  <h3 className="oferta-card__name">{p.name}</h3>
+                  <div className="oferta-card__prices">
+                    <span className="oferta-card__original">${p.price.toLocaleString('es-AR')}</span>
+                    <span className="oferta-card__discount">${Math.round(p.price * (1 - p.offer / 100)).toLocaleString('es-AR')}</span>
+                  </div>
+                  {p.colors && (
+                    <div className="oferta-card__colors">
+                      {p.colors.slice(0, 5).map((c, i) => (
+                        <span key={i} className="oferta-card__color" style={{ background: c.hex }} title={c.name} />
+                      ))}
+                    </div>
+                  )}
+                  <button
+                    className="btn btn-primary oferta-card__btn"
+                    onClick={(e) => { e.stopPropagation(); navigate(`/producto/${p.slug}`); }}
+                  >
+                    {t('ver')}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Shipping Info ── */}
+      <section className="shipping-info section">
+        <div className="container">
+          <h2 className="section-title">{t('envios')}</h2>
+          <div className="shipping-cards">
+            <div className="shipping-card">
+              <div className="shipping-card__icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <h3 className="shipping-card__title">{t('ambaYCaba')}</h3>
+              <p className="shipping-card__desc">{t('desdeEn')} $50.000 {t('sinCosto')}</p>
+            </div>
+            <div className="shipping-card">
+              <div className="shipping-card__icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><polyline points="9 11 12 14 15 11"/>
+                </svg>
+              </div>
+              <h3 className="shipping-card__title">{t('interior')}</h3>
+              <p className="shipping-card__desc">Andreani / {t('conCosto')}</p>
+            </div>
+            <div className="shipping-card">
+              <div className="shipping-card__icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <h3 className="shipping-card__title">{t('contacto')}</h3>
+              <a 
+                href="https://wa.me/1161307110?text=Hola!+Quiero+consultar+sobre+envíos+de+mis+productos"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline btn-sm"
+              >
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Occasions (interactive) ── */}
       <section className="occasions section">
         <div className="container">
@@ -245,7 +331,7 @@ export default function Home() {
                   </div>
                   <p className="occ-card__price">{item.price}</p>
                   <a
-                    href={`https://wa.me/5491100000000?text=Hola!+Me+interesa+el+producto:+${encodeURIComponent(item.name)}`}
+                    href={`https://wa.me/1161307110?text=Hola!+Me+interesa+el+producto:+${encodeURIComponent(item.name)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-outline occ-card__btn"
@@ -270,7 +356,7 @@ export default function Home() {
             <p className="banner__sub">{t('ventasPorMayor')}</p>
           </div>
           <a
-            href="https://wa.me/5491100000000?text=Hola!+Me+interesa+información+sobre+venta+por+mayor"
+            href="https://wa.me/1161307110?text=Hola!+Me+interesa+información+sobre+venta+por+mayor"
             target="_blank"
             rel="noopener noreferrer"
             className="btn banner__btn"

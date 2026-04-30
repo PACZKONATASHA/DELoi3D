@@ -19,6 +19,7 @@ export const products = [
     slug: 'maceta-robert-plant-mediana',
     category: 'robert-plant',
     price: 7500,
+    offer: 20,
     images: [
       'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600&q=80',
       'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=600&q=80',
@@ -44,6 +45,7 @@ export const products = [
     slug: 'maceta-robert-plant-grande',
     category: 'robert-plant',
     price: 9500,
+    offer: 25,
     images: [
       'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=600&q=80',
       'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600&q=80',
@@ -69,6 +71,7 @@ export const products = [
     slug: 'gato-deco-noir',
     category: 'bazar',
     price: 9500,
+    offer: 15,
     images: [
       'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&q=80',
       'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&q=80',

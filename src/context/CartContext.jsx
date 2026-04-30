@@ -50,7 +50,7 @@ export function CartProvider({ children }) {
 
   const openWhatsApp = () => {
     const msg = buildWhatsAppMessage();
-    window.open(`https://wa.me/5491100000000?text=${msg}`, '_blank');
+    window.open(`https://wa.me/1161307110?text=${msg}`, '_blank');
   };
 
   return (
