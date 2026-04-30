@@ -326,7 +326,7 @@
   border: none;
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: var(--granate);
+  background: var(--granate) !important;
   transition: transform var(--transition), box-shadow var(--transition);
   box-shadow: 0 4px 16px rgba(107, 44, 66, 0.25);
   cursor: pointer;
