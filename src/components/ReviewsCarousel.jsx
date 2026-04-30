@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight, SendHorizontal } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './ReviewsCarousel.css';
 
 const INITIAL_REVIEWS = [
@@ -37,6 +38,7 @@ const MAX_REVIEWS = 10;
 const REVIEW_DURATION = 24 * 60 * 60 * 1000;
 
 export default function ReviewsCarousel() {
+  const { t, language } = useLanguage();
   const carouselRef = useRef(null);
   const [reviews, setReviews] = useState(INITIAL_REVIEWS);
   const [formData, setFormData] = useState({ author: '', comment: '' });
@@ -77,16 +79,16 @@ export default function ReviewsCarousel() {
       <div className="container">
         <div className="reviews__header">
           <div>
-            <h2 className="section-title">Nos importa tu opinión</h2>
+            <h2 className="section-title">{t('reviews')}</h2>
             <p className="section-sub">
-              Nos encanta saber qué pensás de nuestros productos. Dejanos un comentario y ayudá a otros clientes.
+              {t('reviewsSubtitle')}
             </p>
           </div>
           <button 
             className="btn btn-primary reviews__btn-new"
             onClick={() => setShowForm(!showForm)}
           >
-            {showForm ? 'Cancelar' : 'Dejar comentario'}
+            {showForm ? t('volverAlInicio') : t('reviewsSubtitle')}
           </button>
         </div>
 
@@ -95,14 +97,14 @@ export default function ReviewsCarousel() {
           <form className="reviews__form" onSubmit={handleSubmitReview}>
             <input
               type="text"
-              placeholder="Tu nombre"
+              placeholder={t('tuNombre')}
               value={formData.author}
               onChange={(e) => setFormData({ ...formData, author: e.target.value })}
               className="reviews__input"
               required
             />
             <textarea
-              placeholder="¿Qué te pareció? Cuéntanos tu experiencia..."
+              placeholder={t('tuComentario')}
               value={formData.comment}
               onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
               className="reviews__textarea"
@@ -111,7 +113,7 @@ export default function ReviewsCarousel() {
             />
             <div className="reviews__form-footer">
               <button type="submit" className="btn btn-primary reviews__submit" style={{ marginLeft: 'auto' }}>
-                Enviar <SendHorizontal size={16} />
+                {t('enviar')} <SendHorizontal size={16} />
               </button>
             </div>
           </form>
@@ -122,7 +124,7 @@ export default function ReviewsCarousel() {
           <button 
             className="reviews__carousel-btn reviews__carousel-btn--prev"
             onClick={() => scrollCarousel(-1)} 
-            aria-label="Anterior"
+            aria-label={t('anterior')}
           >
             <ChevronLeft size={20} />
           </button>
@@ -133,7 +135,7 @@ export default function ReviewsCarousel() {
                 <div className="review-card__author">{review.author}</div>
                 <p className="review-card__text">{review.comment}</p>
                 <span className="review-card__date">
-                  {new Date(review.date).toLocaleDateString('es-AR', {
+                  {new Date(review.date).toLocaleDateString(language === 'es' ? 'es-AR' : language === 'en' ? 'en-US' : 'zh-CN', {
                     day: 'numeric',
                     month: 'long',
                     year: 'numeric',
@@ -146,7 +148,7 @@ export default function ReviewsCarousel() {
           <button 
             className="reviews__carousel-btn reviews__carousel-btn--next"
             onClick={() => scrollCarousel(1)} 
-            aria-label="Siguiente"
+            aria-label={t('siguiente')}
           >
             <ChevronRight size={20} />
           </button>

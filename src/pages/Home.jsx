@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, MessageCircle, PenLine, Package } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import { products, categories } from '../data/products';
 import HeroSlider from '../components/HeroSlider';
 import ReviewsCarousel from '../components/ReviewsCarousel';
@@ -22,18 +23,18 @@ const CATEGORY_IMAGES = {
 const CUSTOM_STEPS = [
   {
     icon: <MessageCircle size={32} />,
-    title: 'Contanos tu idea',
-    desc: 'Describinos qué necesitás — por WhatsApp o mensaje, sin formalidades.',
+    titleKey: 'contaTuIdea',
+    descKey: 'contaTuIdeaDesc',
   },
   {
     icon: <PenLine size={32} />,
-    title: 'Lo diseñamos en 3D',
-    desc: 'Modelamos la pieza antes de imprimirla para que veas cómo queda.',
+    titleKey: 'diseñamos3D',
+    descKey: 'diseñamos3DDesc',
   },
   {
     icon: <Package size={32} />,
-    title: 'Lo fabricamos y enviamos',
-    desc: 'Producción propia con control de calidad, envío a todo el país.',
+    titleKey: 'fabricamosEnviamos',
+    descKey: 'fabricamosEnvíamosDesc',
   },
 ];
 
@@ -81,6 +82,7 @@ const OCCASIONS = [
 ];
 
 export default function Home() {
+  const { t } = useLanguage();
   const carouselRef = useRef(null);
   const navigate = useNavigate();
   const [activeOccasion, setActiveOccasion] = useState('pascua');
@@ -104,10 +106,9 @@ export default function Home() {
       <section className="custom-orders section">
         <div className="container">
           <div className="custom-orders__intro">
-            <h2 className="section-title">Diseñamos lo que imaginás</h2>
+            <h2 className="section-title">{t('diseñoPersonalizado')}</h2>
             <p className="section-sub">
-              Si tenés una idea, nosotros la hacemos realidad. Nos contás qué necesitás
-              y te damos presupuesto sin compromiso.
+              {t('diseñoPersonalizadoSub')}
             </p>
           </div>
           <div className="custom-steps">
@@ -117,8 +118,8 @@ export default function Home() {
                 <div className="custom-step__content">
                   <div className="custom-step__icon">{step.icon}</div>
                   <div className="custom-step__text">
-                    <h3 className="custom-step__title">{step.title}</h3>
-                    <p className="custom-step__desc">{step.desc}</p>
+                    <h3 className="custom-step__title">{t(step.titleKey)}</h3>
+                    <p className="custom-step__desc">{t(step.descKey)}</p>
                   </div>
                 </div>
               </div>
@@ -131,7 +132,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="btn btn-primary"
             >
-              Pedí tu presupuesto por WhatsApp <ArrowRight size={18} />
+              {t('presupuesto')} <ArrowRight size={18} />
             </a>
           </div>
         </div>
@@ -142,17 +143,17 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <div>
-              <h2 className="section-title">Explorá nuestras categorías</h2>
-              <p className="section-sub">Encontrá el regalo perfecto según tus intereses.</p>
+              <h2 className="section-title">{t('categorias')}</h2>
+              <p className="section-sub">{t('categoriasDesc')}</p>
             </div>
             <div className="carousel-controls">
-              <button className="carousel-btn" onClick={() => scrollCarousel(-1)} aria-label="Anterior">
+              <button className="carousel-btn" onClick={() => scrollCarousel(-1)} aria-label={t('anterior')}>
                 <ChevronLeft size={20} />
               </button>
-              <button className="carousel-btn" onClick={() => scrollCarousel(1)} aria-label="Siguiente">
+              <button className="carousel-btn" onClick={() => scrollCarousel(1)} aria-label={t('siguiente')}>
                 <ChevronRight size={20} />
               </button>
-              <Link to="/catalogo" className="ver-todas">Ver todas →</Link>
+              <Link to="/catalogo" className="ver-todas">{t('verTodas')}</Link>
             </div>
           </div>
 
@@ -182,21 +183,21 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <div>
-              <h2 className="section-title">Productos destacados</h2>
-              <p className="section-sub">Nuestras piezas más elegidas por nuestros clientes.</p>
+              <h2 className="section-title">{t('destacados')}</h2>
+              <p className="section-sub">{t('destacadosDesc')}</p>
             </div>
-            <Link to="/catalogo" className="ver-todas">Ver todos →</Link>
+            <Link to="/catalogo" className="ver-todas">{t('verTodos')}</Link>
           </div>
 
           <div className="featured__grid">
             {featured.map(p => (
-              <ProductCard key={p.id} product={p} navigate={navigate} />
+              <ProductCard key={p.id} product={p} navigate={navigate} t={t} />
             ))}
           </div>
 
           <div className="featured__cta">
             <Link to="/catalogo" className="btn btn-primary">
-              Ver catálogo completo <ArrowRight size={18} />
+              {t('verCatalogo')} <ArrowRight size={18} />
             </Link>
           </div>
         </div>
@@ -206,9 +207,9 @@ export default function Home() {
       <section className="occasions section">
         <div className="container">
           <div className="occasions__header">
-            <h2 className="section-title">Para cada momento especial</h2>
+            <h2 className="section-title">{t('ocasiones')}</h2>
             <p className="section-sub">
-              Porque los detalles hacen la diferencia — elegí la ocasión y descubrí las piezas que creamos para ese momento.
+              {t('ocasionesDesc')}
             </p>
           </div>
 
@@ -240,7 +241,7 @@ export default function Home() {
                         style={{ background: hex }}
                       />
                     ))}
-                    <span className="occ-card__colors-more">+ colores</span>
+                    <span className="occ-card__colors-more">+ {t('colores')}</span>
                   </div>
                   <p className="occ-card__price">{item.price}</p>
                   <a
@@ -249,7 +250,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="btn btn-outline occ-card__btn"
                   >
-                    Consultar
+                    {t('consultar')}
                   </a>
                 </div>
               </div>
@@ -265,8 +266,8 @@ export default function Home() {
       <section className="banner">
         <div className="container banner__inner">
           <div>
-            <h2 className="banner__title">¿Querés vender nuestros productos?</h2>
-            <p className="banner__sub">Tenemos precios especiales para revendedores y comercios.</p>
+            <h2 className="banner__title">{t('venderProductos')}</h2>
+            <p className="banner__sub">{t('ventasPorMayor')}</p>
           </div>
           <a
             href="https://wa.me/5491100000000?text=Hola!+Me+interesa+información+sobre+venta+por+mayor"
@@ -274,7 +275,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="btn banner__btn"
           >
-            Consultanos por WhatsApp
+            {t('consultaWhatsApp')}
           </a>
         </div>
       </section>
@@ -282,13 +283,13 @@ export default function Home() {
   );
 }
 
-function ProductCard({ product, navigate }) {
+function ProductCard({ product, navigate, t }) {
   return (
     <div className="product-card card" onClick={() => navigate(`/producto/${product.slug}`)}>
       <div className="product-card__img-wrap">
         <img src={product.images[0]} alt={product.name} className="product-card__img" loading="lazy" />
-        <span className="product-card__badge">Destacado</span>
-        {!product.inStock && <span className="product-card__stock">Sin stock</span>}
+        <span className="product-card__badge">{t('destacado')}</span>
+        {!product.inStock && <span className="product-card__stock">{t('sinStock')}</span>}
       </div>
       <div className="product-card__body">
         <h3 className="product-card__name">{product.name}</h3>
