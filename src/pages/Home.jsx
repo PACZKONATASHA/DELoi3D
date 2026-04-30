@@ -281,7 +281,14 @@ export default function Home() {
                 href="https://wa.me/1161307110?text=Hola!+Quiero+consultar+sobre+envíos+de+mis+productos"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-outline btn-sm"
+                className="btn btn-sm"
+                style={{
+                  background: 'var(--white)',
+                  color: 'var(--granate)',
+                  border: '1.5px solid var(--white)',
+                  fontWeight: '700',
+                  letterSpacing: '0.5px'
+                }}
               >
                 WhatsApp
               </a>

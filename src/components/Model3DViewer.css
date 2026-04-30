@@ -13,13 +13,13 @@
 
 @media (max-width: 768px) {
   .model-3d-viewer {
-    min-height: 400px;
+    min-height: 300px;
   }
 }
 
 @media (max-width: 480px) {
   .model-3d-viewer {
-    min-height: 350px;
+    min-height: 250px;
   }
 }
 
