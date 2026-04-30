@@ -6,23 +6,32 @@ import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
 import './ProductDetail.css';
 
-// Función para convertir hex a hue rotation
-const hexToHue = (hex) => {
+// Función para convertir hex a HSL
+const hexToHsl = (hex) => {
   const r = parseInt(hex.slice(1, 3), 16) / 255;
   const g = parseInt(hex.slice(3, 5), 16) / 255;
   const b = parseInt(hex.slice(5, 7), 16) / 255;
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
-  let h = 0;
+  let h = 0, s = 0, l = (max + min) / 2;
+  
   if (max !== min) {
     const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
     switch (max) {
       case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
       case g: h = ((b - r) / d + 2) / 6; break;
       case b: h = ((r - g) / d + 4) / 6; break;
     }
   }
-  return h * 360;
+  return { h: h * 360, s: s * 100, l: l * 100 };
+};
+
+// Calcular rotación de hue basada en color cyan base (#00D4FF - similar al celeste)
+const getHueRotation = (targetHex) => {
+  const baseHue = 187; // Hue del celeste base
+  const targetHsl = hexToHsl(targetHex);
+  return targetHsl.h - baseHue;
 };
 
 export default function ProductDetail() {
@@ -87,7 +96,7 @@ export default function ProductDetail() {
                 alt={product.name}
                 className="pd-gallery__img"
                 style={selectedColor ? {
-                  filter: `hue-rotate(${hexToHue(selectedColor.hex) - hexToHue('#F5F5F5')}deg) saturate(1.3)`,
+                  filter: `hue-rotate(${getHueRotation(selectedColor.hex)}deg) saturate(1.2)`,
                 } : {}}
               />
               {product.images.length > 1 && (
@@ -128,7 +137,15 @@ export default function ProductDetail() {
           <div className="pd-info">
             <span className="pd-info__tag">{t('impresion3D')}</span>
             <h1 className="pd-info__title">{product.name}</h1>
-            <p className="pd-info__price price">${product.price.toLocaleString('es-AR')}
+            <p className="pd-info__price price">
+              {product.offer ? (
+                <>
+                  <span className="pd-info__price-original">${product.price.toLocaleString('es-AR')}</span>
+                  <span className="pd-info__price-discount">${Math.round(product.price * (1 - product.offer / 100)).toLocaleString('es-AR')}</span>
+                </>
+              ) : (
+                `$${product.price.toLocaleString('es-AR')}`
+              )}
               <span className="pd-info__unit"> / {t('unidad')}</span>
             </p>
 

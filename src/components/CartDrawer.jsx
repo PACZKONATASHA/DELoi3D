@@ -5,7 +5,7 @@ import './CartDrawer.css';
 
 export default function CartDrawer() {
   const { t } = useLanguage();
-  const { items, isOpen, setIsOpen, removeItem, updateQuantity, total, count, openWhatsApp, clearCart } = useCart();
+  const { items, isOpen, setIsOpen, removeItem, updateQuantity, total, count, openWhatsApp, clearCart, shippingMethod, setShippingMethod, paymentMethod, setPaymentMethod } = useCart();
 
   if (!isOpen) return null;
 
@@ -79,6 +79,60 @@ export default function CartDrawer() {
         {/* Footer */}
         {items.length > 0 && (
           <div className="cart-drawer__footer">
+            {/* Envío */}
+            <div className="cart-drawer__section">
+              <label className="cart-drawer__label">{t('envios')}</label>
+              <div className="cart-drawer__options">
+                <label className="cart-drawer__option">
+                  <input
+                    type="radio"
+                    name="shipping"
+                    value="Andreani"
+                    checked={shippingMethod === 'Andreani'}
+                    onChange={(e) => setShippingMethod(e.target.value)}
+                  />
+                  <span>Andreani</span>
+                </label>
+                <label className="cart-drawer__option">
+                  <input
+                    type="radio"
+                    name="shipping"
+                    value="A acordar (por zona)"
+                    checked={shippingMethod === 'A acordar (por zona)'}
+                    onChange={(e) => setShippingMethod(e.target.value)}
+                  />
+                  <span>A acordar (por zona)</span>
+                </label>
+              </div>
+            </div>
+
+            {/* Pago */}
+            <div className="cart-drawer__section">
+              <label className="cart-drawer__label">Forma de pago</label>
+              <div className="cart-drawer__options">
+                <label className="cart-drawer__option">
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="Transferencia"
+                    checked={paymentMethod === 'Transferencia'}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
+                  <span>Transferencia</span>
+                </label>
+                <label className="cart-drawer__option">
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="Efectivo"
+                    checked={paymentMethod === 'Efectivo'}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
+                  <span>Efectivo</span>
+                </label>
+              </div>
+            </div>
+
             <div className="cart-total">
               <span>{t('total')}</span>
               <span className="price cart-total__amount">${total.toLocaleString('es-AR')}</span>

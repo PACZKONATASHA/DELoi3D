@@ -130,6 +130,19 @@
 
 .pd-info__price { font-size: 1.6rem; }
 
+.pd-info__price-original {
+  text-decoration: line-through;
+  color: var(--gray-600);
+  font-size: 1rem;
+  margin-right: 12px;
+}
+
+.pd-info__price-discount {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--olive);
+}
+
 .pd-info__unit {
   font-size: .85rem;
   color: var(--gray-700);

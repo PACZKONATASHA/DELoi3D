@@ -5,6 +5,8 @@ const CartContext = createContext(null);
 export function CartProvider({ children }) {
   const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [shippingMethod, setShippingMethod] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('');
 
   const addItem = useCallback((product, quantity = 1) => {
     setItems(prev => {
@@ -43,8 +45,10 @@ export function CartProvider({ children }) {
       i => `• ${i.name} x${i.quantity} — $${(i.price * i.quantity).toLocaleString('es-AR')}`
     );
     const totalLine = `\n*Total: $${total.toLocaleString('es-AR')}*`;
+    const shippingLine = shippingMethod ? `\n*Envío: ${shippingMethod}*` : '';
+    const paymentLine = paymentMethod ? `\n*Forma de pago: ${paymentMethod}*` : '';
     return encodeURIComponent(
-      `Hola! Quiero confirmar mi pedido:\n\n${lines.join('\n')}${totalLine}\n\n¿Podés confirmarme disponibilidad y forma de envío? Gracias!`
+      `Hola! Quiero confirmar mi pedido:\n\n${lines.join('\n')}${totalLine}${shippingLine}${paymentLine}\n\n¿Podés confirmarme disponibilidad? Gracias!`
     );
   };
 
@@ -57,6 +61,7 @@ export function CartProvider({ children }) {
     <CartContext.Provider value={{
       items, addItem, removeItem, updateQuantity, clearCart,
       total, count, isOpen, setIsOpen, openWhatsApp,
+      shippingMethod, setShippingMethod, paymentMethod, setPaymentMethod,
     }}>
       {children}
     </CartContext.Provider>
