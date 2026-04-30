@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import './Model3DViewer.css';
@@ -15,76 +15,9 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    // ── Setup Scene ──
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
-    scene.fog = new THREE.Fog(0xffffff, 100, 1000);
-    sceneRef.current = scene;
-
-    // ── Setup Camera ──
-    const width = containerRef.current.clientWidth;
-    const height = containerRef.current.clientHeight;
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.set(0, 0, 50);
-    cameraRef.current = camera;
-
-    // ── Setup Renderer ──
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.shadowMap.enabled = true;
-    containerRef.current.appendChild(renderer.domElement);
-    rendererRef.current = renderer;
-
-    // ── Lighting ──
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-    scene.add(ambientLight);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(50, 50, 50);
-    directionalLight.castShadow = true;
-    directionalLight.shadow.mapSize.width = 2048;
-    directionalLight.shadow.mapSize.height = 2048;
-    scene.add(directionalLight);
-
-    // ── Handle Resize ──
-    const handleResize = () => {
-      const newWidth = containerRef.current?.clientWidth || width;
-      const newHeight = containerRef.current?.clientHeight || height;
-      camera.aspect = newWidth / newHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(newWidth, newHeight);
-    };
-    window.addEventListener('resize', handleResize);
-
-    // ── Animation Loop ──
-    const animate = () => {
-      requestAnimationFrame(animate);
-
-      if (meshRef.current) {
-        meshRef.current.rotation.x += 0.001;
-        meshRef.current.rotation.y += 0.002;
-      }
-
-      renderer.render(scene, camera);
-    };
-    animate();
-
-    // ── Load Model ──
-    if (url) {
-      loadModel(url);
-    }
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      renderer.dispose();
-    };
-  }, [url]);
-
-  const loadModel = (modelUrl) => {
+  const loadModel = useCallback((modelUrl) => {
+    if (!modelUrl || !sceneRef.current) return;
+    
     setIsLoading(true);
     setError(null);
 
@@ -133,7 +66,89 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
         setIsLoading(false);
       }
     );
-  };
+  }, []);
+
+  // Initialize 3D scene
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    // ── Setup Scene ──
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xffffff);
+    scene.fog = new THREE.Fog(0xffffff, 100, 1000);
+    sceneRef.current = scene;
+
+    // ── Setup Camera ──
+    const width = containerRef.current.clientWidth;
+    const height = containerRef.current.clientHeight;
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    camera.position.set(0, 0, 50);
+    cameraRef.current = camera;
+
+    // ── Setup Renderer ──
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.shadowMap.enabled = true;
+    containerRef.current.appendChild(renderer.domElement);
+    rendererRef.current = renderer;
+
+    // ── Lighting ──
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(50, 50, 50);
+    directionalLight.castShadow = true;
+    directionalLight.shadow.mapSize.width = 2048;
+    directionalLight.shadow.mapSize.height = 2048;
+    scene.add(directionalLight);
+
+    // ── Handle Resize ──
+    const handleResize = () => {
+      const newWidth = containerRef.current?.clientWidth || width;
+      const newHeight = containerRef.current?.clientHeight || height;
+      if (cameraRef.current) {
+        cameraRef.current.aspect = newWidth / newHeight;
+        cameraRef.current.updateProjectionMatrix();
+      }
+      if (rendererRef.current) {
+        rendererRef.current.setSize(newWidth, newHeight);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+
+    // ── Animation Loop ──
+    let animationId;
+    const animate = () => {
+      animationId = requestAnimationFrame(animate);
+
+      if (meshRef.current) {
+        meshRef.current.rotation.x += 0.001;
+        meshRef.current.rotation.y += 0.002;
+      }
+
+      if (rendererRef.current && sceneRef.current && cameraRef.current) {
+        rendererRef.current.render(sceneRef.current, cameraRef.current);
+      }
+    };
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationId);
+      if (rendererRef.current) {
+        rendererRef.current.dispose();
+      }
+    };
+  }, []);
+
+  // Load model when URL changes
+  useEffect(() => {
+    if (url) {
+      loadModel(url);
+    }
+  }, [url, loadModel]);
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
