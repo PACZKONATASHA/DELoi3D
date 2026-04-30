@@ -1,0 +1,125 @@
+/* ── Location Map ── */
+.location-map {
+  padding: 60px 0;
+  background: var(--warm-white);
+  border-top: 1px solid var(--gray-200);
+}
+
+.location-map__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.location-map__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.location-map__embed {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.location-map__embed iframe {
+  display: block;
+}
+
+.location-map__info {
+  padding: 32px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+}
+
+.location-map__info-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+
+.location-map__address {
+  font-size: 1rem;
+  color: var(--olive);
+  font-weight: 600;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.location-map__hours {
+  margin-bottom: 28px;
+}
+
+.location-map__hours-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--dark);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.location-map__hours-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.location-map__hours-list li {
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.location-map__hours-list li:last-child {
+  border-bottom: none;
+}
+
+.location-map__btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .location-map__wrapper {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .location-map__embed {
+    order: 2;
+  }
+
+  .location-map__info {
+    order: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .location-map {
+    padding: 40px 0;
+  }
+
+  .location-map__wrapper {
+    gap: 24px;
+  }
+
+  .location-map__info {
+    padding: 24px;
+  }
+
+  .location-map__header {
+    margin-bottom: 32px;
+  }
+
+  .location-map__embed iframe {
+    height: 300px !important;
+  }
+}

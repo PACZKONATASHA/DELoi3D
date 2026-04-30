@@ -48,6 +48,9 @@ export const translations = {
 
     // Footer
     ubicacion: 'Ubicación',
+    visitanos: 'Nos encantaría que nos visites. Estamos en la zona de Flores, Buenos Aires.',
+    direccion: 'Dirección',
+    abrirEnMaps: 'Abrir en Google Maps',
     horarios: 'Horarios',
     lunes_viernes: 'Lunes a Viernes: 10:00 - 20:00',
     sabados: 'Sábados: 10:00 - 18:00',
@@ -294,6 +297,9 @@ export const translations = {
 
     // Footer
     ubicacion: 'Location',
+    visitanos: 'We would love to see you. We are located in the Flores neighborhood, Buenos Aires.',
+    direccion: 'Address',
+    abrirEnMaps: 'Open in Google Maps',
     horarios: 'Hours',
     lunes_viernes: 'Monday to Friday: 10:00 AM - 8:00 PM',
     sabados: 'Saturdays: 10:00 AM - 6:00 PM',
@@ -541,6 +547,9 @@ export const translations = {
 
     // Footer
     ubicacion: '位置',
+    visitanos: '我们希望您能来拜访我们。我们位于布宜诺斯艾利斯Flores街区。',
+    direccion: '地址',
+    abrirEnMaps: '在Google地图中打开',
     horarios: '营业时间',
     lunes_viernes: '周一至周五：上午 10:00 - 晚上 8:00',
     sabados: '周六：上午 10:00 - 下午 6:00',

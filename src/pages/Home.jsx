@@ -5,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { products, categories } from '../data/products';
 import HeroSlider from '../components/HeroSlider';
 import ReviewsCarousel from '../components/ReviewsCarousel';
+import LocationMap from '../components/LocationMap';
 import './Home.css';
 
 const CATEGORY_IMAGES = {
@@ -347,6 +348,9 @@ export default function Home() {
 
       {/* ── Reviews Carousel ── */}
       <ReviewsCarousel />
+
+      {/* ── Location Map ── */}
+      <LocationMap />
 
       {/* ── Banner mayorista ── */}
       <section className="banner">
