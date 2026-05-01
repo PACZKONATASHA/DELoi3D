@@ -13,13 +13,29 @@
   box-shadow: 0 4px 20px rgba(37,211,102,.3);
   z-index: 700;
   transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  border: none;
+  cursor: pointer;
 }
 .whatsapp-btn:hover {
   transform: translateY(-3px);
   background: #1ebe5d;
   box-shadow: 0 8px 28px rgba(37,211,102,.4);
 }
+.whatsapp-btn:active {
+  transform: translateY(-1px);
+}
 
 @media (max-width: 480px) {
-  .whatsapp-btn { bottom: 20px; right: 16px; width: 48px; height: 48px; }
+  .whatsapp-btn { 
+    bottom: 20px; 
+    right: 16px; 
+    width: 56px; 
+    height: 56px;
+    padding: 0;
+    min-width: 56px;
+  }
+  .whatsapp-btn svg {
+    width: 32px;
+    height: 32px;
+  }
 }

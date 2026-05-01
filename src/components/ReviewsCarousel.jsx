@@ -35,12 +35,23 @@ const INITIAL_REVIEWS = [
 ];
 
 const MAX_REVIEWS = 10;
-const REVIEW_DURATION = 24 * 60 * 60 * 1000;
+const REVIEW_DURATION = 30 * 24 * 60 * 60 * 1000; // 30 días
 
 export default function ReviewsCarousel() {
   const { t, language } = useLanguage();
   const carouselRef = useRef(null);
-  const [reviews, setReviews] = useState(INITIAL_REVIEWS);
+  const [reviews, setReviews] = useState(() => {
+    // Cargar comentarios del localStorage al iniciar
+    const savedReviews = localStorage.getItem('reviews');
+    if (savedReviews) {
+      try {
+        return JSON.parse(savedReviews);
+      } catch {
+        return INITIAL_REVIEWS;
+      }
+    }
+    return INITIAL_REVIEWS;
+  });
   const [formData, setFormData] = useState({ author: '', comment: '' });
   const [showForm, setShowForm] = useState(false);
 
@@ -56,6 +67,8 @@ export default function ReviewsCarousel() {
       };
       const updatedReviews = [newReview, ...reviews].slice(0, MAX_REVIEWS);
       setReviews(updatedReviews);
+      // Guardar en localStorage
+      localStorage.setItem('reviews', JSON.stringify(updatedReviews));
       setFormData({ author: '', comment: '' });
       setShowForm(false);
     }

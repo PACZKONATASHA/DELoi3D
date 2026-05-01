@@ -257,9 +257,9 @@
 
 /* ── Banner mayorista ── */
 .banner {
-  background: var(--sand-light);
-  border-top: 1px solid var(--sand);
-  border-bottom: 1px solid var(--sand);
+  background: var(--granate);
+  border-top: 1px solid var(--granate);
+  border-bottom: 1px solid var(--granate);
   padding: 56px 0;
   margin-top: 16px;
 }
@@ -276,30 +276,31 @@
   font-size: 1.4rem;
   font-weight: 400;
   font-style: italic;
-  color: var(--black);
+  color: var(--white);
   margin-bottom: 8px;
 }
 
 .banner__sub {
-  color: var(--gray-700);
+  color: var(--warm-white);
   font-size: .9rem;
   font-style: italic;
 }
 
 .banner__btn {
-  background: var(--black);
-  color: var(--white);
-  border-color: var(--sand);
+  background: var(--white);
+  color: var(--granate);
+  border-color: var(--white);
   white-space: nowrap;
   padding: 14px 28px;
   flex-shrink: 0;
-  box-shadow: 0 4px 16px rgba(216, 195, 165, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 .banner__btn:hover {
-  background: var(--black);
-  border-color: var(--sand);
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--granate);
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(216, 195, 165, 0.4), 0 0 20px rgba(216, 195, 165, 0.3);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
 }
 
 /* ── Ofertas ── */
