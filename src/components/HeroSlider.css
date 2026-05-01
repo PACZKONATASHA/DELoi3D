@@ -31,6 +31,7 @@
   width: 2px;
   background: linear-gradient(to bottom, transparent, var(--celeste), transparent);
   box-shadow: 0 0 12px rgba(0, 169, 206, 0.4);
+}
 
 .hero-split__tag {
   display: inline-block;
@@ -42,6 +43,7 @@
   font-family: 'Georgia', serif;
   opacity: 1;
   font-weight: 600;
+}
 
 .hero-split__title {
   font-size: clamp(3rem, 5.5vw, 5.5rem);
