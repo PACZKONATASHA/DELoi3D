@@ -43,6 +43,16 @@
   font-family: 'Georgia', serif;
   opacity: 1;
   font-weight: 600;
+  text-shadow: 
+    0 0 10px rgba(0, 169, 206, 0.4),
+    0 0 20px rgba(0, 212, 255, 0.2);
+  animation: celeste-glow 3s ease-in-out infinite;
+}
+
+@keyframes celeste-glow {
+  0%, 100% { text-shadow: 0 0 10px rgba(0, 169, 206, 0.4), 0 0 20px rgba(0, 212, 255, 0.2); }
+  50% { text-shadow: 0 0 15px rgba(0, 169, 206, 0.6), 0 0 30px rgba(0, 212, 255, 0.4); }
+}
 }
 
 .hero-split__title {
@@ -119,22 +129,53 @@
 }
 
 .hero-split__btn--primary {
-  background: var(--celeste);
+  background: linear-gradient(135deg, var(--celeste) 0%, #0088b3 50%, #00d4ff 100%);
   color: var(--black);
-  border: 1.5px solid var(--celeste);
-  box-shadow: 0 6px 20px rgba(0, 169, 206, 0.3);
+  border: 1.5px solid #00d4ff;
+  box-shadow: 
+    0 6px 20px rgba(0, 169, 206, 0.5),
+    0 0 20px rgba(0, 212, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
 }
+
+.hero-split__btn--primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), transparent 60%);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
 .hero-split__btn--primary:hover {
-  background: var(--granate);
-  border-color: var(--granate);
+  background: linear-gradient(135deg, var(--granate) 0%, #8b3a57 50%, #9d4a6a 100%);
+  border-color: #c84a6b;
   color: var(--white);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(107, 44, 66, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 
+    0 16px 40px rgba(107, 44, 66, 0.6),
+    0 0 30px rgba(200, 74, 107, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  filter: brightness(1.15);
+}
+
+.hero-split__btn--primary:active {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 24px rgba(107, 44, 66, 0.4),
+    0 0 20px rgba(200, 74, 107, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .hero-split__btn--primary:focus {
   outline: none;
-  box-shadow: 0 12px 32px rgba(0, 169, 206, 0.4), 0 0 0 3px rgba(0, 169, 206, 0.2);
+  box-shadow: 
+    0 16px 40px rgba(0, 169, 206, 0.5), 
+    0 0 0 4px rgba(0, 212, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .hero-split__btn--ghost {
@@ -174,9 +215,18 @@
 .hero-split__dot--active {
   width: 28px;
   border-radius: 3px;
-  background: var(--celeste);
-  border: 1.5px solid var(--celeste);
-  box-shadow: 0 0 12px rgba(0, 169, 206, 0.5);
+  background: linear-gradient(135deg, var(--celeste) 0%, #00d4ff 100%);
+  border: 1.5px solid #00d4ff;
+  box-shadow: 
+    0 0 20px rgba(0, 169, 206, 0.7),
+    0 0 40px rgba(0, 212, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  animation: celeste-pulse 2s ease-in-out infinite;
+}
+
+@keyframes celeste-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 169, 206, 0.7), 0 0 40px rgba(0, 212, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(0, 169, 206, 1), 0 0 60px rgba(0, 212, 255, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
 }
 
 /* ── RIGHT — image panel ── */
