@@ -14,7 +14,8 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const searchRef = useRef(null);
+  const desktopSearchRef = useRef(null);
+  const mobileSearchRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,14 +25,21 @@ export default function Navbar() {
   }, [query]);
 
   useEffect(() => {
-    const handleClick = (e) => {
-      if (searchRef.current && !searchRef.current.contains(e.target)) {
+    const handleClickOutside = (e) => {
+      // Para desktop search
+      if (desktopSearchRef.current && !desktopSearchRef.current.contains(e.target)) {
         setSuggestions([]);
       }
+      // Para mobile search
+      if (searchOpen && mobileSearchRef.current && !mobileSearchRef.current.contains(e.target)) {
+        if (!e.target.closest('.navbar__mobile-search-btn')) {
+          setSuggestions([]);
+        }
+      }
     };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, []);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [searchOpen]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -93,7 +101,7 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop search */}
-        <div className="navbar__search" ref={searchRef}>
+        <div className="navbar__search" ref={desktopSearchRef}>
           <form onSubmit={handleSearch} className="navbar__search-form">
             <Search size={16} className="navbar__search-icon" />
             <input
@@ -153,7 +161,7 @@ export default function Navbar() {
 
       {/* Mobile search bar */}
       {searchOpen && (
-        <div className="navbar__mobile-search" ref={searchRef}>
+        <div className="navbar__mobile-search" ref={mobileSearchRef}>
           <form onSubmit={handleSearch} className="navbar__search-form navbar__search-form--mobile">
             <Search size={16} className="navbar__search-icon" />
             <input

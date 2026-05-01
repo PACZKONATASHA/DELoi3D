@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { translations } from '../i18n/translations';
 
 const LanguageContext = createContext();
@@ -7,10 +7,6 @@ export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
     return localStorage.getItem('language') || 'es';
   });
-
-  useEffect(() => {
-    localStorage.setItem('language', language);
-  }, [language]);
 
   const t = (key) => {
     const keys = key.split('.');
