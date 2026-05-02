@@ -108,27 +108,37 @@ export default function CartDrawer() {
 
             {/* Pago */}
             <div className="cart-drawer__section">
-              <label className="cart-drawer__label">Forma de pago</label>
+              <label className="cart-drawer__label">{t('formaPago')}</label>
               <div className="cart-drawer__options">
                 <label className="cart-drawer__option">
                   <input
                     type="radio"
                     name="payment"
-                    value="Transferencia"
-                    checked={paymentMethod === 'Transferencia'}
+                    value="Transferencia bancaria"
+                    checked={paymentMethod === 'Transferencia bancaria'}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   />
-                  <span>Transferencia</span>
+                  <span>{t('transferenciaBancaria')}</span>
                 </label>
                 <label className="cart-drawer__option">
                   <input
                     type="radio"
                     name="payment"
-                    value="Efectivo"
-                    checked={paymentMethod === 'Efectivo'}
+                    value="Tarjeta de crédito"
+                    checked={paymentMethod === 'Tarjeta de crédito'}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   />
-                  <span>Efectivo</span>
+                  <span>{t('tarjetaCredito')}</span>
+                </label>
+                <label className="cart-drawer__option">
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="Tarjeta de débito"
+                    checked={paymentMethod === 'Tarjeta de débito'}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
+                  <span>{t('tarjetaDebito')}</span>
                 </label>
               </div>
             </div>
