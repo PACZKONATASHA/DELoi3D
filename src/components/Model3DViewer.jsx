@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
+import { useLanguage } from '../context/LanguageContext';
 import './Model3DViewer.css';
 
 export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
+  const { t } = useLanguage();
   const containerRef = useRef(null);
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
@@ -63,7 +65,7 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
       undefined,
       (error) => {
         console.error('Error loading STL:', error);
-        setError('Error al cargar el modelo 3D');
+        setError(t('modeloCargandoError'));
         setIsLoading(false);
       }
     );
@@ -210,7 +212,7 @@ export default function Model3DViewer({ url = null, title = 'Modelo 3D' }) {
     const isValidType = validTypes.includes(file.type) || file.name.endsWith('.stl');
 
     if (!isValidType) {
-      setError('Por favor carga un archivo STL o OBJ válido');
+      setError(t('archivoSTLInvalido'));
       return;
     }
 

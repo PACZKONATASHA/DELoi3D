@@ -246,6 +246,8 @@ export const translations = {
     cargando: 'Cargando...',
     precio: 'Precio',
     cantidad: 'Cantidad',
+    modeloCargandoError: 'Error al cargar el modelo 3D',
+    archivoSTLInvalido: 'Por favor carga un archivo STL o OBJ válido',
   },
 
   en: {
@@ -496,6 +498,8 @@ export const translations = {
     error404: 'Page not found',
     volverAlInicio: 'Go home',
     errorCargando: 'Error loading. Please try again later.',
+    modeloCargandoError: 'Error loading 3D model',
+    archivoSTLInvalido: 'Please upload a valid STL or OBJ file',
   },
 
   zh: {
