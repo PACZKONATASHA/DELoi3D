@@ -1,3 +1,4 @@
+// v1.0.1 - Cache busting update
 export const translations = {
   es: {
     // Navbar
