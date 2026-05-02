@@ -12,7 +12,8 @@
   animation: slideRight .25s ease;
   box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
   border-left: 1px solid var(--gray-100);
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 @media (max-width: 900px) {
@@ -22,19 +23,22 @@
     top: auto;
     border-left: none;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-    max-height: 80vh;
+    height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }
 
 @media (max-width: 600px) {
   .cart-drawer {
     width: 100vw;
-    height: auto;
-    max-height: 85vh;
+    height: 90vh;
     bottom: 0;
     top: auto;
     border-radius: 24px 24px 0 0;
     animation: slideUp .25s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }
 
@@ -46,6 +50,10 @@
   padding: 22px 24px;
   border-bottom: 1px solid var(--gray-200);
   background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
 }
 
 .cart-drawer__title-wrap {
@@ -90,7 +98,31 @@
   overflow-x: hidden;
   padding: 12px 16px;
   scroll-behavior: smooth;
-  min-height: 200px;
+  min-height: 150px;
+}
+
+@media (max-width: 600px) {
+  .cart-drawer__body {
+    overflow-y: visible;
+    flex: none;
+  }
+}
+
+.cart-drawer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cart-drawer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cart-drawer::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 3px;
+}
+
+.cart-drawer::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
 }
 
 .cart-drawer__body::-webkit-scrollbar {
@@ -222,6 +254,10 @@
   flex-direction: column;
   gap: 16px;
   background: var(--white);
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
 }
 
 .cart-total {
@@ -378,7 +414,8 @@
   .cart-drawer { 
     width: 100vw; 
     border-left: none;
-    max-height: 90vh;
+    height: 90vh;
+    overflow-y: auto;
   }
 
   .cart-drawer__footer {
