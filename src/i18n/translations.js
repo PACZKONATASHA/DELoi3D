@@ -11,6 +11,7 @@ export const translations = {
     // Hero
     heroTitle: 'Productos impresos en 3D',
     heroSubtitle: 'Creaciones únicas y personalizadas para cada momento',
+    heroBadge: '3D Printing · Own manufacturing',
     explorar: 'Explorar catálogo',
     verGaleria: 'Ver galería',
 
@@ -262,6 +263,7 @@ export const translations = {
     // Hero
     heroTitle: '3D Printed Products',
     heroSubtitle: 'Unique and personalized creations for every moment',
+    heroBadge: '3D Printing · Own manufacturing',
     explorar: 'Explore catalog',
     verGaleria: 'View gallery',
 
@@ -513,8 +515,7 @@ export const translations = {
 
     // Hero
     heroTitle: '3D 打印产品',
-    heroSubtitle: '为每个特殊时刻创建独特和个性化的作品',
-    explorar: '浏览产品',
+    heroSubtitle: '为每个特殊时刻创建独特和个性化的作品',    heroBadge: '3D 打印 · 自有制造',    explorar: '浏览产品',
     verGaleria: '查看图库',
 
     // Categorías

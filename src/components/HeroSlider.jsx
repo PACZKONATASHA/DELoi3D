@@ -27,7 +27,7 @@ export default function HeroSlider() {
     <section className="hero-split">
       {/* ── LEFT: text ── */}
       <div className="hero-split__text">
-        <span className="hero-split__tag">3D Printing · Own manufacturing</span>
+        <span className="hero-split__tag">{t('heroBadge')}</span>
 
         <h1 className="hero-split__title hero-split__title--thin">
           {t('heroTitle')}<br />
