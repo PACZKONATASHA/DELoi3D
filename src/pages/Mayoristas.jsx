@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { TrendingUp, BarChart3, Package, MessageSquare, ArrowRight } from 'lucide-react';
 import './Mayoristas.css';
 
-const WHATSAPP_NUMBER = "1161307110";
+const WHATSAPP_NUMBER = "541161307110";
 
 const BENEFITS = [
   {

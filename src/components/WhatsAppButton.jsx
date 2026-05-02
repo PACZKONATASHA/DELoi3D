@@ -1,7 +1,7 @@
 import './WhatsAppButton.css';
 
 export default function WhatsAppButton() {
-  const href = 'https://wa.me/1161307110?text=' + encodeURIComponent('Hola! Tengo una consulta sobre sus productos 3D.');
+  const href = 'https://wa.me/541161307110?text=' + encodeURIComponent('Hola! Tengo una consulta sobre sus productos 3D.');
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className="whatsapp-btn" aria-label="WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">

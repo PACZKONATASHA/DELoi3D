@@ -128,7 +128,7 @@ export default function Home() {
           </div>
           <div className="custom-orders__cta">
             <a
-              href="https://wa.me/1161307110?text=Hola!+Quiero+consultar+por+un+producto+personalizado"
+              href="https://wa.me/541161307110?text=Hola!+Quiero+consultar+por+un+producto+personalizado"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
@@ -278,7 +278,7 @@ export default function Home() {
               </div>
               <h3 className="shipping-card__title">{t('contacto')}</h3>
               <a 
-                href="https://wa.me/1161307110?text=Hola!+Quiero+consultar+sobre+envíos+de+mis+productos"
+                href="https://wa.me/541161307110?text=Hola!+Quiero+consultar+sobre+envíos+de+mis+productos"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-sm"
@@ -339,7 +339,7 @@ export default function Home() {
                   </div>
                   <p className="occ-card__price">{item.price}</p>
                   <a
-                    href={`https://wa.me/1161307110?text=Hola!+Me+interesa+el+producto:+${encodeURIComponent(item.name)}`}
+                    href={`https://wa.me/541161307110?text=Hola!+Me+interesa+el+producto:+${encodeURIComponent(item.name)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-outline occ-card__btn"
@@ -367,7 +367,7 @@ export default function Home() {
             <p className="banner__sub">{t('ventasPorMayor')}</p>
           </div>
           <a
-            href="https://wa.me/1161307110?text=Hola!+Me+interesa+información+sobre+venta+por+mayor"
+            href="https://wa.me/541161307110?text=Hola!+Me+interesa+información+sobre+venta+por+mayor"
             target="_blank"
             rel="noopener noreferrer"
             className="btn banner__btn"

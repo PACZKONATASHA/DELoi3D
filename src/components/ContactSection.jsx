@@ -34,7 +34,7 @@ export default function ContactSection() {
               @instagram
             </a>
             <a 
-              href="https://wa.me/1161307110?text=Hola!+Tengo+una+consulta+sobre+sus+productos" 
+              href="https://wa.me/541161307110?text=Hola!+Tengo+una+consulta+sobre+sus+productos" 
               target="_blank" 
               rel="noopener noreferrer"
               className="social-btn social-btn--wa"
