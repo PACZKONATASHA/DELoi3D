@@ -93,12 +93,10 @@
 
 /* ── Body ── */
 .cart-drawer__body {
-  flex: 1;
-  overflow-y: visible;
-  overflow-x: hidden;
+  flex: 0 1 auto;
+  overflow: visible;
   padding: 12px 16px;
   scroll-behavior: smooth;
-  min-height: auto;
 }
 
 .cart-drawer::-webkit-scrollbar {
