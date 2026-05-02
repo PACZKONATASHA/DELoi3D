@@ -1,11 +1,26 @@
 import { X, Trash2, MessageCircle, ShoppingBag } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
 import './CartDrawer.css';
 
 export default function CartDrawer() {
+  const navigate = useNavigate();
   const { t } = useLanguage();
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, total, count, openWhatsApp, clearCart, shippingMethod, setShippingMethod, paymentMethod, setPaymentMethod } = useCart();
+
+  // Bloquear scroll de la página cuando el carrito está abierto
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -13,6 +28,11 @@ export default function CartDrawer() {
     openWhatsApp();
     clearCart();
     setIsOpen(false);
+  };
+
+  const handleGoToCatalog = () => {
+    setIsOpen(false);
+    navigate('/catalogo');
   };
 
   return (
@@ -37,7 +57,7 @@ export default function CartDrawer() {
             <div className="cart-empty">
               <ShoppingBag size={56} strokeWidth={1} className="cart-empty__icon" />
               <p className="cart-empty__text">{t('tuCarritoEstaVacio')}</p>
-              <button className="btn btn-primary" onClick={() => setIsOpen(false)}>
+              <button className="btn btn-primary" onClick={handleGoToCatalog}>
                 {t('verCatalogo')}
               </button>
             </div>
