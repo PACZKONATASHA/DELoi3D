@@ -19,15 +19,9 @@ export default function LanguageSwitcher() {
   const handleLanguageChange = (code) => {
     if (language === code) return; // No hacer nada si es el mismo idioma
     
-    // Guardar el nuevo idioma en localStorage
-    localStorage.setItem('language', code);
+    // Cambiar idioma (el contexto se encargará de guardar en localStorage)
     setLanguage(code);
     setIsOpen(false);
-    
-    // Forzar recarga de página después de cambiar idioma
-    setTimeout(() => {
-      window.location.reload();
-    }, 100);
   };
 
   // Cerrar menú al hacer click fuera
