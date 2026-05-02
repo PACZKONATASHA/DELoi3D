@@ -1,4 +1,4 @@
-// v1.0.1 - Cache busting update
+// v1.0.2 - Cache busting update - Fixed ver translation
 export const translations = {
   es: {
     // Navbar
