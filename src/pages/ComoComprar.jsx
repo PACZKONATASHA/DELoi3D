@@ -138,26 +138,6 @@ export default function ComoComprar() {
             </div>
           </div>
 
-          {/* Lanzamiento */}
-          <div className="promo-card promo-card--secondary">
-            <div className="promo-card__badge">Lanzamiento</div>
-            <div className="promo-card__content">
-              <h3 className="promo-card__title">20% de DESCUENTO en TODOS los productos</h3>
-              <p className="promo-card__text">
-                ¡Estamos de fiesta! Para celebrar el lanzamiento de nuestra tienda online, 
-                te traemos una promoción imperdible.
-              </p>
-              
-              <div className="promo-card__conditions">
-                <h4>Condiciones:</h4>
-                <ul>
-                  <li>Válida desde el 11/11/2024 hasta el 31/11/2024</li>
-                  <li>Compra mínima de $20.000</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
           {/* Envío gratis */}
           <div className="promo-card promo-card--shipping">
             <div className="promo-card__badge">Envío Gratis</div>
