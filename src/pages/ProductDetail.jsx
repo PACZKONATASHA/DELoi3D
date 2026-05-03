@@ -28,11 +28,29 @@ const hexToHsl = (hex) => {
   return { h: h * 360, s: s * 100, l: l * 100 };
 };
 
-// Calcular rotación de hue basada en color cyan base (#00D4FF - similar al celeste)
+// Calcular rotación de hue basada en color cobre base (#B87333)
 const getHueRotation = (targetHex) => {
-  const baseHue = 187; // Hue del celeste base
+  const baseHue = 25; // Hue del cobre base en la imagen
   const targetHsl = hexToHsl(targetHex);
   return targetHsl.h - baseHue;
+};
+
+// Generar filtro CSS según el color
+const getColorFilter = (colorHex) => {
+  if (!colorHex) return {};
+  
+  // Colores especiales
+  if (colorHex === '#1A1A1A') {
+    // Negro: reducir brillo y saturación
+    return { filter: 'brightness(0.3) saturate(0)' };
+  }
+  if (colorHex === '#F5F5F5') {
+    // Blanco: aumentar brillo y reducir saturación
+    return { filter: 'brightness(1.8) saturate(0.2)' };
+  }
+  
+  // Otros colores: usar hue-rotate
+  return { filter: `hue-rotate(${getHueRotation(colorHex)}deg) saturate(1.2)` };
 };
 
 export default function ProductDetail() {

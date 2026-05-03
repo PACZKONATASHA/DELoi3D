@@ -1,0 +1,34 @@
+ID,NOMBRE,CATEGORIA,PRECIO,DESCUENTO_%,DESCRIPCION,EN_STOCK,DIAS_PRODUCCION,TAMAÑO,MATERIAL,DESTACADO,COLOR_1,COLOR_2,COLOR_3,COLOR_4,COLOR_5,IMAGEN_1,IMAGEN_2,IMAGEN_3,IMAGEN_4,IMAGEN_5,NOTAS
+1,Maceta Robert Plant Mediana,robert-plant,7500,20,"Maceta Robert Plant con diseño minimalista y moderno. Ideal para cactus y suculentas. Impresa en PLA Eco-Friendly.",SI,1,12 cm,Eco-Friendly PLA,SI,Blanco,Negro,Verde oliva,Terracota,Gris,maceta-robert-01.jpg,maceta-robert-02.jpg,maceta-robert-03.jpg,,,
+2,,,,,,,,,,,,,,,,,,,,,
+
+INSTRUCCIONES PARA COMPLETAR:
+- ID: Número único para cada producto (1, 2, 3, etc.)
+- NOMBRE: Nombre completo del producto
+- CATEGORIA: Usar exactamente uno de estos valores:
+  * robert-plant
+  * macetas
+  * bazar
+  * mates
+  * iluminacion
+  * soportes
+  * juguetes
+  * mascotas
+  * llaveros
+  * vasos
+- PRECIO: Solo números, sin puntos ni comas (ej: 7500)
+- DESCUENTO_%: Porcentaje de descuento si aplica (ej: 20 = 20% OFF). Dejar vacío si no hay oferta
+- DESCRIPCION: Texto descriptivo del producto (2-4 líneas)
+- EN_STOCK: SI o NO
+- DIAS_PRODUCCION: Cantidad de días (ej: 1, 2, 3)
+- TAMAÑO: Dimensiones del producto (ej: "12 cm", "15 x 10 cm")
+- MATERIAL: Por defecto "Eco-Friendly PLA"
+- DESTACADO: SI o NO (para mostrar en página principal)
+- COLOR_1 a COLOR_5: Nombres de colores disponibles (ej: Blanco, Negro, Gris)
+- IMAGEN_1 a IMAGEN_5: Nombres de archivos de imágenes (mínimo 3)
+- NOTAS: Cualquier observación adicional
+
+IMPORTANTE:
+- No usar comas dentro de los textos (Excel las confunde)
+- Los nombres de archivos de imágenes deben coincidir exactamente con las carpetas
+- Copiar la fila para agregar más productos
