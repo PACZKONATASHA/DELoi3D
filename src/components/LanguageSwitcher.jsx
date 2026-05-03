@@ -17,11 +17,25 @@ export default function LanguageSwitcher() {
   const otherLanguages = languages.filter((lang) => lang.code !== language);
 
   const handleLanguageChange = (code) => {
-    if (language === code) return; // No hacer nada si es el mismo idioma
+    if (language === code) {
+      setIsOpen(false);
+      return;
+    }
+    
+    // Validar que el código sea válido
+    if (!['es', 'en', 'zh'].includes(code)) {
+      console.error('Idioma no válido:', code);
+      return;
+    }
     
     // Cambiar idioma (el contexto se encargará de guardar en localStorage)
     setLanguage(code);
     setIsOpen(false);
+    
+    // Forzar actualización del documento
+    if (typeof window !== 'undefined') {
+      document.documentElement.lang = code;
+    }
   };
 
   // Cerrar menú al hacer click fuera
@@ -35,6 +49,13 @@ export default function LanguageSwitcher() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Sincronizar el atributo lang del documento
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.documentElement.lang = language;
+    }
+  }, [language]);
 
   return (
     <div className="language-switcher-container" ref={menuRef}>

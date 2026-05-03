@@ -4,17 +4,34 @@ import { translations } from '../i18n/translations';
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguageState] = useState(() => {
+  const [language, setLanguageState] = useState('es');
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Sincronizar con localStorage al montar el componente
+  useEffect(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('language') || 'es';
+      try {
+        const savedLanguage = localStorage.getItem('language');
+        if (savedLanguage && ['es', 'en', 'zh'].includes(savedLanguage)) {
+          setLanguageState(savedLanguage);
+        }
+      } catch (error) {
+        console.error('Error al leer localStorage:', error);
+      }
+      setIsInitialized(true);
     }
-    return 'es';
-  });
+  }, []);
 
   const setLanguage = (newLanguage) => {
+    if (!['es', 'en', 'zh'].includes(newLanguage)) return;
+    
     setLanguageState(newLanguage);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('language', newLanguage);
+      try {
+        localStorage.setItem('language', newLanguage);
+      } catch (error) {
+        console.error('Error al guardar en localStorage:', error);
+      }
     }
   };
 
@@ -28,6 +45,11 @@ export const LanguageProvider = ({ children }) => {
     
     return value || key;
   };
+
+  // Esperar a que se inicialice para evitar problemas de hidratación
+  if (!isInitialized && typeof window !== 'undefined') {
+    return null;
+  }
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
