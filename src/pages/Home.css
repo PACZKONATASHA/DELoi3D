@@ -194,7 +194,7 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  background: linear-gradient(135deg, var(--granate) 0%, #8B3A52 100%);
+  background: var(--granate-shine);
   color: var(--white);
   font-size: .65rem;
   font-weight: 600;
@@ -202,7 +202,7 @@
   border-radius: 2px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 4px 12px rgba(107, 44, 66, 0.4);
+  box-shadow: 0 4px 12px rgba(125, 30, 58, 0.4);
   font-weight: 700;
 }
 
@@ -330,7 +330,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 30%, rgba(107, 44, 66, 0.1), transparent 60%);
+  background: radial-gradient(circle at 30% 30%, rgba(125, 30, 58, 0.1), transparent 60%);
   border-radius: 2px;
   pointer-events: none;
 }
@@ -379,15 +379,33 @@
   border: none;
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: var(--granate) !important;
+  background: var(--granate-shine) !important;
   transition: transform var(--transition), box-shadow var(--transition);
-  box-shadow: 0 4px 16px rgba(107, 44, 66, 0.25);
+  box-shadow: 0 4px 16px rgba(125, 30, 58, 0.3);
   cursor: pointer;
+  position: relative;
+}
+
+.oferta-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transform: rotate(30deg);
+  animation: shine-offer 4s infinite;
+}
+
+@keyframes shine-offer {
+  0%, 100% { transform: translateX(-100%) rotate(30deg); }
+  50% { transform: translateX(100%) rotate(30deg); }
 }
 
 .oferta-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(107, 44, 66, 0.4);
+  box-shadow: var(--granate-glow), 0 12px 32px rgba(125, 30, 58, 0.5);
 }
 
 .oferta-card__img-wrap {
@@ -419,7 +437,7 @@
   padding: 8px 12px;
   border-radius: 4px;
   letter-spacing: 1px;
-  box-shadow: 0 4px 12px rgba(107, 44, 66, 0.3);
+  box-shadow: 0 4px 12px rgba(125, 30, 58, 0.3);
 }
 
 .oferta-card__body {
@@ -502,12 +520,12 @@
   border-radius: var(--radius-md);
   text-align: center;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(107, 44, 66, 0.3);
+  box-shadow: 0 4px 16px rgba(125, 30, 58, 0.3);
 }
 
 .shipping-card:hover {
-  background: #8B3A52;
-  box-shadow: 0 12px 32px rgba(107, 44, 66, 0.4);
+  background: var(--granate-shine);
+  box-shadow: var(--granate-glow), 0 12px 32px rgba(125, 30, 58, 0.5);
   transform: translateY(-4px);
 }
 
@@ -561,20 +579,20 @@
   background: var(--black);
   transition: all .3s cubic-bezier(0.34, 1.56, 0.64, 1);
   font-family: 'Georgia', serif;
-  box-shadow: inset 0 0 0 0 rgba(107, 44, 66, 0.2), 0 4px 12px rgba(107, 44, 66, 0.15);
+  box-shadow: inset 0 0 0 0 rgba(125, 30, 58, 0.2), 0 4px 12px rgba(125, 30, 58, 0.15);
   cursor: pointer;
 }
 .occ-tab:hover {
   border-color: var(--granate);
   color: var(--white);
-  box-shadow: inset 0 0 0 0 rgba(107, 44, 66, 0.2), 0 8px 20px rgba(107, 44, 66, 0.3), 0 0 20px rgba(107, 44, 66, 0.25);
+  box-shadow: inset 0 0 0 0 rgba(125, 30, 58, 0.2), 0 8px 20px rgba(125, 30, 58, 0.3), 0 0 20px rgba(125, 30, 58, 0.25);
   transform: translateY(-2px);
 }
 .occ-tab--active {
-  background: var(--granate);
+  background: var(--granate-shine);
   color: var(--white);
-  border-color: #8B3A52;
-  box-shadow: 0 8px 24px rgba(107, 44, 66, 0.35), 0 0 25px rgba(107, 44, 66, 0.3);
+  border-color: var(--granate-light);
+  box-shadow: var(--granate-glow), 0 8px 24px rgba(125, 30, 58, 0.35);
 }
 
 .occasions__grid {
@@ -699,16 +717,33 @@
 .custom-step {
   display: flex;
   align-items: stretch;
-  background: var(--granate);
+  background: var(--granate-shine);
   border: none;
   border-radius: var(--radius-md);
   overflow: hidden;
   transition: background var(--transition), box-shadow var(--transition);
-  box-shadow: 0 4px 16px rgba(107, 44, 66, 0.25);
+  box-shadow: 0 4px 16px rgba(125, 30, 58, 0.3);
+  position: relative;
 }
+
+.custom-step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.custom-step:hover::before {
+  left: 100%;
+}
+
 .custom-step:hover {
-  background: #8B3A52;
-  box-shadow: 0 12px 32px rgba(107, 44, 66, 0.4);
+  background: var(--granate-shine);
+  box-shadow: var(--granate-glow), 0 12px 32px rgba(125, 30, 58, 0.5);
   transform: translateY(-3px);
 }
 

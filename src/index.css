@@ -2,28 +2,46 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Palette - Negro, Granate, Blanco, Celeste */
+  /* ━━━ Paleta de Colores Premium ━━━ */
+  
+  /* Colores Base */
   --bg:          #FFFFFF;
   --sand:        #F5F5F5;
   --sand-light:  #F9F9F9;
   --sand-dark:   #E8E8E8;
-  --olive:       #6B2C42;
-  --olive-dark:  #4A1F2E;
-  --olive-light: #8B3A52;
   --dark:        #111111;
   --black:       #111111;
   --white:       #FFFFFF;
   --warm-white:  #FFFFFF;
-  --granate:     #6B2C42;
-  --celeste:     #00A9CE;
+  
+  /* Granate Premium (Efecto Espejado) */
+  --granate:     #7D1E3A;
+  --granate-dark:  #5A1529;
+  --granate-light: #A12847;
+  --granate-shine: linear-gradient(135deg, #7D1E3A 0%, #A12847 50%, #5A1529 100%);
+  --granate-glow:  0 0 20px rgba(125, 30, 58, 0.4), 0 0 40px rgba(125, 30, 58, 0.2);
+  
+  /* Celeste con Brillo */
+  --celeste:       #00A9CE;
+  --celeste-dark:  #0087A3;
+  --celeste-light: #33BDDB;
+  --celeste-glow:  0 0 20px rgba(0, 169, 206, 0.5), 0 0 40px rgba(0, 169, 206, 0.3);
+  --celeste-shine: linear-gradient(135deg, #0087A3 0%, #00A9CE 50%, #33BDDB 100%);
 
-  /* Semantic aliases used across components */
-  --primary:     var(--granate);
-  --primary-dark: var(--granate);
-  --primary-light: #F0F8FC;
-  --accent:      var(--celeste);
-  --text:        var(--dark);
-  --text-muted:  #666666;
+  /* Aliases Semánticos */
+  --primary:       var(--granate);
+  --primary-dark:  var(--granate-dark);
+  --primary-light: #FCE8ED;
+  --accent:        var(--celeste);
+  --accent-dark:   var(--celeste-dark);
+  --accent-light:  var(--celeste-light);
+  --text:          var(--dark);
+  --text-muted:    #666666;
+  
+  /* Compatibilidad con código antiguo */
+  --olive:       var(--granate);
+  --olive-dark:  var(--granate-dark);
+  --olive-light: var(--granate-light);
 
   /* Neutrals */
   --gray-100: #F5F5F5;
@@ -106,41 +124,61 @@ input, select, textarea { font-family: 'Poppins', -apple-system, BlinkMacSystemF
 
 /* Celeste button (primary) */
 .btn-primary {
-  background: var(--celeste);
+  background: var(--celeste-shine);
   color: var(--white);
   border: 1.5px solid var(--celeste);
-  box-shadow: 0 4px 16px rgba(0, 169, 206, 0.3), inset 0 1px 0 rgba(0, 169, 206, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 169, 206, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .btn-primary:hover {
-  background: #0087A3;
-  border-color: #0087A3;
+  background: var(--celeste-shine);
+  border-color: var(--celeste-light);
   transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(0, 169, 206, 0.5), inset 0 1px 0 rgba(0, 169, 206, 0.2), 0 0 30px rgba(0, 169, 206, 0.4);
+  box-shadow: var(--celeste-glow), 0 20px 50px rgba(0, 169, 206, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btn-primary:focus {
   outline: none;
-  box-shadow: 0 20px 50px rgba(0, 169, 206, 0.5), 0 0 30px rgba(0, 169, 206, 0.4), 0 0 0 4px rgba(0, 169, 206, 0.2);
+  box-shadow: var(--celeste-glow), 0 0 0 4px rgba(0, 169, 206, 0.2);
 }
 
-/* Granate button */
+/* Granate button (Premium Metalizado) */
 .btn-olive {
-  background: var(--granate);
+  background: var(--granate-shine);
   color: var(--white);
   border: 1.5px solid var(--granate);
-  box-shadow: 0 4px 12px rgba(107, 44, 66, 0.3), inset 0 1px 0 rgba(107, 44, 66, 0.2);
+  box-shadow: 0 4px 16px rgba(125, 30, 58, 0.4), inset 0 2px 1px rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
 }
+
+.btn-olive::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
 .btn-olive:hover {
-  background: #8B3A52;
-  border-color: #8B3A52;
+  background: var(--granate-shine);
+  border-color: var(--granate-light);
   color: var(--white);
   transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(107, 44, 66, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 20px rgba(107, 44, 66, 0.35);
+  box-shadow: var(--granate-glow), 0 20px 50px rgba(125, 30, 58, 0.5), inset 0 2px 1px rgba(255, 255, 255, 0.25);
 }
 
 .btn-olive:focus {
   outline: none;
-  box-shadow: 0 16px 40px rgba(107, 44, 66, 0.45), 0 0 20px rgba(107, 44, 66, 0.35), 0 0 0 3px rgba(107, 44, 66, 0.25);
+  box-shadow: var(--granate-glow), 0 0 0 3px rgba(125, 30, 58, 0.25);
 }
 
 /* Outline */
@@ -148,19 +186,19 @@ input, select, textarea { font-family: 'Poppins', -apple-system, BlinkMacSystemF
   background: transparent;
   color: var(--black);
   border: 1.5px solid var(--black);
-  box-shadow: inset 0 0 0 0 var(--celeste);
+  box-shadow: inset 0 0 0 0 var(--granate);
 }
 .btn-outline:hover {
-  background: var(--granate);
+  background: var(--granate-shine);
   color: var(--white);
   border-color: var(--granate);
-  box-shadow: inset 0 0 0 20px var(--granate), 0 4px 12px rgba(107, 44, 66, 0.2);
+  box-shadow: inset 0 0 0 20px var(--granate), var(--granate-glow);
   transform: translateY(-2px);
 }
 
 .btn-outline:focus {
   outline: none;
-  box-shadow: inset 0 0 0 20px var(--granate), 0 4px 12px rgba(107, 44, 66, 0.2), 0 0 0 3px rgba(107, 44, 66, 0.15);
+  box-shadow: inset 0 0 0 20px var(--granate), var(--granate-glow), 0 0 0 3px rgba(125, 30, 58, 0.15);
 }
 
 /* Ghost */
