@@ -375,6 +375,28 @@ export const products = [
       { name: 'Rosa pálido', hex: '#F8BBD0' },
     ],
   },
+  {
+    id: 16,
+    name: 'Difusor de Aromas Espiral',
+    slug: 'difusor-espiral',
+    category: 'bazar',
+    price: 11000,
+    offer: 10,
+    images: [
+      '/porta-difusor-nilo-cobre-blanco-negro-11.000.-9900-.webp',
+    ],
+    description: 'Elegante difusor de aromas con diseño espiral contemporáneo. Incluye varillas decorativas con detalles florales. Perfecto para ambientar cualquier espacio con estilo y sofisticación. Disponible en colores cobre, negro y blanco mate.',
+    days: 2,
+    size: '20 cm',
+    material: 'Eco-Friendly PLA',
+    featured: true,
+    inStock: true,
+    colors: [
+      { name: 'Cobre', hex: '#B87333' },
+      { name: 'Negro', hex: '#1A1A1A' },
+      { name: 'Blanco', hex: '#F5F5F5' },
+    ],
+  },
 ];
 
 export const galleryImages = [
