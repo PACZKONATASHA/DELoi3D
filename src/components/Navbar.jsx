@@ -62,6 +62,7 @@ export default function Navbar() {
     { to: '/', label: t('inicio') },
     { to: '/catalogo', label: t('catalogo') },
     { to: '/galeria', label: t('galeria') },
+    { to: '/como-comprar', label: t('comoComprar') },
     { to: '/mayoristas', label: t('mayoristas') },
   ];
 

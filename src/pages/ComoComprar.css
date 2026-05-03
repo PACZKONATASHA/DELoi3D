@@ -1,0 +1,436 @@
+/* ━━━ Como Comprar Page ━━━ */
+
+.como-comprar {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* ── Hero ── */
+.como-comprar__hero {
+  background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 100%);
+  padding: 80px 0 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.como-comprar__hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 169, 206, 0.1) 0%, transparent 70%);
+  animation: pulse 8s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.1); opacity: 0.5; }
+}
+
+.como-comprar__title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+  position: relative;
+  z-index: 1;
+}
+
+.como-comprar__subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Steps Grid ── */
+.como-comprar__steps {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.step-card {
+  background: var(--white);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.step-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--celeste-light) 0%, var(--celeste) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.step-card:hover::before,
+.step-card--active::before {
+  opacity: 0.08;
+}
+
+.step-card:hover,
+.step-card--active {
+  border-color: var(--celeste);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--celeste-glow), 0 20px 40px rgba(0, 169, 206, 0.2);
+}
+
+.step-card__number {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background: var(--granate-shine);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(125, 30, 58, 0.3);
+  z-index: 1;
+}
+
+.step-card--active .step-card__number {
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.step-card__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sand);
+  border-radius: 16px;
+  color: var(--celeste);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.step-card:hover .step-card__icon,
+.step-card--active .step-card__icon {
+  background: var(--celeste);
+  color: var(--white);
+  transform: rotate(360deg);
+}
+
+.step-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.step-card__desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Promociones ── */
+.como-comprar__promos {
+  padding: 80px 0;
+  background: var(--sand);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 48px;
+  color: var(--black);
+}
+
+.promo-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.promo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.promo-card__badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--granate-shine);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--granate-glow);
+  animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.promo-card--featured {
+  border-color: var(--celeste);
+  background: linear-gradient(135deg, rgba(0, 169, 206, 0.03) 0%, var(--white) 100%);
+}
+
+.promo-card--featured .promo-card__badge {
+  background: var(--celeste-shine);
+  box-shadow: var(--celeste-glow);
+}
+
+.promo-card--secondary {
+  border-color: var(--granate);
+}
+
+.promo-card--shipping {
+  border-color: var(--celeste-dark);
+}
+
+.promo-card__content {
+  position: relative;
+  z-index: 1;
+}
+
+.promo-card__title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.promo-card__text {
+  font-size: 1.1rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.promo-card__conditions {
+  background: var(--sand);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.promo-card__conditions h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 12px;
+}
+
+.promo-card__conditions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.promo-card__conditions li {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.promo-card__conditions li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--celeste);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.promo-card__example {
+  background: linear-gradient(135deg, var(--sand-light) 0%, var(--sand) 100%);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  border: 2px dashed var(--gray-300);
+}
+
+.promo-card__example h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 16px;
+}
+
+.example-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.example-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.example-amount {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--granate);
+  min-width: 120px;
+}
+
+.example-arrow {
+  font-size: 1.5rem;
+  color: var(--celeste);
+  font-weight: 700;
+}
+
+.example-result {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ── CTA Final ── */
+.como-comprar__cta {
+  background: linear-gradient(135deg, var(--granate-dark) 0%, var(--granate) 100%);
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.como-comprar__cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 300%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  animation: shine-cta 6s infinite;
+}
+
+@keyframes shine-cta {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.como-comprar__cta h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.como-comprar__cta p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-lg {
+  padding: 16px 48px;
+  font-size: 1.1rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .como-comprar__title {
+    font-size: 2.5rem;
+  }
+
+  .como-comprar__subtitle {
+    font-size: 1rem;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .promo-card {
+    padding: 24px;
+  }
+
+  .promo-card__title {
+    font-size: 1.5rem;
+  }
+
+  .promo-card__text {
+    font-size: 1rem;
+  }
+
+  .example-item {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .example-arrow {
+    transform: rotate(90deg);
+  }
+
+  .como-comprar__cta h2 {
+    font-size: 2rem;
+  }
+
+  .como-comprar__cta p {
+    font-size: 1rem;
+  }
+}

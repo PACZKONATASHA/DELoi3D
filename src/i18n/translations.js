@@ -1,10 +1,11 @@
-// v1.0.2 - Cache busting update - Fixed ver translation
+// v1.0.3 - Cache busting update - Added ComoComprar page + Premium palette
 export const translations = {
   es: {
     // Navbar
     inicio: 'Inicio',
     catalogo: 'Catálogo',
     galeria: 'Galería',
+    comoComprar: 'Cómo Comprar',
     mayoristas: 'Mayoristas',
     buscar: 'Buscar productos...',
     carrito: 'Carrito',
@@ -261,6 +262,7 @@ export const translations = {
     inicio: 'Home',
     catalogo: 'Catalog',
     galeria: 'Gallery',
+    comoComprar: 'How to Buy',
     mayoristas: 'Wholesale',
     buscar: 'Search products...',
     carrito: 'Cart',
@@ -514,6 +516,7 @@ export const translations = {
     inicio: '首页',
     catalogo: '产品目录',
     galeria: '图库',
+    comoComprar: '如何购买',
     mayoristas: '批发',
     buscar: '搜索产品...',
     carrito: '购物车',
