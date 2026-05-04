@@ -51,7 +51,7 @@ export const translations = {
 
     // Footer
     ubicacion: 'Ubicación',
-    visitanos: 'Nos encantaría que nos visites. Estamos en la zona de Floresta, Buenos Aires.',
+    visitanos: 'Nos encantaría que nos visites. Estamos en Buenos Aires.',
     direccion: 'Dirección',
     abrirEnMaps: 'Abrir en Google Maps',
     horarios: 'Horarios',
@@ -308,7 +308,7 @@ export const translations = {
 
     // Footer
     ubicacion: 'Location',
-    visitanos: 'We would love to see you. We are located in the Floresta neighborhood, Buenos Aires.',
+    visitanos: 'We would love to see you. We are located in Buenos Aires.',
     direccion: 'Address',
     abrirEnMaps: 'Open in Google Maps',
     horarios: 'Hours',
@@ -560,7 +560,7 @@ export const translations = {
 
     // Footer
     ubicacion: '位置',
-    visitanos: '我们希望您能来拜访我们。我们位于布宜诺斯艾利斯Floresta街区。',
+    visitanos: '我们希望您能来拜访我们。我们位于布宜诺斯艾利斯。',
     direccion: '地址',
     abrirEnMaps: '在Google地图中打开',
     horarios: '营业时间',

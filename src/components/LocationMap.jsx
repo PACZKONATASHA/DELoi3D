@@ -3,7 +3,7 @@ import './LocationMap.css';
 
 export default function LocationMap() {
   const { t } = useLanguage();
-  const address = "Av. General Eutaquio Frías 3354, Floresta, Buenos Aires, Argentina";
+  const address = "Av. General Eutaquio Frías 3354, Buenos Aires, Argentina";
   const googleMapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(address)}`;
   const mapsEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.8920474156!2d-58.38!3d-34.60!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5c5c5c5c5c5%3A0xb5c5c5c5c5c5c5c5!2sAv.%20Gral.%20Eutaquio%20Fr%C3%ADas%203354!5e0!3m2!1ses!2sar`;
 

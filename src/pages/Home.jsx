@@ -186,8 +186,8 @@ export default function Home() {
             <span className="promo-banner__tag">Promociones vigentes</span>
             <p className="promo-banner__desc">Aprovechá nuestros descuentos por tiempo limitado.</p>
           </div>
-          <Link to="/catalogo#ofertas" className="btn promo-banner__btn">
-            Ver ofertas <ArrowRight size={16} />
+          <Link to="/como-comprar" className="btn promo-banner__btn">
+            Ver cómo comprar <ArrowRight size={16} />
           </Link>
         </div>
       </section>
