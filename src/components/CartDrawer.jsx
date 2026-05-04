@@ -8,7 +8,7 @@ import './CartDrawer.css';
 export default function CartDrawer() {
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const { items, isOpen, setIsOpen, removeItem, updateQuantity, total, count, openWhatsApp, clearCart, shippingMethod, setShippingMethod, paymentMethod, setPaymentMethod } = useCart();
+  const { items, isOpen, setIsOpen, removeItem, updateQuantity, total, count, openWhatsApp, clearCart, shippingMethod, setShippingMethod, paymentMethod, setPaymentMethod, deliveryAddress, setDeliveryAddress } = useCart();
 
   // Bloquear scroll de la página cuando el carrito está abierto
   useEffect(() => {
@@ -125,6 +125,21 @@ export default function CartDrawer() {
                   <span>A acordar (por zona)</span>
                 </label>
               </div>
+            </div>
+
+            {/* Dirección de entrega */}
+            <div className="cart-drawer__section">
+              <label className="cart-drawer__label" htmlFor="delivery-address">
+                Dirección de entrega
+              </label>
+              <input
+                id="delivery-address"
+                type="text"
+                className="cart-drawer__address-input"
+                placeholder="Ej: Av. Corrientes 1234, CABA"
+                value={deliveryAddress}
+                onChange={e => setDeliveryAddress(e.target.value)}
+              />
             </div>
 
             {/* Pago */}

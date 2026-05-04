@@ -51,7 +51,7 @@ export const translations = {
 
     // Footer
     ubicacion: 'Ubicación',
-    visitanos: 'Nos encantaría que nos visites. Estamos en la zona de Flores, Buenos Aires.',
+    visitanos: 'Nos encantaría que nos visites. Estamos en la zona de Floresta, Buenos Aires.',
     direccion: 'Dirección',
     abrirEnMaps: 'Abrir en Google Maps',
     horarios: 'Horarios',
@@ -218,7 +218,7 @@ export const translations = {
     agregado: '¡Agregado!',
     alComprar: 'Al comprar aceptás nuestros',
     terminos: 'Términos y Condiciones',
-    productosAPedido: 'Productos hechos a pedido · Tiempo de producción: 24/48 hs.',
+    productosAPedido: 'Productos hechos a pedido · Tiempo de producción: máximo 5 días hábiles.',
     diasHabiles: 'DÍAS HÁBILES',
     diaHabil: 'DÍA HÁBIL',
     tuCarrito: 'Tu carrito',
@@ -308,7 +308,7 @@ export const translations = {
 
     // Footer
     ubicacion: 'Location',
-    visitanos: 'We would love to see you. We are located in the Flores neighborhood, Buenos Aires.',
+    visitanos: 'We would love to see you. We are located in the Floresta neighborhood, Buenos Aires.',
     direccion: 'Address',
     abrirEnMaps: 'Open in Google Maps',
     horarios: 'Hours',
@@ -475,7 +475,7 @@ export const translations = {
     agregado: 'Added!',
     alComprar: 'By purchasing you accept our',
     terminos: 'Terms and Conditions',
-    productosAPedido: 'Custom made products · Production time: 24/48 hrs.',
+    productosAPedido: 'Custom made products · Production time: up to 5 business days.',
     diasHabiles: 'BUSINESS DAYS',
     diaHabil: 'BUSINESS DAY',
     tuCarrito: 'Your cart',
@@ -560,7 +560,7 @@ export const translations = {
 
     // Footer
     ubicacion: '位置',
-    visitanos: '我们希望您能来拜访我们。我们位于布宜诺斯艾利斯Flores街区。',
+    visitanos: '我们希望您能来拜访我们。我们位于布宜诺斯艾利斯Floresta街区。',
     direccion: '地址',
     abrirEnMaps: '在Google地图中打开',
     horarios: '营业时间',
@@ -723,7 +723,7 @@ export const translations = {
     agregado: '已添加！',
     alComprar: '购买即表示您接受我们的',
     terminos: '条款和条件',
-    productosAPedido: '定制产品 · 生产时间：24/48 小时。',
+    productosAPedido: '定制产品 · 生产时间：最多5个工作日。',
     diasHabiles: '工作日',
     diaHabil: '工作日',
     tuCarrito: '您的购物车',

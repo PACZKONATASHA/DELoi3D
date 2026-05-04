@@ -179,6 +179,19 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Promociones Vigentes ── */}
+      <section className="promo-banner">
+        <div className="container promo-banner__inner">
+          <div className="promo-banner__text">
+            <span className="promo-banner__tag">Promociones vigentes</span>
+            <p className="promo-banner__desc">Aprovechá nuestros descuentos por tiempo limitado.</p>
+          </div>
+          <Link to="/catalogo#ofertas" className="btn promo-banner__btn">
+            Ver ofertas <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
       {/* ── Featured products ── */}
       <section className="featured section">
         <div className="container">
@@ -259,7 +272,7 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="shipping-card__title">{t('ambaYCaba')}</h3>
-              <p className="shipping-card__desc">{t('desdeEn')} $50.000 {t('sinCosto')}</p>
+              <p className="shipping-card__desc">{t('sinCosto')}</p>
             </div>
             <div className="shipping-card">
               <div className="shipping-card__icon">

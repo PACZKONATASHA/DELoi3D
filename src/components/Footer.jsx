@@ -56,7 +56,7 @@ export default function Footer() {
             <ul className="footer__info">
               <li>
                 <MapPin size={14} />
-                <span>Av. General Eutaqui Frías 3354, Flores, Buenos Aires, Argentina</span>
+                <span>Av. General Eutaquio Frías 3354, Floresta, Buenos Aires, Argentina</span>
               </li>
               <li>
                 <Clock size={14} />

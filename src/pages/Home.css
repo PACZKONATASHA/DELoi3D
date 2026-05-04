@@ -355,6 +355,54 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
+/* ── Promo Banner ── */
+.promo-banner {
+  background: linear-gradient(135deg, var(--granate) 0%, #9a4563 100%);
+  padding: 20px 0;
+}
+.promo-banner__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.promo-banner__tag {
+  display: inline-block;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.7);
+  margin-bottom: 4px;
+}
+.promo-banner__desc {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--white);
+  font-weight: 400;
+}
+.promo-banner__btn {
+  background: var(--white);
+  color: var(--granate);
+  border: none;
+  padding: 10px 24px;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition);
+}
+.promo-banner__btn:hover {
+  background: var(--warm-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+}
+
 /* ── Ofertas ── */
 .ofertas__grid {
   display: grid;

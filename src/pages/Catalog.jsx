@@ -1,8 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { SlidersHorizontal, X, Eye } from 'lucide-react';
+import { SlidersHorizontal, X, Eye, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { products, categories } from '../data/products';
+import { products, categoryGroups } from '../data/products';
 import './Catalog.css';
 
 const SORT_OPTIONS_KEYS = [
@@ -17,6 +17,7 @@ export default function Catalog() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState('relevance');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [openGroups, setOpenGroups] = useState({ decoracion: true, jardin: true, iluminacion: true });
   const navigate = useNavigate();
 
   const activeCat = searchParams.get('cat') || 'todos';
@@ -56,6 +57,10 @@ export default function Catalog() {
     setSearchParams(params);
   };
 
+  const toggleGroup = (groupId) => {
+    setOpenGroups(prev => ({ ...prev, [groupId]: !prev[groupId] }));
+  };
+
   return (
     <div className="catalog-page">
       {/* Hero banner */}
@@ -84,14 +89,40 @@ export default function Catalog() {
           </div>
 
           <ul className="catalog-categories">
-            {categories.map(cat => (
-              <li key={cat.id}>
+            <li>
+              <button
+                className={`catalog-cat-btn${activeCat === 'todos' ? ' catalog-cat-btn--active' : ''}`}
+                onClick={() => { setCat('todos'); setSidebarOpen(false); }}
+              >
+                Todos los productos
+              </button>
+            </li>
+            {categoryGroups.map(group => (
+              <li key={group.id} className="catalog-group">
                 <button
-                  className={`catalog-cat-btn${activeCat === cat.slug ? ' catalog-cat-btn--active' : ''}`}
-                  onClick={() => { setCat(cat.slug); setSidebarOpen(false); }}
+                  className="catalog-group__header"
+                  onClick={() => toggleGroup(group.id)}
                 >
-                  {cat.name}
+                  <span>{group.name}</span>
+                  <ChevronDown
+                    size={14}
+                    className={`catalog-group__chevron${openGroups[group.id] ? ' catalog-group__chevron--open' : ''}`}
+                  />
                 </button>
+                {openGroups[group.id] && (
+                  <ul className="catalog-group__items">
+                    {group.subcategories.map(sub => (
+                      <li key={sub.id}>
+                        <button
+                          className={`catalog-cat-btn catalog-cat-btn--sub${activeCat === sub.slug ? ' catalog-cat-btn--active' : ''}`}
+                          onClick={() => { setCat(sub.slug); setSidebarOpen(false); }}
+                        >
+                          {sub.name}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>

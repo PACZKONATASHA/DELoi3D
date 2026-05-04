@@ -322,6 +322,27 @@
   color: var(--olive);
 }
 
+/* ── Address input ── */
+.cart-drawer__address-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: .85rem;
+  color: var(--dark);
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color var(--transition);
+  font-family: inherit;
+}
+.cart-drawer__address-input:focus {
+  border-color: var(--olive);
+}
+.cart-drawer__address-input::placeholder {
+  color: var(--gray-400);
+  font-style: italic;
+}
+
 .cart-drawer__option:has(input:checked) {
   background: var(--sand-light);
   border-color: var(--sand);

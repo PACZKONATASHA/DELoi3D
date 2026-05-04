@@ -1,15 +1,36 @@
 export const categories = [
   { id: 'todos', name: 'Todos los productos', slug: 'todos' },
-  { id: 'robert-plant', name: 'Robert Plant', slug: 'robert-plant' },
-  { id: 'macetas', name: 'Macetas de diseño', slug: 'macetas' },
-  { id: 'bazar', name: 'Bazar', slug: 'bazar' },
-  { id: 'mates', name: 'Mates', slug: 'mates' },
-  { id: 'iluminacion', name: 'Iluminación', slug: 'iluminacion' },
-  { id: 'soportes', name: 'Soportes', slug: 'soportes' },
-  { id: 'juguetes', name: 'Juguetes', slug: 'juguetes' },
-  { id: 'mascotas', name: 'Mascotas', slug: 'mascotas' },
-  { id: 'llaveros', name: 'Llaveros', slug: 'llaveros' },
-  { id: 'vasos', name: 'Vasos', slug: 'vasos' },
+  { id: 'porta-difusores', name: 'Porta Difusores', slug: 'porta-difusores' },
+  { id: 'tablas', name: 'Tablas', slug: 'tablas' },
+  { id: 'tutores', name: 'Tutores', slug: 'tutores' },
+  { id: 'macetas', name: 'Macetas', slug: 'macetas' },
+  { id: 'lamparas', name: 'Lámparas', slug: 'lamparas' },
+];
+
+export const categoryGroups = [
+  {
+    id: 'decoracion',
+    name: 'Decoración',
+    subcategories: [
+      { id: 'porta-difusores', name: 'Porta Difusores', slug: 'porta-difusores' },
+      { id: 'tablas', name: 'Tablas', slug: 'tablas' },
+    ],
+  },
+  {
+    id: 'jardin',
+    name: 'Jardín',
+    subcategories: [
+      { id: 'tutores', name: 'Tutores', slug: 'tutores' },
+      { id: 'macetas', name: 'Macetas', slug: 'macetas' },
+    ],
+  },
+  {
+    id: 'iluminacion',
+    name: 'Iluminación',
+    subcategories: [
+      { id: 'lamparas', name: 'Lámparas', slug: 'lamparas' },
+    ],
+  },
 ];
 
 export const products = [
@@ -17,7 +38,7 @@ export const products = [
     id: 1,
     name: 'Maceta Robert Plant Mediana',
     slug: 'maceta-robert-plant-mediana',
-    category: 'robert-plant',
+    category: 'macetas',
     price: 7500,
     offer: 20,
     images: [
@@ -43,7 +64,7 @@ export const products = [
     id: 2,
     name: 'Maceta Robert Plant Grande',
     slug: 'maceta-robert-plant-grande',
-    category: 'robert-plant',
+    category: 'macetas',
     price: 9500,
     offer: 25,
     images: [
@@ -189,7 +210,7 @@ export const products = [
     id: 8,
     name: 'Lámpara Mano Negra',
     slug: 'lampara-mano-negra',
-    category: 'iluminacion',
+    category: 'lamparas',
     price: 18000,
     images: [
       'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&q=80',
@@ -379,7 +400,7 @@ export const products = [
     id: 16,
     name: 'Difusor de Aromas Espiral',
     slug: 'difusor-espiral',
-    category: 'bazar',
+    category: 'porta-difusores',
     price: 11000,
     offer: 10,
     images: [
