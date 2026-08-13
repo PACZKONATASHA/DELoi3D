@@ -144,26 +144,40 @@ export default function Home() {
           </div>
 
           <div className="carousel" ref={carouselRef}>
-            {displayCategories.map(cat => (
-              <Link
-                key={cat.id}
-                to={`/catalogo?cat=${cat.slug}`}
-                className="category-card"
-              >
-                <img
-                  src={CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGE_FALLBACK}
-                  srcSet={srcSetFor(CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGE_FALLBACK)}
-                  sizes={IMG_SIZES.category}
-                  alt={cat.name}
-                  className="category-card__img"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="category-card__overlay">
-                  <span className="category-card__name">{cat.name}</span>
-                </div>
-              </Link>
-            ))}
+            {displayCategories.map(cat => {
+              const foto = CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGE_FALLBACK;
+
+              return (
+                <Link
+                  key={cat.id}
+                  to={`/catalogo?cat=${cat.slug}`}
+                  className="category-card"
+                >
+                  {/* Copia borrosa de la misma foto: rellena lo que le sobra a
+                      la card para que no queden franjas de fondo liso. */}
+                  <img
+                    src={foto}
+                    alt=""
+                    aria-hidden="true"
+                    className="category-card__bg"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <img
+                    src={foto}
+                    srcSet={srcSetFor(foto)}
+                    sizes={IMG_SIZES.category}
+                    alt={cat.name}
+                    className="category-card__img"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="category-card__overlay">
+                    <span className="category-card__name">{cat.name}</span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
