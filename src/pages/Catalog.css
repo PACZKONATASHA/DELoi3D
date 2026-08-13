@@ -46,18 +46,38 @@
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--gray-200);
-  padding: 24px 0;
+  padding: 0 0 24px;
   position: sticky;
   top: calc(var(--nav-h) + 16px);
+  /* La lista de categorias puede ser mas alta que la pantalla: se scrollea
+     sola en vez de quedar cortada abajo sin poder llegar. */
+  max-height: calc(100vh - var(--nav-h) - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-300) transparent;
 }
+
+.catalog-sidebar::-webkit-scrollbar { width: 6px; }
+.catalog-sidebar::-webkit-scrollbar-track { background: transparent; }
+.catalog-sidebar::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 3px;
+}
+.catalog-sidebar::-webkit-scrollbar-thumb:hover { background: var(--gray-500); }
 
 .catalog-sidebar__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px 16px;
+  padding: 24px 20px 16px;
   border-bottom: 1px solid var(--gray-200);
   margin-bottom: 8px;
+  /* El titulo FILTRAR queda a la vista mientras se scrollea la lista. */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--white);
 }
 
 .catalog-sidebar__title {
@@ -316,6 +336,8 @@
     width: 280px;
     z-index: 950;
     border-radius: 0;
+    /* En celular ocupa toda la altura: el cap del desktop no corre. */
+    max-height: none;
     overflow-y: auto;
     transition: left var(--transition);
   }
