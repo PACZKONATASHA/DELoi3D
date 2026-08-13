@@ -168,19 +168,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Promociones Vigentes ── */}
-      <section className="promo-banner">
-        <div className="container promo-banner__inner">
-          <div className="promo-banner__text">
-            <span className="promo-banner__tag">Promociones vigentes</span>
-            <p className="promo-banner__desc">Aprovechá nuestros descuentos por tiempo limitado.</p>
-          </div>
-          <Link to="/como-comprar" className="btn promo-banner__btn">
-            Ver cómo comprar <ArrowRight size={16} />
-          </Link>
-        </div>
-      </section>
-
       {/* ── Featured products ── */}
       <section className="featured section">
         <div className="container">
