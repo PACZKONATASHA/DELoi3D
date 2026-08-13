@@ -1,7 +1,7 @@
-// Fotos propias servidas en varios anchos (ver public/lamparas/).
+// Fotos propias servidas en varios anchos (ver public/iluminacion/).
 // Las imagenes se referencian por su variante -960 y desde ahi se arma el srcSet.
 const WIDTHS = [480, 960, 1600];
-const RESPONSIVE = /^(\/lamparas\/[a-z0-9-]+)-960\.jpg$/;
+const RESPONSIVE = /^(\/iluminacion\/(?:aire|mar|tierra)\/[a-z0-9-]+)-960\.jpg$/;
 
 // Unsplash sirve cualquier ancho con el parametro ?w=, asi que tambien
 // puede armar un srcSet en vez de bajar siempre la misma foto.
