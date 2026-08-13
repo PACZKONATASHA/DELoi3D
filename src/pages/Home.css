@@ -114,9 +114,13 @@
 }
 .carousel::-webkit-scrollbar { display: none; }
 
+/* Las fotos de categoria vienen en proporciones distintas (cuadradas y
+   verticales), asi que la card usa aspect-ratio + object-fit: contain: la foto
+   entra entera, nunca recortada, y el fondo rellena lo que sobra. */
 .category-card {
   flex: 0 0 220px;
-  height: 280px;
+  aspect-ratio: 3 / 4;
+  background: var(--sand-light);
   border-radius: var(--radius-sm);
   overflow: hidden;
   position: relative;
@@ -129,16 +133,17 @@
 .category-card__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  filter: brightness(.88) saturate(.8);
+  object-fit: contain;
+  object-position: center;
+  filter: saturate(.9);
   transition: transform .5s ease, filter .3s ease;
 }
-.category-card:hover .category-card__img { transform: scale(1.06); filter: brightness(.95) saturate(.9); }
+.category-card:hover .category-card__img { transform: scale(1.04); filter: saturate(1); }
 
 .category-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(17,17,17,.72) 0%, rgba(17,17,17,.1) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(17,17,17,.72) 0%, rgba(17,17,17,.28) 22%, transparent 42%);
   display: flex;
   align-items: flex-end;
   padding: 20px 16px;
@@ -1098,7 +1103,8 @@
   .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
   .carousel-controls { align-self: flex-start; }
   .banner__inner { flex-direction: column; align-items: flex-start; }
-  .category-card { flex: 0 0 180px; height: 240px; }
+  /* Sin height fijo: manda el aspect-ratio, asi la foto nunca se recorta. */
+  .category-card { flex: 0 0 clamp(150px, 42vw, 200px); }
 }
 
 /* ── Mobile: feature cards ONE per row ── */
@@ -1155,7 +1161,7 @@
 /* Mantener 2 columnas incluso en pantallas muy pequeñas */
 @media (max-width: 400px) {
   .featured__grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .category-card { flex: 0 0 160px; height: 200px; }
+  .category-card { flex: 0 0 clamp(140px, 46vw, 170px); }
   /* Texto del card más compacto */
   .product-card__name { font-size: .78rem; }
   .product-card__btn { padding: 8px 6px; font-size: .7rem; letter-spacing: .5px; }
