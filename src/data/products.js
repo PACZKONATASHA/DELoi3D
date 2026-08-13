@@ -77,10 +77,12 @@ export const products = [
     inStock: true,
     // El hex es el promedio real de la captura (ver scripts/colores-detectados.json)
     // y solo se usa de respaldo mientras el swatch carga.
+    // `imageNight` es la misma lampara prendida a oscuras: es opcional, y el
+    // color que no la tenga simplemente no muestra el boton de prender.
     colors: [
       { name: 'Rosa', hex: '#BE7682', swatch: '/iluminacion/aire/swatch-rosa.jpg', image: '/iluminacion/aire/aire-rosa.jpg' },
       { name: 'Violeta', hex: '#8669CE', swatch: '/iluminacion/aire/swatch-violeta.jpg', image: '/iluminacion/aire/aire-violeta.jpg' },
-      { name: 'Púrpura', hex: '#1D1334', swatch: '/iluminacion/aire/swatch-purpura.jpg', image: '/iluminacion/aire/aire-purpura.jpg' },
+      { name: 'Púrpura', hex: '#1D1334', swatch: '/iluminacion/aire/swatch-purpura.jpg', image: '/iluminacion/aire/aire-purpura.jpg', imageNight: '/iluminacion/aire/aire-purpura-encendida.jpg' },
       { name: 'Negro', hex: '#172128', swatch: '/iluminacion/aire/swatch-negro.jpg', image: '/iluminacion/aire/aire-negro.jpg' },
     ],
   },

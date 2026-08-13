@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { SlidersHorizontal, X, Eye, ChevronDown } from 'lucide-react';
+import { SlidersHorizontal, X, Eye, ChevronDown, Moon, Sun } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { products, categoryGroups } from '../data/products';
 import { srcSetFor, IMG_SIZES } from '../utils/images';
@@ -203,6 +203,11 @@ export default function Catalog() {
 }
 
 function CatalogCard({ product, color, image, onClick, t }) {
+  // Foto de la lampara prendida, si la hay: se superpone a la apagada y se
+  // cruza con un fundido al tocar el boton.
+  const night = color?.imageNight;
+  const [lit, setLit] = useState(false);
+
   return (
     <div className="cat-card card" onClick={onClick}>
       <div className="cat-card__img-wrap">
@@ -214,6 +219,27 @@ function CatalogCard({ product, color, image, onClick, t }) {
           className="cat-card__img"
           loading="lazy"
         />
+        {night && (
+          <>
+            <img
+              src={night}
+              sizes={IMG_SIZES.card}
+              alt={`${product.name} en ${color.name}, encendida`}
+              className={`cat-card__img cat-card__img--night${lit ? ' is-lit' : ''}`}
+              loading="lazy"
+            />
+            <button
+              type="button"
+              className={`cat-card__light${lit ? ' is-lit' : ''}`}
+              onClick={(e) => { e.stopPropagation(); setLit(v => !v); }}
+              aria-pressed={lit}
+              aria-label={lit ? t('verApagada') : t('verEncendida')}
+              title={lit ? t('verApagada') : t('verEncendida')}
+            >
+              {lit ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+          </>
+        )}
         {!product.inStock && <span className="cat-card__no-stock">{t('sinStock')}</span>}
         <div className="cat-card__quick-view">
           <Eye size={16} /> {t('verProducto')}

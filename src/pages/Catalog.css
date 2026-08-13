@@ -284,6 +284,46 @@
   color: var(--white);
 }
 
+/* Foto de la lampara prendida: va apilada sobre la apagada y aparece con un
+   fundido al tocar la luna. Sin pointer-events para no tapar el quick view. */
+.cat-card__img--night {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .45s ease, transform .5s ease, filter .3s ease;
+}
+.cat-card__img--night.is-lit { opacity: 1; }
+
+.cat-card__light {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--dark);
+  background: rgba(255,255,255,.82);
+  backdrop-filter: blur(4px);
+  transition: var(--transition);
+}
+.cat-card__light:hover { background: var(--white); }
+/* Prendida: el boton se pone oscuro con el sol en amarillo luz. */
+.cat-card__light.is-lit {
+  background: rgba(24,16,44,.78);
+  color: #F7D774;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cat-card__img--night { transition: none; }
+}
+
 .cat-card__body { padding: 14px 14px 16px; }
 
 .cat-card__name {
