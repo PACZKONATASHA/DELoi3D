@@ -270,6 +270,12 @@
 .product-card__btn--added { background: var(--olive); border-color: var(--olive); }
 
 /* ── Grupos de la linea de iluminacion (Agua / Tierra / Mar) ── */
+/* Mismo tope que las cards, asi el subrayado del encabezado arranca y termina
+   donde arranca y termina la card, en vez de cruzar todo el contenedor. */
+.light-group {
+  max-width: 880px;
+  margin-inline: auto;
+}
 .light-group + .light-group { margin-top: 56px; }
 
 .light-group__header {
@@ -310,9 +316,14 @@
 .light-group__link:hover { color: var(--granate-light); }
 
 /* Con un producto por grupo la foto ocupa todo el ancho; con dos o mas, se parte. */
+/* Hoy cada linea tiene un solo producto, y con 1fr esa card sola se estiraba a
+   los 1216px del contenedor: la foto quedaba gigante y al lado sobraba medio
+   ancho de pantalla vacio. El tope de 880px la deja en proporcion, y cuando la
+   linea tenga mas productos vuelven a entrar dos por fila. */
 .light-group__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 880px));
+  justify-content: center;
   gap: 20px;
 }
 
@@ -366,25 +377,46 @@
   letter-spacing: .5px;
 }
 
+/* Columna alineada a la izquierda. Antes era space-between, que empujaba el
+   nombre a un borde y el boton al otro dejando el hueco en el medio. */
 .feat-card__body {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding: 22px 34px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 30px 38px;
 }
 
 .feat-card__name {
-  font-size: 1.25rem;
+  font-size: 1.45rem;
   font-weight: 400;
   font-style: italic;
   color: var(--dark);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   line-height: 1.3;
 }
 
-.feat-card__colors { display: flex; gap: 7px; }
+.feat-card__desc {
+  font-size: .88rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+  /* Tres lineas y corta: las descripciones largas romperian la altura de la
+     card contra el cuadrado de la foto. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.feat-card__specs {
+  font-size: .72rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.feat-card__colors { display: flex; gap: 7px; margin-bottom: 14px; }
 
 /* Mismos circulos que en la ficha del producto: adentro va la captura del
    material impreso, no un color plano. */
@@ -1193,6 +1225,9 @@
   .feat-card { grid-template-columns: 1fr; }
   .feat-card__body { padding: 16px 16px 18px; gap: 12px; }
   .feat-card__name { font-size: 1.05rem; margin-bottom: 8px; }
+  /* Con la foto apilada arriba, la descripcion larga estiraba mucho la card. */
+  .feat-card__desc { font-size: .82rem; -webkit-line-clamp: 2; margin-bottom: 12px; }
+  .feat-card__colors { margin-bottom: 10px; }
   .feat-card__btn { padding: 10px 22px; font-size: .75rem; }
 
   .light-group + .light-group { margin-top: 36px; }

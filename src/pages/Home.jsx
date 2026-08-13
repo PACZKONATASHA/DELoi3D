@@ -377,6 +377,7 @@ function FeaturedCard({ product, navigate, t }) {
       <div className="feat-card__body">
         <div className="feat-card__info">
           <h3 className="feat-card__name">{product.name}</h3>
+          <p className="feat-card__desc">{product.description}</p>
           {product.colors && (
             <div className="feat-card__colors">
               {product.colors.slice(0, 5).map((c, i) => (
@@ -388,6 +389,7 @@ function FeaturedCard({ product, navigate, t }) {
               ))}
             </div>
           )}
+          <p className="feat-card__specs">{product.size} · {product.material}</p>
         </div>
         <button
           className="btn btn-primary feat-card__btn"
