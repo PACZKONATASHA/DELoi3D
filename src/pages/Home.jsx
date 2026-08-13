@@ -217,52 +217,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Ofertas ── */}
-      <section className="ofertas section">
-        <div className="container">
-          <div className="section-header">
-            <div>
-              <h2 className="section-title">{t('ofertas')}</h2>
-              <p className="section-sub">{t('ofertasDesc')}</p>
-            </div>
-          </div>
-
-          <div className="ofertas__grid">
-            {products.filter(p => p.offer).map(p => (
-              <div key={p.id} className="oferta-card card" onClick={() => navigate(`/producto/${p.slug}`)}>
-                <div className="oferta-card__img-wrap">
-                  <img
-                    src={p.images[0]}
-                    srcSet={srcSetFor(p.images[0])}
-                    sizes={IMG_SIZES.card}
-                    alt={p.name}
-                    className="oferta-card__img"
-                    loading="lazy"
-                  />
-                  <span className="oferta-card__badge">{p.offer}% OFF</span>
-                </div>
-                <div className="oferta-card__body">
-                  <h3 className="oferta-card__name">{p.name}</h3>
-                  {p.colors && (
-                    <div className="oferta-card__colors">
-                      {p.colors.slice(0, 5).map((c, i) => (
-                        <span key={i} className="oferta-card__color" style={{ background: c.hex }} title={c.name} />
-                      ))}
-                    </div>
-                  )}
-                  <button
-                    className="btn btn-primary oferta-card__btn"
-                    onClick={(e) => { e.stopPropagation(); navigate(`/producto/${p.slug}`); }}
-                  >
-                    {t('ver')}
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Shipping Info ── */}
       <section className="shipping-info section">
         <div className="container">
