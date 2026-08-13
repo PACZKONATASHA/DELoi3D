@@ -2,28 +2,13 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { galleryImages, categories } from '../data/products';
+import { srcSetFor, IMG_SIZES } from '../utils/images';
 import './Gallery.css';
 
 export default function Gallery() {
   const { t } = useLanguage();
   const [activeCat, setActiveCat] = useState('todas');
   const [lightbox, setLightbox] = useState(null);
-
-  // Mapping for gallery image names
-  const imageNameMap = {
-    'Macetas Robert Plant': 'galeriaMacetasRobert',
-    'Macetas de diseño': 'galeriaMacetasDiseno',
-    'Gato deco': 'galeriaGatoDeco',
-    'Iluminación': 'galeriaIluminacion',
-    'Maceta Mickey': 'galeriaMacetaMickey',
-    'Mates diseño': 'galeriaMatesDiseno',
-    'Llaveros': 'galeriaLlaveros',
-    'Productos mascotas': 'galeriaProductosMascotas',
-    'Macetas suculentas': 'galeriaMacetasSuculentas',
-    'Bazar productos': 'galeriaBazarProductos',
-    'Juguetes': 'galeriaJuguetes',
-    'Soportes': 'galeriaSoportes',
-  };
 
   const galleryCategories = [
     { slug: 'todas', name: t('todas') },
@@ -73,11 +58,18 @@ export default function Gallery() {
               key={img.id}
               className="gallery-item"
               onClick={() => openLightbox(i)}
-              aria-label={t(imageNameMap[img.alt] || img.alt)}
+              aria-label={img.alt}
             >
-              <img src={img.src} alt={img.alt} loading="lazy" className="gallery-item__img" />
+              <img
+                src={img.src}
+                srcSet={srcSetFor(img.src)}
+                sizes={IMG_SIZES.card}
+                alt={img.alt}
+                loading="lazy"
+                className="gallery-item__img"
+              />
               <div className="gallery-item__overlay">
-                <span className="gallery-item__label">{t(imageNameMap[img.alt] || img.alt)}</span>
+                <span className="gallery-item__label">{img.alt}</span>
               </div>
             </button>
           ))}

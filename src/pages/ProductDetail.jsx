@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { ShoppingCart, Clock, Ruler, Leaf, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { MessageCircle, Ruler, Leaf, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { products } from '../data/products';
-import { useCart } from '../context/CartContext';
+import { productWhatsappLink } from '../utils/whatsapp';
 import Model3DViewer from '../components/Model3DViewer';
 import './ProductDetail.css';
 
@@ -57,18 +57,15 @@ export default function ProductDetail() {
   const { t } = useLanguage();
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { addItem } = useCart();
 
   const product = products.find(p => p.slug === slug);
   const [activeImg, setActiveImg] = useState(0);
-  const [qty, setQty] = useState(1);
-  const [added, setAdded] = useState(false);
   const [lightbox, setLightbox] = useState(false);
   const [selectedColor, setSelectedColor] = useState(null);
 
   useEffect(() => {
     setActiveImg(0);
-    setQty(1);
+    setSelectedColor(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [slug]);
 
@@ -83,12 +80,6 @@ export default function ProductDetail() {
 
   const prevImg = () => setActiveImg(i => (i === 0 ? product.images.length - 1 : i - 1));
   const nextImg = () => setActiveImg(i => (i === product.images.length - 1 ? 0 : i + 1));
-
-  const handleAdd = () => {
-    addItem(product, qty);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
-  };
 
   const related = products
     .filter(p => p.category === product.category && p.id !== product.id)
@@ -156,17 +147,6 @@ export default function ProductDetail() {
           <div className="pd-info">
             <span className="pd-info__tag">{t('impresion3D')}</span>
             <h1 className="pd-info__title">{product.name}</h1>
-            <p className="pd-info__price price">
-              {product.offer ? (
-                <>
-                  <span className="pd-info__price-original">${product.price.toLocaleString('es-AR')}</span>
-                  <span className="pd-info__price-discount">${Math.round(product.price * (1 - product.offer / 100)).toLocaleString('es-AR')}</span>
-                </>
-              ) : (
-                `$${product.price.toLocaleString('es-AR')}`
-              )}
-              <span className="pd-info__unit"> / {t('unidad')}</span>
-            </p>
 
             <div className="pd-info__desc">
               <p>{product.description}</p>
@@ -196,44 +176,21 @@ export default function ProductDetail() {
               </div>
             )}
 
-            {/* Qty + Add to cart */}
+            {/* Consulta por WhatsApp: no hay carrito, el precio se pasa por chat */}
             <div className="pd-info__actions">
-              <div className="pd-qty">
-                <button
-                  className="pd-qty__btn"
-                  onClick={() => setQty(q => Math.max(1, q - 1))}
-                  disabled={qty <= 1}
-                >−</button>
-                <span className="pd-qty__val">{qty}</span>
-                <button
-                  className="pd-qty__btn"
-                  onClick={() => setQty(q => q + 1)}
-                >+</button>
-              </div>
-
-              <button
-                className={`btn btn-primary pd-info__add${added ? ' pd-info__add--added' : ''}`}
-                onClick={handleAdd}
-                disabled={!product.inStock}
+              <a
+                href={productWhatsappLink(product, selectedColor)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary pd-info__add"
               >
-                <ShoppingCart size={18} />
-                {!product.inStock ? t('sinStock') : added ? t('agregado') : t('agregarAlCarrito').toUpperCase()}
-              </button>
+                <MessageCircle size={18} />
+                {t('consultarWhatsApp').toUpperCase()}
+              </a>
             </div>
-
-            {/* Legal */}
-            <p className="pd-info__legal">
-              {t('alComprar')} {' '}
-              <Link to="/terminos" className="pd-info__legal-link">{t('terminos')}</Link>
-              . {t('productosAPedido')}
-            </p>
 
             {/* Specs */}
             <div className="pd-specs">
-              <div className="pd-spec">
-                <Clock size={22} className="pd-spec__icon" />
-                <span className="pd-spec__val">{product.days} {product.days !== 1 ? t('diasHabiles') : t('diaHabil')}</span>
-              </div>
               <div className="pd-spec">
                 <Ruler size={22} className="pd-spec__icon" />
                 <span className="pd-spec__val">{product.size}</span>
@@ -273,7 +230,6 @@ export default function ProductDetail() {
                   </div>
                   <div className="pd-related-card__body">
                     <h4>{p.name}</h4>
-                    <p className="price">${p.price.toLocaleString('es-AR')}</p>
                   </div>
                 </div>
               ))}

@@ -8,9 +8,7 @@ import './Catalog.css';
 
 const SORT_OPTIONS_KEYS = [
   { value: 'relevance', labelKey: 'masPopular' },
-  { value: 'price-asc', labelKey: 'menorPrecio' },
-  { value: 'price-desc', labelKey: 'mayorPrecio' },
-  { value: 'name-az', labelKey: 'masNuevo' },
+  { value: 'name-az', labelKey: 'nombreAZ' },
 ];
 
 export default function Catalog() {
@@ -18,7 +16,7 @@ export default function Catalog() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState('relevance');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [openGroups, setOpenGroups] = useState({ decoracion: true, jardin: true, iluminacion: true });
+  const [openGroups, setOpenGroups] = useState({ decoracion: true, iluminacion: true });
   const navigate = useNavigate();
 
   const activeCat = searchParams.get('cat') || 'todos';
@@ -44,8 +42,6 @@ export default function Catalog() {
     }
 
     switch (sortBy) {
-      case 'price-asc': return list.sort((a, b) => a.price - b.price);
-      case 'price-desc': return list.sort((a, b) => b.price - a.price);
       case 'name-az': return list.sort((a, b) => a.name.localeCompare(b.name));
       default: return list;
     }
@@ -203,7 +199,6 @@ function CatalogCard({ product, onClick, t }) {
       </div>
       <div className="cat-card__body">
         <h3 className="cat-card__name">{product.name}</h3>
-        <p className="cat-card__price price">${product.price.toLocaleString('es-AR')}</p>
         <button
           className={`btn btn-primary cat-card__btn${!product.inStock ? ' cat-card__btn--disabled' : ''}`}
           onClick={(e) => { e.stopPropagation(); onClick(); }}

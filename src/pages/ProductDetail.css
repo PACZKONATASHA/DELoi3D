@@ -129,28 +129,6 @@
   line-height: 1.2;
 }
 
-.pd-info__price { font-size: 1.6rem; }
-
-.pd-info__price-original {
-  text-decoration: line-through;
-  color: var(--gray-600);
-  font-size: 1rem;
-  margin-right: 12px;
-}
-
-.pd-info__price-discount {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--granate);
-}
-
-.pd-info__unit {
-  font-size: .85rem;
-  color: var(--gray-700);
-  font-weight: 400;
-  font-style: normal;
-}
-
 .pd-info__desc {
   border-left: 4px solid var(--celeste);
   padding-left: 18px;
@@ -168,39 +146,6 @@
   flex-wrap: wrap;
 }
 
-/* ── Qty ── */
-.pd-qty {
-  display: flex;
-  align-items: center;
-  border: 1.5px solid var(--gray-300);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  background: var(--white);
-}
-
-.pd-qty__btn {
-  width: 42px;
-  height: 46px;
-  font-size: 1.2rem;
-  color: var(--dark);
-  background: var(--gray-100);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background var(--transition);
-}
-.pd-qty__btn:hover:not(:disabled) { background: var(--gray-200); }
-.pd-qty__btn:disabled { color: var(--gray-500); cursor: default; }
-
-.pd-qty__val {
-  width: 52px;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--dark);
-}
-
-/* ── Add btn ── */
 .pd-info__add {
   flex: 1;
   justify-content: center;
@@ -209,7 +154,6 @@
   letter-spacing: 1.5px;
   min-width: 200px;
 }
-.pd-info__add--added { background: var(--olive); border-color: var(--olive); }
 .pd-info__add:disabled { background: var(--gray-400); border-color: var(--gray-400); cursor: not-allowed; }
 
 /* ── Color selector ── */
@@ -260,20 +204,10 @@
   box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--olive);
   transform: scale(1.1);
 }
-
-/* ── Legal ── */
-.pd-info__legal {
-  font-size: .78rem;
-  color: var(--gray-700);
-  line-height: 1.7;
-  font-style: italic;
-}
-.pd-info__legal-link { color: var(--olive); font-weight: 600; font-style: normal; }
-
 /* ── Specs ── */
 .pd-specs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   background: var(--gray-200);
   border: 1px solid var(--gray-200);
@@ -447,7 +381,6 @@
 @media (max-width: 600px) {
   .pd-info__actions { flex-direction: column; align-items: stretch; }
   .pd-info__add { min-width: 0; width: 100%; }
-  .pd-qty { width: fit-content; }
   .pd-related__grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 }
 

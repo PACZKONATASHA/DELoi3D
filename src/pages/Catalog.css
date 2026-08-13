@@ -271,7 +271,7 @@
   font-weight: 400;
   font-style: italic;
   color: var(--dark);
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -279,7 +279,6 @@
   overflow: hidden;
 }
 
-.cat-card__price { font-size: .95rem; margin-bottom: 12px; }
 
 .cat-card__btn {
   width: 100%;

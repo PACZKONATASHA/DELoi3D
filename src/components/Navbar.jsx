@@ -1,14 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Search, Menu, X } from 'lucide-react';
-import { useCart } from '../context/CartContext';
+import { Search, Menu, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import { products } from '../data/products';
 import './Navbar.css';
 
 export default function Navbar() {
-  const { count, setIsOpen } = useCart();
   const { t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -62,7 +60,6 @@ export default function Navbar() {
     { to: '/', label: t('inicio') },
     { to: '/catalogo', label: t('catalogo') },
     { to: '/galeria', label: t('galeria') },
-    { to: '/como-comprar', label: t('comoComprar') },
     { to: '/mayoristas', label: t('mayoristas') },
   ];
 
@@ -120,7 +117,6 @@ export default function Navbar() {
                   <img src={p.images[0]} alt={p.name} className="navbar__suggestion-img" />
                   <div>
                     <div className="navbar__suggestion-name">{p.name}</div>
-                    <div className="navbar__suggestion-price">${p.price.toLocaleString('es-AR')}</div>
                   </div>
                 </button>
               ))}
@@ -131,12 +127,6 @@ export default function Navbar() {
         {/* Language switcher */}
         <LanguageSwitcher />
 
-        {/* Cart button */}
-        <button className="navbar__cart" onClick={() => setIsOpen(true)} aria-label="Carrito">
-          <ShoppingCart size={22} />
-          {count > 0 && <span className="navbar__cart-badge">{count}</span>}
-        </button>
-
         {/* Mobile controls */}
         <div className="navbar__mobile-controls">
           <button
@@ -145,10 +135,6 @@ export default function Navbar() {
             aria-label="Buscar"
           >
             <Search size={20} />
-          </button>
-          <button className="navbar__cart navbar__cart--mobile" onClick={() => setIsOpen(true)} aria-label="Carrito">
-            <ShoppingCart size={20} />
-            {count > 0 && <span className="navbar__cart-badge">{count}</span>}
           </button>
           <button
             className="navbar__hamburger"
@@ -181,7 +167,6 @@ export default function Navbar() {
                   <img src={p.images[0]} alt={p.name} className="navbar__suggestion-img" />
                   <div>
                     <div className="navbar__suggestion-name">{p.name}</div>
-                    <div className="navbar__suggestion-price">${p.price.toLocaleString('es-AR')}</div>
                   </div>
                 </button>
               ))}
