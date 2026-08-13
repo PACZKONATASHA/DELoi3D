@@ -205,7 +205,7 @@ export default function Home() {
               </div>
               <div className="light-group__grid">
                 {products.filter(p => p.category === group.id).map(p => (
-                  <ProductCard key={p.id} product={p} navigate={navigate} t={t} />
+                  <FeaturedCard key={p.id} product={p} navigate={navigate} t={t} />
                 ))}
               </div>
             </div>
@@ -402,6 +402,43 @@ export default function Home() {
         </div>
       </section>
     </main>
+  );
+}
+
+// Card grande de los destacados: la foto manda y ocupa todo el ancho del grupo.
+function FeaturedCard({ product, navigate, t }) {
+  return (
+    <article className="feat-card" onClick={() => navigate(`/producto/${product.slug}`)}>
+      <div className="feat-card__media">
+        <img
+          src={product.images[0]}
+          srcSet={srcSetFor(product.images[0])}
+          sizes={IMG_SIZES.showcase}
+          alt={product.name}
+          className="feat-card__img"
+          decoding="async"
+        />
+        {!product.inStock && <span className="feat-card__stock">{t('sinStock')}</span>}
+      </div>
+      <div className="feat-card__body">
+        <div className="feat-card__info">
+          <h3 className="feat-card__name">{product.name}</h3>
+          {product.colors && (
+            <div className="feat-card__colors">
+              {product.colors.slice(0, 5).map((c, i) => (
+                <span key={i} className="feat-card__color" style={{ background: c.hex }} title={c.name} />
+              ))}
+            </div>
+          )}
+        </div>
+        <button
+          className="btn btn-primary feat-card__btn"
+          onClick={(e) => { e.stopPropagation(); navigate(`/producto/${product.slug}`); }}
+        >
+          {t('ver')}
+        </button>
+      </div>
+    </article>
   );
 }
 

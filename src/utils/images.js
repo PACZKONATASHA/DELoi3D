@@ -32,4 +32,6 @@ export const IMG_SIZES = {
   thumb: '90px',
   category: '(max-width: 600px) 45vw, 220px',
   gallery: '(max-width: 600px) 46vw, (max-width: 1024px) 30vw, 300px',
+  // Destacados: la foto ocupa todo el ancho del contenedor.
+  showcase: '(max-width: 1280px) 100vw, 1216px',
 };
