@@ -75,6 +75,12 @@ export const products = [
     material: 'Eco-Friendly PLA',
     featured: true,
     inStock: true,
+    // Vuelta de 360 grados: son fotos numeradas (01.jpg .. 36.jpg), no el
+    // modelo 3D, asi que el STL nunca viaja al navegador. Es opcional: el
+    // producto que no la tiene no muestra la seccion.
+    // OJO: por ahora apunta a la carpeta demo-360, que es una pieza de prueba.
+    // Cuando lleguen los renders del cliente, cambiar esta ruta.
+    turntable: { base: '/models/demo-360/', cantidad: 36, ext: 'jpg' },
     // El hex es el promedio real de la captura (ver scripts/colores-detectados.json)
     // y solo se usa de respaldo mientras el swatch carga.
     // `imageNight` es la misma lampara prendida a oscuras: es opcional, y el

@@ -5,7 +5,7 @@ import { MessageCircle, Ruler, Leaf, ChevronLeft, ChevronRight, ZoomIn } from 'l
 import { products } from '../data/products';
 import { srcSetFor, IMG_SIZES } from '../utils/images';
 import { productWhatsappLink } from '../utils/whatsapp';
-import Model3DViewer from '../components/Model3DViewer';
+import Viewer360 from '../components/Viewer360';
 import './ProductDetail.css';
 
 export default function ProductDetail() {
@@ -159,16 +159,22 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        {/* Visor 3D */}
-        <section className="pd-3d-section">
-          <h2 className="pd-3d-section__title">Visualizador 3D</h2>
-          <p className="pd-3d-section__desc">
-            Carga un archivo STL u OBJ para visualizar el modelo en 3D. Arrastra para rotar, usa el scroll para zoom.
-          </p>
-          <div className="pd-3d-viewer-container">
-            <Model3DViewer title={product.name} url="/models/esfera-demo.stl" />
-          </div>
-        </section>
+        {/* Vuelta de 360: fotos renderizadas, no el modelo 3D (ver Viewer360). */}
+        {product.turntable && (
+          <section className="pd-3d-section">
+            <h2 className="pd-3d-section__title">{t('vista360')}</h2>
+            <p className="pd-3d-section__desc">{t('vista360Desc')}</p>
+            <div className="pd-3d-viewer-container">
+              <Viewer360
+                key={product.slug}
+                base={product.turntable.base}
+                cantidad={product.turntable.cantidad}
+                ext={product.turntable.ext}
+                alt={product.name}
+              />
+            </div>
+          </section>
+        )}
 
         {/* Related products */}
         {related.length > 0 && (

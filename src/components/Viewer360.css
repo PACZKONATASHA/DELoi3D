@@ -1,0 +1,77 @@
+.v360 {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.v360__stage {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--sand-light);
+  cursor: grab;
+  user-select: none;
+  /* pan-y deja que el dedo siga scrolleando la pagina en vertical: solo el
+     arrastre horizontal gira la pieza. */
+  touch-action: pan-y;
+}
+.v360__stage:active { cursor: grabbing; }
+.v360__stage:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Los frames van apilados y solo se muestra el actual: asi el cambio es
+   instantaneo, sin el parpadeo de recargar el src. */
+.v360__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+}
+.v360__frame.is-on { opacity: 1; }
+
+.v360__loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--sand-light);
+}
+.v360__loading p {
+  font-size: .72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.v360__bar {
+  width: 140px;
+  height: 2px;
+  background: var(--sand-dark);
+  overflow: hidden;
+}
+.v360__bar span {
+  display: block;
+  height: 100%;
+  background: var(--primary);
+  transition: width .2s ease;
+}
+
+.v360__hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 12px;
+  font-size: .72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
