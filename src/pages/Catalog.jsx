@@ -11,6 +11,23 @@ const SORT_OPTIONS_KEYS = [
   { value: 'name-az', labelKey: 'nombreAZ' },
 ];
 
+// En el catalogo cada color con foto propia va como tarjeta aparte, para ver
+// todas las variantes juntas en la grilla. El selector de color vive en la
+// ficha del producto, no aca. Los productos que todavia tienen una sola foto
+// van con una tarjeta sola: no tiene sentido repetir la misma imagen.
+function colorVariants(product) {
+  const conFoto = (product.colors ?? []).filter(c => c.image);
+  if (conFoto.length === 0) {
+    return [{ key: `${product.id}`, product, color: null, image: product.images[0] }];
+  }
+  return conFoto.map(c => ({
+    key: `${product.id}-${c.name}`,
+    product,
+    color: c,
+    image: c.image,
+  }));
+}
+
 export default function Catalog() {
   const { t } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -46,6 +63,9 @@ export default function Catalog() {
       default: return list;
     }
   }, [activeCat, sortBy, searchQuery]);
+
+  // Una tarjeta por color: los colores del mismo producto quedan juntos.
+  const items = useMemo(() => filtered.flatMap(colorVariants), [filtered]);
 
   const setCat = (slug) => {
     const params = new URLSearchParams(searchParams);
@@ -143,7 +163,7 @@ export default function Catalog() {
                 {t('filtrar')}
               </button>
               <span className="catalog-count">
-                — <strong>{filtered.length}</strong> {filtered.length !== 1 ? t('productos') : t('producto')}
+                — <strong>{items.length}</strong> {items.length !== 1 ? t('productos') : t('producto')}
               </span>
             </div>
             <select
@@ -158,17 +178,19 @@ export default function Catalog() {
           </div>
 
           {/* Product grid */}
-          {filtered.length === 0 ? (
+          {items.length === 0 ? (
             <div className="catalog-empty">
               <p>{t('noResultados')}{searchQuery ? ` "${searchQuery}"` : ''}.</p>
             </div>
           ) : (
             <div className="catalog-grid">
-              {filtered.map(p => (
+              {items.map(item => (
                 <CatalogCard
-                  key={p.id}
-                  product={p}
-                  onClick={() => navigate(`/producto/${p.slug}`)}
+                  key={item.key}
+                  product={item.product}
+                  color={item.color}
+                  image={item.image}
+                  onClick={() => navigate(`/producto/${item.product.slug}`)}
                   t={t}
                 />
               ))}
@@ -180,22 +202,15 @@ export default function Catalog() {
   );
 }
 
-function CatalogCard({ product, onClick, t }) {
-  // Los colores del producto se muestran abajo de la foto: al tocar uno la
-  // tarjeta cambia a la foto de ese color, sin salir del catalogo.
-  const [selectedColor, setSelectedColor] = useState(null);
-
-  const colors = product.colors ?? [];
-  const img = selectedColor?.image || product.images[0];
-
+function CatalogCard({ product, color, image, onClick, t }) {
   return (
     <div className="cat-card card" onClick={onClick}>
       <div className="cat-card__img-wrap">
         <img
-          src={img}
-          srcSet={srcSetFor(img)}
+          src={image}
+          srcSet={srcSetFor(image)}
           sizes={IMG_SIZES.card}
-          alt={selectedColor ? `${product.name} en ${selectedColor.name}` : product.name}
+          alt={color ? `${product.name} en ${color.name}` : product.name}
           className="cat-card__img"
           loading="lazy"
         />
@@ -205,27 +220,8 @@ function CatalogCard({ product, onClick, t }) {
         </div>
       </div>
       <div className="cat-card__body">
-        <h3 className="cat-card__name">{product.name}</h3>
-        {colors.length > 0 && (
-          <div className="cat-card__colors" onClick={e => e.stopPropagation()}>
-            {colors.map((c, i) => (
-              <button
-                key={i}
-                type="button"
-                className={`cat-card__swatch${selectedColor?.name === c.name ? ' cat-card__swatch--active' : ''}`}
-                style={{ background: c.hex }}
-                title={c.name}
-                aria-label={c.name}
-                aria-pressed={selectedColor?.name === c.name}
-                onClick={() => setSelectedColor(sel => (sel?.name === c.name ? null : c))}
-              >
-                {/* Captura del material impreso en ese color; el hex de fondo
-                    queda de respaldo mientras carga. */}
-                {c.swatch && <img src={c.swatch} alt="" loading="lazy" decoding="async" />}
-              </button>
-            ))}
-          </div>
-        )}
+        <h3 className={`cat-card__name${color ? ' cat-card__name--variant' : ''}`}>{product.name}</h3>
+        {color && <p className="cat-card__color">{color.name}</p>}
         <button
           className={`btn btn-primary cat-card__btn${!product.inStock ? ' cat-card__btn--disabled' : ''}`}
           onClick={(e) => { e.stopPropagation(); onClick(); }}
