@@ -181,14 +181,21 @@ export default function Catalog() {
 }
 
 function CatalogCard({ product, onClick, t }) {
+  // Los colores del producto se muestran abajo de la foto: al tocar uno la
+  // tarjeta cambia a la foto de ese color, sin salir del catalogo.
+  const [selectedColor, setSelectedColor] = useState(null);
+
+  const colors = product.colors ?? [];
+  const img = selectedColor?.image || product.images[0];
+
   return (
     <div className="cat-card card" onClick={onClick}>
       <div className="cat-card__img-wrap">
         <img
-          src={product.images[0]}
-          srcSet={srcSetFor(product.images[0])}
+          src={img}
+          srcSet={srcSetFor(img)}
           sizes={IMG_SIZES.card}
-          alt={product.name}
+          alt={selectedColor ? `${product.name} en ${selectedColor.name}` : product.name}
           className="cat-card__img"
           loading="lazy"
         />
@@ -199,6 +206,26 @@ function CatalogCard({ product, onClick, t }) {
       </div>
       <div className="cat-card__body">
         <h3 className="cat-card__name">{product.name}</h3>
+        {colors.length > 0 && (
+          <div className="cat-card__colors" onClick={e => e.stopPropagation()}>
+            {colors.map((c, i) => (
+              <button
+                key={i}
+                type="button"
+                className={`cat-card__swatch${selectedColor?.name === c.name ? ' cat-card__swatch--active' : ''}`}
+                style={{ background: c.hex }}
+                title={c.name}
+                aria-label={c.name}
+                aria-pressed={selectedColor?.name === c.name}
+                onClick={() => setSelectedColor(sel => (sel?.name === c.name ? null : c))}
+              >
+                {/* Captura del material impreso en ese color; el hex de fondo
+                    queda de respaldo mientras carga. */}
+                {c.swatch && <img src={c.swatch} alt="" loading="lazy" decoding="async" />}
+              </button>
+            ))}
+          </div>
+        )}
         <button
           className={`btn btn-primary cat-card__btn${!product.inStock ? ' cat-card__btn--disabled' : ''}`}
           onClick={(e) => { e.stopPropagation(); onClick(); }}
