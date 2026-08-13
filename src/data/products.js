@@ -1,4 +1,4 @@
-// Orden del catalogo: Iluminacion -> Decoracion para el hogar -> Jardineria.
+// Orden del catalogo: Iluminacion -> Decoracion -> Jardineria.
 // La lista plana `categories` se usa en el carrusel del home y en las solapas
 // de la galeria; `categoryGroups` arma el menu lateral del catalogo.
 export const categories = [
@@ -7,7 +7,7 @@ export const categories = [
   { id: 'aire', name: 'Aire', slug: 'aire' },
   { id: 'mar', name: 'Mar', slug: 'mar' },
   { id: 'tierra', name: 'Tierra', slug: 'tierra' },
-  // Decoracion para el hogar
+  // Decoracion
   { id: 'bandejas', name: 'Bandejas', slug: 'bandejas' },
   { id: 'floreros', name: 'Floreros', slug: 'floreros' },
   { id: 'porta-difusores', name: 'Porta Difusores', slug: 'porta-difusores' },
@@ -30,7 +30,7 @@ export const categoryGroups = [
   },
   {
     id: 'decoracion',
-    name: 'Decoración para el hogar',
+    name: 'Decoración',
     subcategories: [
       { id: 'bandejas', name: 'Bandejas', slug: 'bandejas' },
       { id: 'floreros', name: 'Floreros', slug: 'floreros' },
@@ -51,9 +51,9 @@ export const categoryGroups = [
 export const lightingGroups = [
   // Agua: descomentar junto con la subcategoria y sus productos.
   // { id: 'agua', name: 'Agua', tagline: 'Transparencias y celestes, luz fresca y serena.' },
-  { id: 'aire', name: 'Aire', tagline: 'Rosas, violetas y verdes translúcidos que proyectan la luz.' },
+  { id: 'aire', name: 'Aire', tagline: 'Rosas, violetas y púrpuras translúcidos que proyectan la luz.' },
   { id: 'mar', name: 'Mar', tagline: 'Azules, grises y plata para una luz fría y profunda.' },
-  { id: 'tierra', name: 'Tierra', tagline: 'Marrones, cobres y dorados para una luz cálida.' },
+  { id: 'tierra', name: 'Tierra', tagline: 'Marrones, dorados y duraznos para una luz cálida.' },
 ];
 
 export const products = [
@@ -62,42 +62,44 @@ export const products = [
     id: 1,
     name: 'Lámpara Aire',
     slug: 'lampara-aire',
+    // Foto apaisada para la card grande de destacados (ver FeaturedCard).
+    cover: '/iluminacion/aire/aire-colores.jpg',
     category: 'aire',
     images: [
-      '/iluminacion/aire/aire-1-960.jpg',
-      '/iluminacion/aire/aire-2-960.jpg',
-      '/iluminacion/aire/aire-3-960.jpg',
-      '/iluminacion/aire/aire-4-960.jpg',
-      '/iluminacion/aire/aire-5-960.jpg',
-      '/iluminacion/aire/aire-6-960.jpg',
-      '/iluminacion/aire/aire-7-960.jpg',
-      '/iluminacion/aire/aire-8-960.jpg',
+      '/iluminacion/aire/aire-rosa.jpg',
+      '/iluminacion/aire/aire-violeta.jpg',
+      '/iluminacion/aire/aire-purpura.jpg',
+      '/iluminacion/aire/aire-negro.jpg',
+      '/iluminacion/aire/aire-colores.jpg',
     ],
-    description: 'Lámpara de mesa con pantalla cilíndrica calada de textura tramada. La luz atraviesa los miles de perforaciones y proyecta un manto de puntos sobre la mesa y la pared. Impresa en PLA Eco-Friendly, disponible en rosas, violetas y verdes translúcidos, con luz LED de bajo consumo.',
+    description: 'Lámpara de mesa con pantalla cilíndrica calada de textura tramada. La luz atraviesa los miles de perforaciones y proyecta un manto de puntos sobre la mesa y la pared. Impresa en PLA Eco-Friendly, disponible en rosa, violeta, púrpura y negro, con luz LED de bajo consumo.',
     size: '14 cm',
     material: 'Eco-Friendly PLA',
     featured: true,
     inStock: true,
+    // El hex es el promedio real de la captura (ver scripts/colores-detectados.json)
+    // y solo se usa de respaldo mientras el swatch carga.
     colors: [
-      { name: 'Rosa', hex: '#E89BC4' },
-      { name: 'Violeta', hex: '#9B5DE5' },
-      { name: 'Púrpura', hex: '#6A3FA0' },
-      { name: 'Verde agua', hex: '#7FBFB0' },
-      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Rosa', hex: '#BE7682', swatch: '/iluminacion/aire/swatch-rosa.jpg', image: '/iluminacion/aire/aire-rosa.jpg' },
+      { name: 'Violeta', hex: '#8669CE', swatch: '/iluminacion/aire/swatch-violeta.jpg', image: '/iluminacion/aire/aire-violeta.jpg' },
+      { name: 'Púrpura', hex: '#1D1334', swatch: '/iluminacion/aire/swatch-purpura.jpg', image: '/iluminacion/aire/aire-purpura.jpg' },
+      { name: 'Negro', hex: '#172128', swatch: '/iluminacion/aire/swatch-negro.jpg', image: '/iluminacion/aire/aire-negro.jpg' },
     ],
   },
   {
     id: 2,
     name: 'Lámpara Mar',
     slug: 'lampara-mar',
+    // Foto apaisada para la card grande de destacados (ver FeaturedCard).
+    cover: '/iluminacion/mar/mar-colores.jpg',
     category: 'mar',
     images: [
-      '/iluminacion/mar/mar-1-960.jpg',
-      '/iluminacion/mar/mar-2-960.jpg',
-      '/iluminacion/mar/mar-3-960.jpg',
-      '/iluminacion/mar/mar-4-960.jpg',
-      '/iluminacion/mar/mar-5-960.jpg',
-      '/iluminacion/mar/mar-6-960.jpg',
+      '/iluminacion/mar/mar-azul.jpg',
+      '/iluminacion/mar/mar-negro.jpg',
+      '/iluminacion/mar/mar-gris.jpg',
+      '/iluminacion/mar/mar-plata.jpg',
+      '/iluminacion/mar/mar-blanco.jpg',
+      '/iluminacion/mar/mar-colores.jpg',
     ],
     description: 'Lámpara de mesa con pantalla cónica estriada de estilo nórdico. Su plisado marca la luz y crea un juego de sombras suave sobre la mesa. Impresa en PLA Eco-Friendly, disponible en la gama azul, gris y neutros, con luz LED de bajo consumo.',
     size: '16 cm',
@@ -105,24 +107,26 @@ export const products = [
     featured: true,
     inStock: true,
     colors: [
-      { name: 'Azul marino', hex: '#2F4A7A' },
-      { name: 'Negro', hex: '#1A1A1A' },
-      { name: 'Gris', hex: '#7E8894' },
-      { name: 'Plata', hex: '#B9BEC4' },
-      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Azul marino', hex: '#222D50', swatch: '/iluminacion/mar/swatch-azul.jpg', image: '/iluminacion/mar/mar-azul.jpg' },
+      { name: 'Negro', hex: '#1F1F2B', swatch: '/iluminacion/mar/swatch-negro.jpg', image: '/iluminacion/mar/mar-negro.jpg' },
+      { name: 'Gris', hex: '#717075', swatch: '/iluminacion/mar/swatch-gris.jpg', image: '/iluminacion/mar/mar-gris.jpg' },
+      { name: 'Plata', hex: '#949090', swatch: '/iluminacion/mar/swatch-plata.jpg', image: '/iluminacion/mar/mar-plata.jpg' },
+      { name: 'Blanco', hex: '#DAD9DF', swatch: '/iluminacion/mar/swatch-blanco.jpg', image: '/iluminacion/mar/mar-blanco.jpg' },
     ],
   },
   {
     id: 3,
     name: 'Lámpara Tierra',
     slug: 'lampara-tierra',
+    // Foto apaisada para la card grande de destacados (ver FeaturedCard).
+    cover: '/iluminacion/tierra/tierra-colores.jpg',
     category: 'tierra',
     images: [
-      '/iluminacion/tierra/tierra-1-960.jpg',
-      '/iluminacion/tierra/tierra-2-960.jpg',
-      '/iluminacion/tierra/tierra-3-960.jpg',
-      '/iluminacion/tierra/tierra-4-960.jpg',
-      '/iluminacion/tierra/tierra-5-960.jpg',
+      '/iluminacion/tierra/tierra-marron.jpg',
+      '/iluminacion/tierra/tierra-dorado.jpg',
+      '/iluminacion/tierra/tierra-durazno.jpg',
+      '/iluminacion/tierra/tierra-blanco.jpg',
+      '/iluminacion/tierra/tierra-colores.jpg',
     ],
     description: 'Lámpara de mesa con pantalla esférica estriada de líneas suaves y cálidas. La textura acanalada filtra la luz y genera un ambiente íntimo, ideal para living, dormitorio o mesa de luz. Impresa en PLA Eco-Friendly, con base a tono y luz LED cálida.',
     size: '18 cm',
@@ -130,14 +134,14 @@ export const products = [
     featured: true,
     inStock: true,
     colors: [
-      { name: 'Marrón tierra', hex: '#6B4636' },
-      { name: 'Dorado', hex: '#C9A227' },
-      { name: 'Cobre', hex: '#C97F5A' },
-      { name: 'Blanco', hex: '#F5F5F5' },
+      { name: 'Marrón tierra', hex: '#5B3225', swatch: '/iluminacion/tierra/swatch-marron.jpg', image: '/iluminacion/tierra/tierra-marron.jpg' },
+      { name: 'Dorado', hex: '#BEA742', swatch: '/iluminacion/tierra/swatch-dorado.jpg', image: '/iluminacion/tierra/tierra-dorado.jpg' },
+      { name: 'Durazno', hex: '#CBA58E', swatch: '/iluminacion/tierra/swatch-durazno.jpg', image: '/iluminacion/tierra/tierra-durazno.jpg' },
+      { name: 'Blanco', hex: '#CECCC8', swatch: '/iluminacion/tierra/swatch-blanco.jpg', image: '/iluminacion/tierra/tierra-blanco.jpg' },
     ],
   },
 
-  // ── Decoración para el hogar ─────────────────────────────────
+  // ── Decoración ────────────────────────────────────────────────
   {
     id: 10,
     name: 'Bandeja Oval',
@@ -239,8 +243,8 @@ export const products = [
   },
   {
     id: 15,
-    name: 'Porta Difusor Espiral',
-    slug: 'porta-difusor-espiral',
+    name: 'Porta Difusor Nilo',
+    slug: 'porta-difusor-nilo',
     category: 'porta-difusores',
     offer: 10,
     images: [
@@ -282,13 +286,13 @@ export const products = [
   },
   {
     id: 17,
-    name: 'Porta Difusor Facetado',
-    slug: 'porta-difusor-facetado',
+    name: 'Porta Difusor Cairo',
+    slug: 'porta-difusor-cairo',
     category: 'porta-difusores',
     images: [
       '/decoracion/porta-difusores/negro.webp',
     ],
-    description: 'Porta difusor de caras geométricas, la versión más sobria de la línea. Combina con el modelo espiral para armar un dúo sobre la bandeja. Disponible en negro, blanco y gris.',
+    description: 'Porta difusor de caras geométricas, la versión más sobria de la línea. Combina con el modelo Nilo para armar un dúo sobre la bandeja. Disponible en negro, blanco y gris.',
     size: '18 cm',
     material: 'Eco-Friendly PLA',
     featured: false,
@@ -367,13 +371,13 @@ export const products = [
   },
   {
     id: 23,
-    name: 'Tutor Ginkgo',
-    slug: 'tutor-ginkgo',
+    name: 'Tutor Luto',
+    slug: 'tutor-luto',
     category: 'tutores',
     images: [
-      '/jardineria/tutores/tutor-ginkgo.webp',
+      '/jardineria/tutores/tutor-luto.webp',
     ],
-    description: 'Tutor con hoja de ginkgo calada, de tallo largo y fino. Aporta altura a las macetas chicas y también queda muy bien como varilla decorativa en floreros y porta difusores. Disponible en beige, blanco, verde y negro.',
+    description: 'Tutor Luto, con hoja calada de tallo largo y fino. Aporta altura a las macetas chicas y también queda muy bien como varilla decorativa en floreros y porta difusores. Disponible en beige, blanco, verde y negro.',
     size: '28 cm',
     material: 'Eco-Friendly PLA',
     featured: true,
@@ -389,26 +393,30 @@ export const products = [
 
 export const galleryImages = [
   // Iluminación
-  { id: 1, src: '/iluminacion/aire/aire-1-960.jpg', alt: 'Lámpara Aire', category: 'aire' },
-  { id: 2, src: '/iluminacion/aire/aire-2-960.jpg', alt: 'Lámpara Aire en sus colores', category: 'aire' },
-  { id: 3, src: '/iluminacion/aire/aire-5-960.jpg', alt: 'Lámpara Aire encendida', category: 'aire' },
-  { id: 4, src: '/iluminacion/mar/mar-1-960.jpg', alt: 'Lámpara Mar', category: 'mar' },
-  { id: 5, src: '/iluminacion/mar/mar-4-960.jpg', alt: 'Lámpara Mar en ambiente', category: 'mar' },
-  { id: 6, src: '/iluminacion/tierra/tierra-1-960.jpg', alt: 'Lámpara Tierra', category: 'tierra' },
-  { id: 7, src: '/iluminacion/tierra/tierra-3-960.jpg', alt: 'Lámpara Tierra en ambiente', category: 'tierra' },
-  // Decoración para el hogar
+  // Solo fotos cuadradas: la grilla recorta a 1:1 y las grupales (apaisadas)
+  // perderian las lamparas de los costados.
+  { id: 1, src: '/iluminacion/aire/aire-rosa.jpg', alt: 'Lámpara Aire en rosa', category: 'aire' },
+  { id: 2, src: '/iluminacion/aire/aire-violeta.jpg', alt: 'Lámpara Aire en violeta', category: 'aire' },
+  { id: 3, src: '/iluminacion/aire/aire-purpura.jpg', alt: 'Lámpara Aire en púrpura', category: 'aire' },
+  { id: 4, src: '/iluminacion/mar/mar-azul.jpg', alt: 'Lámpara Mar en azul marino', category: 'mar' },
+  { id: 5, src: '/iluminacion/mar/mar-plata.jpg', alt: 'Lámpara Mar en plata', category: 'mar' },
+  { id: 6, src: '/iluminacion/mar/mar-blanco.jpg', alt: 'Lámpara Mar en blanco', category: 'mar' },
+  { id: 7, src: '/iluminacion/tierra/tierra-marron.jpg', alt: 'Lámpara Tierra en marrón', category: 'tierra' },
+  { id: 21, src: '/iluminacion/tierra/tierra-dorado.jpg', alt: 'Lámpara Tierra en dorado', category: 'tierra' },
+  { id: 22, src: '/iluminacion/tierra/tierra-durazno.jpg', alt: 'Lámpara Tierra en durazno', category: 'tierra' },
+  // Decoración
   { id: 8, src: '/decoracion/bandejas/bandeja-oval.webp', alt: 'Bandeja oval', category: 'bandejas' },
   { id: 9, src: '/decoracion/bandejas/bandeja-rectangular.webp', alt: 'Bandeja rectangular', category: 'bandejas' },
   { id: 10, src: '/decoracion/floreros/florero-blanco.png', alt: 'Florero Espiga', category: 'floreros' },
   { id: 11, src: '/decoracion/floreros/florero-negro.png', alt: 'Florero Facetado', category: 'floreros' },
   { id: 12, src: '/decoracion/floreros/florero-terracota.png', alt: 'Florero Onda', category: 'floreros' },
-  { id: 13, src: '/decoracion/porta-difusores/cobre.webp', alt: 'Porta Difusor Espiral en cobre', category: 'porta-difusores' },
-  { id: 14, src: '/decoracion/porta-difusores/marmol.webp', alt: 'Porta Difusor Espiral en mármol', category: 'porta-difusores' },
+  { id: 13, src: '/decoracion/porta-difusores/cobre.webp', alt: 'Porta Difusor Nilo en cobre', category: 'porta-difusores' },
+  { id: 14, src: '/decoracion/porta-difusores/marmol.webp', alt: 'Porta Difusor Nilo en mármol', category: 'porta-difusores' },
   { id: 15, src: '/decoracion/porta-difusores/blanco.webp', alt: 'Porta Difusor Plisado', category: 'porta-difusores' },
   { id: 16, src: '/decoracion/porta-difusores/negro.webp', alt: 'Porta Difusores en negro', category: 'porta-difusores' },
   // Jardinería
   { id: 17, src: '/jardineria/macetas/maceta-redonda.png', alt: 'Maceta Redonda Estriada', category: 'macetas' },
   { id: 18, src: '/jardineria/macetas/maceta-cuadrada.png', alt: 'Maceta Cuadrada Estriada', category: 'macetas' },
   { id: 19, src: '/jardineria/tutores/tutor-floral.webp', alt: 'Tutor Floral', category: 'tutores' },
-  { id: 20, src: '/jardineria/tutores/tutor-ginkgo.webp', alt: 'Tutor Ginkgo', category: 'tutores' },
+  { id: 20, src: '/jardineria/tutores/tutor-luto.webp', alt: 'Tutor Luto', category: 'tutores' },
 ];

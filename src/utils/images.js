@@ -1,27 +1,20 @@
-// Fotos propias servidas en varios anchos (ver public/iluminacion/).
-// Las imagenes se referencian por su variante -960 y desde ahi se arma el srcSet.
-const WIDTHS = [480, 960, 1600];
-const RESPONSIVE = /^(\/iluminacion\/(?:aire|mar|tierra)\/[a-z0-9-]+)-960\.jpg$/;
+// Las fotos propias (public/iluminacion/, generadas por
+// scripts/procesar-iluminacion.mjs) son un archivo por foto: no hay copias en
+// varios anchos, asi que no llevan srcSet y el <img> usa solo src. Se adaptan
+// igual a la pantalla porque el CSS las escala al ancho del contenedor.
 
-// Unsplash sirve cualquier ancho con el parametro ?w=, asi que tambien
-// puede armar un srcSet en vez de bajar siempre la misma foto.
+// Unsplash sirve cualquier ancho con el parametro ?w=, asi que ahi si conviene
+// armar un srcSet en vez de bajar siempre la misma foto.
 const UNSPLASH = /^https:\/\/images\.unsplash\.com\/.+[?&]w=\d+/;
+const ANCHOS_UNSPLASH = [480, 960, 1600];
 
-// Devuelve el srcSet de una foto, o undefined si es de un solo tamaño:
-// en ese caso el <img> usa solo src.
+// Devuelve el srcSet de una foto, o undefined si es de un solo tamaño.
 export function srcSetFor(src) {
-  if (typeof src !== 'string') return undefined;
+  if (typeof src !== 'string' || !UNSPLASH.test(src)) return undefined;
 
-  const propia = RESPONSIVE.exec(src);
-  if (propia) {
-    return WIDTHS.map(w => `${propia[1]}-${w}.jpg ${w}w`).join(', ');
-  }
-
-  if (UNSPLASH.test(src)) {
-    return WIDTHS.map(w => `${src.replace(/([?&]w=)\d+/, `$1${w}`)} ${w}w`).join(', ');
-  }
-
-  return undefined;
+  return ANCHOS_UNSPLASH
+    .map(w => `${src.replace(/([?&]w=)\d+/, `$1${w}`)} ${w}w`)
+    .join(', ');
 }
 
 // Anchos aproximados de cada lugar donde se muestra una foto.

@@ -13,10 +13,10 @@ import './Home.css';
 // Foto de portada de cada categoria del carrusel del home.
 const CATEGORY_IMAGES = {
   // Iluminacion
-  'aire': '/iluminacion/aire/aire-1-960.jpg',
-  'mar': '/iluminacion/mar/mar-1-960.jpg',
-  'tierra': '/iluminacion/tierra/tierra-1-960.jpg',
-  // Decoracion para el hogar
+  'aire': '/iluminacion/aire/aire-rosa.jpg',
+  'mar': '/iluminacion/mar/mar-azul.jpg',
+  'tierra': '/iluminacion/tierra/tierra-marron.jpg',
+  // Decoracion
   'bandejas': '/decoracion/bandejas/bandeja-oval.webp',
   'floreros': '/decoracion/floreros/florero-terracota.png',
   'porta-difusores': '/decoracion/porta-difusores/cobre.webp',
@@ -25,7 +25,7 @@ const CATEGORY_IMAGES = {
   'tutores': '/jardineria/tutores/tutor-floral.webp',
 };
 
-const CATEGORY_IMAGE_FALLBACK = '/iluminacion/mar/mar-1-960.jpg';
+const CATEGORY_IMAGE_FALLBACK = '/iluminacion/mar/mar-azul.jpg';
 
 const CUSTOM_STEPS = [
   {
@@ -408,9 +408,11 @@ function FeaturedCard({ product, navigate, t }) {
   return (
     <article className="feat-card" onClick={() => navigate(`/producto/${product.slug}`)}>
       <div className="feat-card__media">
+        {/* El marco es apaisado: si el producto tiene una foto grupal (`cover`)
+            va esa, porque las fotos de producto son cuadradas y se recortarian. */}
         <img
-          src={product.images[0]}
-          srcSet={srcSetFor(product.images[0])}
+          src={product.cover ?? product.images[0]}
+          srcSet={srcSetFor(product.cover ?? product.images[0])}
           sizes={IMG_SIZES.showcase}
           alt={product.name}
           className="feat-card__img"

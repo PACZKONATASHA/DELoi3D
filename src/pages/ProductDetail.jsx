@@ -8,52 +8,6 @@ import { productWhatsappLink } from '../utils/whatsapp';
 import Model3DViewer from '../components/Model3DViewer';
 import './ProductDetail.css';
 
-// Función para convertir hex a HSL
-const hexToHsl = (hex) => {
-  const r = parseInt(hex.slice(1, 3), 16) / 255;
-  const g = parseInt(hex.slice(3, 5), 16) / 255;
-  const b = parseInt(hex.slice(5, 7), 16) / 255;
-  const max = Math.max(r, g, b);
-  const min = Math.min(r, g, b);
-  let h = 0, s = 0, l = (max + min) / 2;
-  
-  if (max !== min) {
-    const d = max - min;
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-    switch (max) {
-      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
-      case g: h = ((b - r) / d + 2) / 6; break;
-      case b: h = ((r - g) / d + 4) / 6; break;
-    }
-  }
-  return { h: h * 360, s: s * 100, l: l * 100 };
-};
-
-// Calcular rotación de hue basada en color cobre base (#B87333)
-const getHueRotation = (targetHex) => {
-  const baseHue = 25; // Hue del cobre base en la imagen
-  const targetHsl = hexToHsl(targetHex);
-  return targetHsl.h - baseHue;
-};
-
-// Generar filtro CSS según el color
-const getColorFilter = (colorHex) => {
-  if (!colorHex) return {};
-  
-  // Colores especiales
-  if (colorHex === '#1A1A1A') {
-    // Negro: reducir brillo y saturación
-    return { filter: 'brightness(0.3) saturate(0)' };
-  }
-  if (colorHex === '#F5F5F5') {
-    // Blanco: aumentar brillo y reducir saturación
-    return { filter: 'brightness(1.8) saturate(0.2)' };
-  }
-  
-  // Otros colores: usar hue-rotate
-  return { filter: `hue-rotate(${getHueRotation(colorHex)}deg) saturate(1.2)` };
-};
-
 export default function ProductDetail() {
   const { t } = useLanguage();
   const { slug } = useParams();
@@ -62,11 +16,13 @@ export default function ProductDetail() {
   const product = products.find(p => p.slug === slug);
   const [activeImg, setActiveImg] = useState(0);
   const [lightbox, setLightbox] = useState(false);
-  const [selectedColor, setSelectedColor] = useState(null);
+  // Solo para los productos que todavia tienen una foto sola: ahi elegir un
+  // color no cambia la foto, pero igual hay que recordarlo para el WhatsApp.
+  // Se guarda junto al slug para que no se arrastre al cambiar de producto.
+  const [elegido, setElegido] = useState({ slug, color: null });
 
   useEffect(() => {
     setActiveImg(0);
-    setSelectedColor(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [slug]);
 
@@ -81,6 +37,21 @@ export default function ProductDetail() {
 
   const prevImg = () => setActiveImg(i => (i === 0 ? product.images.length - 1 : i - 1));
   const nextImg = () => setActiveImg(i => (i === product.images.length - 1 ? 0 : i + 1));
+
+  // En iluminacion cada color tiene su propia foto, asi que el color elegido es
+  // el que corresponde a la foto que se esta viendo: las flechas y las
+  // miniaturas mueven el circulito, y la foto grupal no marca ninguno.
+  const currentImg = product.images[activeImg];
+  const conFotoPorColor = product.colors?.some(c => c.image);
+  const selectedColor = conFotoPorColor
+    ? product.colors.find(c => c.image === currentImg) ?? null
+    : (elegido.slug === slug ? elegido.color : null);
+
+  const selectColor = (color) => {
+    setElegido({ slug, color });
+    const i = color.image ? product.images.indexOf(color.image) : -1;
+    if (i !== -1) setActiveImg(i);
+  };
 
   const related = products
     .filter(p => p.category === product.category && p.id !== product.id)
@@ -103,14 +74,11 @@ export default function ProductDetail() {
           <div className="pd-gallery">
             <div className="pd-gallery__main">
               <img
-                src={product.images[activeImg]}
-                srcSet={srcSetFor(product.images[activeImg])}
+                src={currentImg}
+                srcSet={srcSetFor(currentImg)}
                 sizes={IMG_SIZES.detail}
-                alt={product.name}
+                alt={selectedColor ? `${product.name} en ${selectedColor.name}` : product.name}
                 className="pd-gallery__img"
-                style={selectedColor ? {
-                  filter: `hue-rotate(${getHueRotation(selectedColor.hex)}deg) saturate(1.2)`,
-                } : {}}
               />
               {product.images.length > 1 && (
                 <>
@@ -133,22 +101,26 @@ export default function ProductDetail() {
 
             {product.images.length > 1 && (
               <div className="pd-gallery__thumbs">
-                {product.images.map((img, i) => (
-                  <button
-                    key={i}
-                    className={`pd-gallery__thumb${activeImg === i ? ' pd-gallery__thumb--active' : ''}`}
-                    onClick={() => setActiveImg(i)}
-                  >
-                    <img
-                      src={img}
-                      srcSet={srcSetFor(img)}
-                      sizes={IMG_SIZES.thumb}
-                      alt={`${product.name} vista ${i + 1}`}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </button>
-                ))}
+                {product.images.map((img, i) => {
+                  const color = product.colors?.find(c => c.image === img);
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      className={`pd-gallery__thumb${activeImg === i ? ' pd-gallery__thumb--active' : ''}`}
+                      onClick={() => setActiveImg(i)}
+                    >
+                      <img
+                        src={img}
+                        srcSet={srcSetFor(img)}
+                        sizes={IMG_SIZES.thumb}
+                        alt={color ? `${product.name} en ${color.name}` : `${product.name} vista ${i + 1}`}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </button>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -175,12 +147,18 @@ export default function ProductDetail() {
                   {product.colors.map((c, i) => (
                     <button
                       key={i}
+                      type="button"
                       className={`pd-color-swatch${selectedColor?.name === c.name ? ' pd-color-swatch--active' : ''}`}
                       style={{ background: c.hex }}
                       title={c.name}
-                      onClick={() => setSelectedColor(c)}
+                      onClick={() => selectColor(c)}
                       aria-label={c.name}
-                    />
+                      aria-pressed={selectedColor?.name === c.name}
+                    >
+                      {/* Captura del material impreso en ese color: el hex de
+                          fondo queda de respaldo mientras carga. */}
+                      {c.swatch && <img src={c.swatch} alt="" loading="lazy" decoding="async" />}
+                    </button>
                   ))}
                 </div>
               </div>
@@ -260,8 +238,10 @@ export default function ProductDetail() {
         <div className="lightbox" onClick={() => setLightbox(false)}>
           <button className="lightbox__close" onClick={() => setLightbox(false)}>×</button>
           <img
-            src={product.images[activeImg]}
-            alt={product.name}
+            src={currentImg}
+            srcSet={srcSetFor(currentImg)}
+            sizes="90vw"
+            alt={selectedColor ? `${product.name} en ${selectedColor.name}` : product.name}
             className="lightbox__img"
             onClick={e => e.stopPropagation()}
           />
