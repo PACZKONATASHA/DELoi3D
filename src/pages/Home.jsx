@@ -4,17 +4,29 @@ import { ChevronLeft, ChevronRight, ArrowRight, MessageCircle, PenLine, Package 
 import { useLanguage } from '../context/LanguageContext';
 import { products, categories, lightingGroups } from '../data/products';
 import { srcSetFor, IMG_SIZES } from '../utils/images';
-import { whatsappLink, productWhatsappLink } from '../utils/whatsapp';
+import { whatsappLink } from '../utils/whatsapp';
 import HeroSlider from '../components/HeroSlider';
 import ReviewsCarousel from '../components/ReviewsCarousel';
 import LocationMap from '../components/LocationMap';
 import './Home.css';
 
 const CATEGORY_IMAGES = {
+  // Fotos propias
   'porta-difusores': '/porta-difusores/nilo.webp',
   'bandejas': '/porta-difusores/bandeja-oval.webp',
   'tierra': '/lamparas/tierra-1-480.jpg',
   'mar': '/lamparas/mar-1-480.jpg',
+  'robert-plant': 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&q=80',
+  'macetas': 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80',
+  'bazar': 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80',
+  'mates': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80',
+  'iluminacion': 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&q=80',
+  'lamparas': '/lamparas/mar-1-480.jpg',
+  'soportes': 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=400&q=80',
+  'juguetes': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
+  'mascotas': 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80',
+  'llaveros': 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80',
+  'vasos': 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&q=80',
 };
 
 const CUSTOM_STEPS = [
@@ -35,31 +47,48 @@ const CUSTOM_STEPS = [
   },
 ];
 
-// Cada ocasion sugiere piezas reales del catalogo (por slug), no productos de muestra.
 const OCCASIONS = [
   {
     key: 'pascua',
     label: 'Pascua',
-    slugs: ['bandeja-oval-porta-difusores', 'porta-difusor-nilo', 'bandeja-rectangular-porta-difusores'],
+    items: [
+      { img: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&q=80', name: 'Porta Huevos 3D', colors: ['#F5F5F5', '#F8BBD0', '#7EC8E3', '#F9A825'] },
+      { img: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=400&q=80', name: 'Conejito Impreso 3D', colors: ['#F5F5F5', '#F8BBD0', '#C8E6C9', '#FFF9C4'] },
+      { img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80', name: 'Figura Pascual 3D', colors: ['#F5F5F5', '#8A9179', '#F8BBD0', '#7EC8E3'] },
+      { img: 'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=400&q=80', name: 'Canasta Deco 3D', colors: ['#F5F5F5', '#C8E6C9', '#F9A825', '#F8BBD0'] },
+    ],
   },
   {
     key: 'navidad',
     label: 'Navidad',
-    slugs: ['lampara-tierra', 'lampara-mar', 'porta-difusor-nilo-y-cairo'],
+    items: [
+      { img: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&q=80', name: 'Adorno Navideño 3D', colors: ['#F5F5F5', '#D32F2F', '#2E7D32', '#B87333'] },
+      { img: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80', name: 'Figura Navideña 3D', colors: ['#1A1A1A', '#F5F5F5', '#D32F2F', '#B87333'] },
+      { img: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=400&q=80', name: 'Estrella Impresa 3D', colors: ['#B87333', '#F5F5F5', '#D32F2F', '#9E9E9E'] },
+      { img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80', name: 'Muñeco de Nieve 3D', colors: ['#F5F5F5', '#1A1A1A', '#D32F2F', '#2E7D32'] },
+    ],
   },
   {
     key: 'san-valentin',
     label: 'San Valentín',
-    slugs: ['lampara-mar', 'porta-difusor-nilo', 'bandeja-oval-porta-difusores'],
+    items: [
+      { img: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80', name: 'Corazón Personalizado 3D', colors: ['#D32F2F', '#F5F5F5', '#E88EA8', '#1A1A1A'] },
+      { img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80', name: 'Mate del Amor 3D', colors: ['#D32F2F', '#E88EA8', '#F5F5F5', '#1A1A1A'] },
+      { img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&q=80', name: 'Caja Romántica 3D', colors: ['#E88EA8', '#D32F2F', '#F5F5F5', '#9575CD'] },
+      { img: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&q=80', name: 'Figura Pareja 3D', colors: ['#D32F2F', '#F5F5F5', '#E88EA8', '#B87333'] },
+    ],
   },
   {
     key: 'cumpleanos',
     label: 'Cumpleaños',
-    slugs: ['lampara-tierra', 'porta-difusor-nilo-y-cairo', 'bandeja-rectangular-porta-difusores'],
+    items: [
+      { img: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400&q=80', name: 'Figura Personalizada 3D', colors: ['#7EC8E3', '#E88EA8', '#9575CD', '#F9A825'] },
+      { img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80', name: 'Souvenir con Nombre 3D', colors: ['#F5F5F5', '#7EC8E3', '#E88EA8', '#9575CD'] },
+      { img: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&q=80', name: 'Topper para Torta 3D', colors: ['#F5F5F5', '#B87333', '#E88EA8', '#7EC8E3'] },
+      { img: 'https://images.unsplash.com/photo-1509557965875-b88c97052f0e?w=400&q=80', name: 'Llavero Recordatorio 3D', colors: ['#7EC8E3', '#E88EA8', '#F5F5F5', '#9575CD'] },
+    ],
   },
 ];
-
-const productBySlug = (slug) => products.find(p => p.slug === slug);
 
 export default function Home() {
   const { t } = useLanguage();
@@ -106,7 +135,7 @@ export default function Home() {
           </div>
           <div className="custom-orders__cta">
             <a
-              href={whatsappLink('Hola! Quiero consultar por un producto personalizado.')}
+              href="https://wa.me/541161307110?text=Hola!+Quiero+consultar+por+un+producto+personalizado"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
@@ -144,7 +173,7 @@ export default function Home() {
                 className="category-card"
               >
                 <img
-                  src={CATEGORY_IMAGES[cat.id]}
+                  src={CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGES['bazar']}
                   alt={cat.name}
                   className="category-card__img"
                 />
@@ -164,18 +193,13 @@ export default function Home() {
             <span className="promo-banner__tag">Promociones vigentes</span>
             <p className="promo-banner__desc">Aprovechá nuestros descuentos por tiempo limitado.</p>
           </div>
-          <a
-            href={whatsappLink('Hola! Quiero consultar por las promociones vigentes.')}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn promo-banner__btn"
-          >
-            Consultar por WhatsApp <ArrowRight size={16} />
-          </a>
+          <Link to="/como-comprar" className="btn promo-banner__btn">
+            Ver cómo comprar <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
 
-      {/* ── Featured products: linea de iluminacion, agrupada ── */}
+      {/* ── Featured products ── */}
       <section className="featured section">
         <div className="container">
           <div className="section-header">
@@ -211,6 +235,52 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Ofertas ── */}
+      <section className="ofertas section">
+        <div className="container">
+          <div className="section-header">
+            <div>
+              <h2 className="section-title">{t('ofertas')}</h2>
+              <p className="section-sub">{t('ofertasDesc')}</p>
+            </div>
+          </div>
+
+          <div className="ofertas__grid">
+            {products.filter(p => p.offer).map(p => (
+              <div key={p.id} className="oferta-card card" onClick={() => navigate(`/producto/${p.slug}`)}>
+                <div className="oferta-card__img-wrap">
+                  <img
+                    src={p.images[0]}
+                    srcSet={srcSetFor(p.images[0])}
+                    sizes={IMG_SIZES.card}
+                    alt={p.name}
+                    className="oferta-card__img"
+                    loading="lazy"
+                  />
+                  <span className="oferta-card__badge">{p.offer}% OFF</span>
+                </div>
+                <div className="oferta-card__body">
+                  <h3 className="oferta-card__name">{p.name}</h3>
+                  {p.colors && (
+                    <div className="oferta-card__colors">
+                      {p.colors.slice(0, 5).map((c, i) => (
+                        <span key={i} className="oferta-card__color" style={{ background: c.hex }} title={c.name} />
+                      ))}
+                    </div>
+                  )}
+                  <button
+                    className="btn btn-primary oferta-card__btn"
+                    onClick={(e) => { e.stopPropagation(); navigate(`/producto/${p.slug}`); }}
+                  >
+                    {t('ver')}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Shipping Info ── */}
       <section className="shipping-info section">
         <div className="container">
@@ -242,7 +312,7 @@ export default function Home() {
               </div>
               <h3 className="shipping-card__title">{t('contacto')}</h3>
               <a 
-                href={whatsappLink('Hola! Quiero consultar sobre envíos de mis productos.')}
+                href="https://wa.me/541161307110?text=Hola!+Quiero+consultar+sobre+envíos+de+mis+productos"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-sm"
@@ -284,33 +354,25 @@ export default function Home() {
           </div>
 
           <div className="occasions__grid" key={activeOccasion}>
-            {currentOccasion?.slugs.map(productBySlug).filter(Boolean).map(item => (
-              <div key={item.id} className="occ-card">
+            {currentOccasion?.items.map((item, i) => (
+              <div key={i} className="occ-card">
                 <div className="occ-card__img-wrap">
-                  <img
-                    src={item.images[0]}
-                    srcSet={srcSetFor(item.images[0])}
-                    sizes={IMG_SIZES.card}
-                    alt={item.name}
-                    className="occ-card__img"
-                    loading="lazy"
-                  />
+                  <img src={item.img} alt={item.name} className="occ-card__img" loading="lazy" />
                 </div>
                 <div className="occ-card__body">
                   <h3 className="occ-card__name">{item.name}</h3>
                   <div className="occ-card__colors">
-                    {item.colors.map((c, j) => (
+                    {item.colors.map((hex, j) => (
                       <span
                         key={j}
                         className="occ-card__color"
-                        style={{ background: c.hex }}
-                        title={c.name}
+                        style={{ background: hex }}
                       />
                     ))}
                     <span className="occ-card__colors-more">+ {t('colores')}</span>
                   </div>
                   <a
-                    href={productWhatsappLink(item)}
+                    href={whatsappLink(`Hola! Me interesa el producto: ${item.name}`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-outline occ-card__btn"
@@ -338,7 +400,7 @@ export default function Home() {
             <p className="banner__sub">{t('ventasPorMayor')}</p>
           </div>
           <a
-            href={whatsappLink('Hola! Me interesa información sobre venta por mayor.')}
+            href="https://wa.me/541161307110?text=Hola!+Me+interesa+información+sobre+venta+por+mayor"
             target="_blank"
             rel="noopener noreferrer"
             className="btn banner__btn"

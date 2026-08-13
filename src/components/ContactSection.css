@@ -1,0 +1,196 @@
+.contact-section {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Imagen de fondo */
+.contact-section__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Overlay oscuro - muy ligero */
+.contact-section__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.contact-section__content {
+  position: relative;
+  z-index: 2;
+  max-width: 420px;
+  width: 90%;
+}
+
+.contact-section__card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 35px 35px;
+  border-radius: 16px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+  border-left: 5px solid var(--sand);
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+
+.contact-section__title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 25px;
+  letter-spacing: -0.5px;
+}
+
+/* Horarios */
+.contact-section__schedule {
+  margin-bottom: 28px;
+}
+
+.schedule-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--olive);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+
+.schedule-days {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 6px;
+}
+
+.schedule-hours {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--sand);
+}
+
+/* Redes sociales */
+.contact-section__socials {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+}
+
+.social-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--sand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sand);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: transparent;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0;
+}
+
+.social-btn--ig {
+  font-size: 10px;
+  word-break: break-all;
+}
+
+.social-btn--wa {
+  display: flex;
+}
+
+.social-btn:hover {
+  background: var(--sand);
+  color: var(--black);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(216, 195, 165, 0.35);
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    height: 450px;
+    padding: 40px 20px;
+  }
+
+  .contact-section__card {
+    padding: 30px 25px;
+  }
+
+  .contact-section__title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .schedule-hours {
+    font-size: 20px;
+  }
+
+  .social-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    height: 380px;
+    padding: 30px 16px;
+  }
+
+  .contact-section__card {
+    padding: 25px 18px;
+  }
+
+  .contact-section__title {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .schedule-label {
+    font-size: 11px;
+  }
+
+  .schedule-days {
+    font-size: 15px;
+  }
+
+  .schedule-hours {
+    font-size: 18px;
+  }
+
+  .contact-section__schedule {
+    margin-bottom: 20px;
+  }
+
+  .contact-section__socials {
+    gap: 14px;
+  }
+
+  .social-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 9px;
+  }
+
+  .social-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
