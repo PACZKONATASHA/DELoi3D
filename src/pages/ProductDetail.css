@@ -69,9 +69,9 @@
 /* ── Colores debajo de la foto (reemplazan a las miniaturas) ── */
 .pd-gallery__colors {
   margin-top: 14px;
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
+.pd-gallery__colors .pd-colors__swatches { justify-content: center; }
 
 /* ── Info ── */
 .pd-info { display: flex; flex-direction: column; gap: 22px; }

@@ -95,6 +95,12 @@ export default function ProductDetail() {
                 cada circulito trae la foto de la lampara en ese color. */}
             {product.colors?.length > 0 && (
               <div className="pd-gallery__colors">
+                <p className="pd-colors__label">
+                  {t('color')}:{' '}
+                  <span className="pd-colors__selected">
+                    {selectedColor ? selectedColor.name : t('elegirColor')}
+                  </span>
+                </p>
                 <div className="pd-colors__swatches">
                   {product.colors.map((c, i) => (
                     <button
@@ -125,36 +131,6 @@ export default function ProductDetail() {
             <div className="pd-info__desc">
               <p>{product.description}</p>
             </div>
-
-            {/* Color selector */}
-            {product.colors?.length > 0 && (
-              <div className="pd-colors">
-                <p className="pd-colors__label">
-                  {t('color')}:{' '}
-                  <span className="pd-colors__selected">
-                    {selectedColor ? selectedColor.name : t('elegirColor')}
-                  </span>
-                </p>
-                <div className="pd-colors__swatches">
-                  {product.colors.map((c, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      className={`pd-color-swatch${selectedColor?.name === c.name ? ' pd-color-swatch--active' : ''}`}
-                      style={{ background: c.hex }}
-                      title={c.name}
-                      onClick={() => selectColor(c)}
-                      aria-label={c.name}
-                      aria-pressed={selectedColor?.name === c.name}
-                    >
-                      {/* Captura del material impreso en ese color: el hex de
-                          fondo queda de respaldo mientras carga. */}
-                      {c.swatch && <img src={c.swatch} alt="" loading="lazy" decoding="async" />}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Consulta por WhatsApp: no hay carrito, el precio se pasa por chat */}
             <div className="pd-info__actions">
