@@ -408,11 +408,10 @@ function FeaturedCard({ product, navigate, t }) {
   return (
     <article className="feat-card" onClick={() => navigate(`/producto/${product.slug}`)}>
       <div className="feat-card__media">
-        {/* El marco es apaisado: si el producto tiene una foto grupal (`cover`)
-            va esa, porque las fotos de producto son cuadradas y se recortarian. */}
+        {/* Una sola lampara, no la foto grupal: el marco es cuadrado como la foto. */}
         <img
-          src={product.cover ?? product.images[0]}
-          srcSet={srcSetFor(product.cover ?? product.images[0])}
+          src={product.images[0]}
+          srcSet={srcSetFor(product.images[0])}
           sizes={IMG_SIZES.showcase}
           alt={product.name}
           className="feat-card__img"
@@ -426,7 +425,11 @@ function FeaturedCard({ product, navigate, t }) {
           {product.colors && (
             <div className="feat-card__colors">
               {product.colors.slice(0, 5).map((c, i) => (
-                <span key={i} className="feat-card__color" style={{ background: c.hex }} title={c.name} />
+                <span key={i} className="feat-card__color" style={{ background: c.hex }} title={c.name}>
+                  {/* Los mismos circulos con la captura del material que en la
+                      ficha del producto; el hex queda de respaldo si no hay. */}
+                  {c.swatch && <img src={c.swatch} alt="" loading="lazy" decoding="async" />}
+                </span>
               ))}
             </div>
           )}

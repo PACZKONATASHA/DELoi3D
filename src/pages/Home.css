@@ -299,7 +299,10 @@
   gap: 20px;
 }
 
-/* ── Card grande de destacados ── */
+/* ── Card grande de destacados ──
+   La foto del producto es cuadrada: a lo ancho de todo el grupo la card
+   quedaria altisima, asi que en desktop va la foto a la izquierda y el
+   texto al lado. En celular se apila. */
 .feat-card {
   position: relative;
   cursor: pointer;
@@ -308,6 +311,9 @@
   background: var(--white);
   box-shadow: 0 4px 20px rgba(17, 17, 17, .08);
   transition: box-shadow .35s ease, transform .35s ease;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
 }
 .feat-card:hover {
   box-shadow: 0 16px 44px rgba(125, 30, 58, .22);
@@ -316,7 +322,7 @@
 
 .feat-card__media {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1;
   overflow: hidden;
   background: var(--sand);
 }
@@ -349,7 +355,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
-  padding: 22px 26px;
+  padding: 22px 34px;
 }
 
 .feat-card__name {
@@ -361,13 +367,23 @@
   line-height: 1.3;
 }
 
-.feat-card__colors { display: flex; gap: 6px; }
+.feat-card__colors { display: flex; gap: 7px; }
 
+/* Mismos circulos que en la ficha del producto: adentro va la captura del
+   material impreso, no un color plano. */
 .feat-card__color {
-  width: 18px;
-  height: 18px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: 1px solid var(--gray-300);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.feat-card__color img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .feat-card__btn {
@@ -1155,7 +1171,8 @@
 
   /* Destacados: una sola columna para que la foto se vea grande */
   .light-group__grid { grid-template-columns: 1fr; gap: 16px; }
-  .feat-card__media { aspect-ratio: 4 / 3; }
+  /* La card vuelve a apilarse: foto arriba, texto abajo. */
+  .feat-card { grid-template-columns: 1fr; }
   .feat-card__body { padding: 16px 16px 18px; gap: 12px; }
   .feat-card__name { font-size: 1.05rem; margin-bottom: 8px; }
   .feat-card__btn { padding: 10px 22px; font-size: .75rem; }

@@ -62,8 +62,6 @@ export const products = [
     id: 1,
     name: 'Lámpara Aire',
     slug: 'lampara-aire',
-    // Foto apaisada para la card grande de destacados (ver FeaturedCard).
-    cover: '/iluminacion/aire/aire-colores.jpg',
     category: 'aire',
     images: [
       '/iluminacion/aire/aire-rosa.jpg',
@@ -90,8 +88,6 @@ export const products = [
     id: 2,
     name: 'Lámpara Mar',
     slug: 'lampara-mar',
-    // Foto apaisada para la card grande de destacados (ver FeaturedCard).
-    cover: '/iluminacion/mar/mar-colores.jpg',
     category: 'mar',
     images: [
       '/iluminacion/mar/mar-azul.jpg',
@@ -118,8 +114,6 @@ export const products = [
     id: 3,
     name: 'Lámpara Tierra',
     slug: 'lampara-tierra',
-    // Foto apaisada para la card grande de destacados (ver FeaturedCard).
-    cover: '/iluminacion/tierra/tierra-colores.jpg',
     category: 'tierra',
     images: [
       '/iluminacion/tierra/tierra-marron.jpg',
@@ -258,9 +252,10 @@ export const products = [
     featured: true,
     inStock: true,
     colors: [
-      { name: 'Cobre', hex: '#B87333' },
-      { name: 'Mármol', hex: '#E7E1D5' },
-      { name: 'Negro', hex: '#1A1A1A' },
+      // Los tres primeros tienen foto propia; el blanco todavia no.
+      { name: 'Cobre', hex: '#B87333', image: '/decoracion/porta-difusores/cobre.webp' },
+      { name: 'Mármol', hex: '#E7E1D5', image: '/decoracion/porta-difusores/marmol.webp' },
+      { name: 'Negro', hex: '#1A1A1A', image: '/decoracion/porta-difusores/negro.webp' },
       { name: 'Blanco', hex: '#F5F5F5' },
     ],
   },

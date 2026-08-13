@@ -38,14 +38,16 @@ export default function ProductDetail() {
   const prevImg = () => setActiveImg(i => (i === 0 ? product.images.length - 1 : i - 1));
   const nextImg = () => setActiveImg(i => (i === product.images.length - 1 ? 0 : i + 1));
 
-  // En iluminacion cada color tiene su propia foto, asi que el color elegido es
-  // el que corresponde a la foto que se esta viendo: las flechas y las
-  // miniaturas mueven el circulito, y la foto grupal no marca ninguno.
+  // El color elegido manda la foto grande. Si en cambio movieron la foto por
+  // otro lado (el lightbox), gana el color de la foto que se esta viendo, y la
+  // foto grupal no marca ninguno.
   const currentImg = product.images[activeImg];
-  const conFotoPorColor = product.colors?.some(c => c.image);
-  const selectedColor = conFotoPorColor
-    ? product.colors.find(c => c.image === currentImg) ?? null
-    : (elegido.slug === slug ? elegido.color : null);
+  const elegidoActual = elegido.slug === slug ? elegido.color : null;
+  const colorDeLaFoto = product.colors?.find(c => c.image === currentImg) ?? null;
+  const selectedColor =
+    elegidoActual && (!elegidoActual.image || elegidoActual.image === currentImg)
+      ? elegidoActual
+      : colorDeLaFoto;
 
   const selectColor = (color) => {
     setElegido({ slug, color });
@@ -80,16 +82,6 @@ export default function ProductDetail() {
                 alt={selectedColor ? `${product.name} en ${selectedColor.name}` : product.name}
                 className="pd-gallery__img"
               />
-              {product.images.length > 1 && (
-                <>
-                  <button className="pd-gallery__arrow pd-gallery__arrow--left" onClick={prevImg}>
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button className="pd-gallery__arrow pd-gallery__arrow--right" onClick={nextImg}>
-                    <ChevronRight size={20} />
-                  </button>
-                </>
-              )}
               <button
                 className="pd-gallery__zoom"
                 onClick={() => setLightbox(true)}
@@ -99,28 +91,28 @@ export default function ProductDetail() {
               </button>
             </div>
 
-            {product.images.length > 1 && (
-              <div className="pd-gallery__thumbs">
-                {product.images.map((img, i) => {
-                  const color = product.colors?.find(c => c.image === img);
-                  return (
+            {/* Debajo de la foto van los colores en lugar de las miniaturas:
+                cada circulito trae la foto de la lampara en ese color. */}
+            {product.colors?.length > 0 && (
+              <div className="pd-gallery__colors">
+                <div className="pd-colors__swatches">
+                  {product.colors.map((c, i) => (
                     <button
                       key={i}
                       type="button"
-                      className={`pd-gallery__thumb${activeImg === i ? ' pd-gallery__thumb--active' : ''}`}
-                      onClick={() => setActiveImg(i)}
+                      className={`pd-color-swatch${selectedColor?.name === c.name ? ' pd-color-swatch--active' : ''}`}
+                      style={{ background: c.hex }}
+                      title={c.name}
+                      onClick={() => selectColor(c)}
+                      aria-label={c.name}
+                      aria-pressed={selectedColor?.name === c.name}
                     >
-                      <img
-                        src={img}
-                        srcSet={srcSetFor(img)}
-                        sizes={IMG_SIZES.thumb}
-                        alt={color ? `${product.name} en ${color.name}` : `${product.name} vista ${i + 1}`}
-                        loading="lazy"
-                        decoding="async"
-                      />
+                      {/* Captura del material impreso en ese color: el hex de
+                          fondo queda de respaldo mientras carga. */}
+                      {c.swatch && <img src={c.swatch} alt="" loading="lazy" decoding="async" />}
                     </button>
-                  );
-                })}
+                  ))}
+                </div>
               </div>
             )}
           </div>
