@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, MessageCircle, PenLine, Package } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { products, categories } from '../data/products';
+import { srcSetFor, IMG_SIZES } from '../utils/images';
 import HeroSlider from '../components/HeroSlider';
 import ReviewsCarousel from '../components/ReviewsCarousel';
 import LocationMap from '../components/LocationMap';
@@ -14,6 +15,7 @@ const CATEGORY_IMAGES = {
   'bazar': 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80',
   'mates': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80',
   'iluminacion': 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&q=80',
+  'lamparas': '/lamparas/mar-1-480.jpg',
   'soportes': 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=400&q=80',
   'juguetes': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
   'mascotas': 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80',
@@ -231,7 +233,14 @@ export default function Home() {
             {products.filter(p => p.offer).map(p => (
               <div key={p.id} className="oferta-card card" onClick={() => navigate(`/producto/${p.slug}`)}>
                 <div className="oferta-card__img-wrap">
-                  <img src={p.images[0]} alt={p.name} className="oferta-card__img" loading="lazy" />
+                  <img
+                    src={p.images[0]}
+                    srcSet={srcSetFor(p.images[0])}
+                    sizes={IMG_SIZES.card}
+                    alt={p.name}
+                    className="oferta-card__img"
+                    loading="lazy"
+                  />
                   <span className="oferta-card__badge">{p.offer}% OFF</span>
                 </div>
                 <div className="oferta-card__body">
@@ -397,7 +406,14 @@ function ProductCard({ product, navigate, t }) {
   return (
     <div className="product-card card" onClick={() => navigate(`/producto/${product.slug}`)}>
       <div className="product-card__img-wrap">
-        <img src={product.images[0]} alt={product.name} className="product-card__img" loading="lazy" />
+        <img
+          src={product.images[0]}
+          srcSet={srcSetFor(product.images[0])}
+          sizes={IMG_SIZES.card}
+          alt={product.name}
+          className="product-card__img"
+          loading="lazy"
+        />
         <span className="product-card__badge">{t('destacado')}</span>
         {!product.inStock && <span className="product-card__stock">{t('sinStock')}</span>}
       </div>

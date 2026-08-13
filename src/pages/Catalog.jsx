@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SlidersHorizontal, X, Eye, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { products, categoryGroups } from '../data/products';
+import { srcSetFor, IMG_SIZES } from '../utils/images';
 import './Catalog.css';
 
 const SORT_OPTIONS_KEYS = [
@@ -187,7 +188,14 @@ function CatalogCard({ product, onClick, t }) {
   return (
     <div className="cat-card card" onClick={onClick}>
       <div className="cat-card__img-wrap">
-        <img src={product.images[0]} alt={product.name} className="cat-card__img" loading="lazy" />
+        <img
+          src={product.images[0]}
+          srcSet={srcSetFor(product.images[0])}
+          sizes={IMG_SIZES.card}
+          alt={product.name}
+          className="cat-card__img"
+          loading="lazy"
+        />
         {!product.inStock && <span className="cat-card__no-stock">{t('sinStock')}</span>}
         <div className="cat-card__quick-view">
           <Eye size={16} /> {t('verProducto')}
