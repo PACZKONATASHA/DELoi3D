@@ -91,36 +91,6 @@ export default function ProductDetail() {
               </button>
             </div>
 
-            {/* Debajo de la foto van los colores en lugar de las miniaturas:
-                cada circulito trae la foto de la lampara en ese color. */}
-            {product.colors?.length > 0 && (
-              <div className="pd-gallery__colors">
-                <p className="pd-colors__label">
-                  {t('color')}:{' '}
-                  <span className="pd-colors__selected">
-                    {selectedColor ? selectedColor.name : t('elegirColor')}
-                  </span>
-                </p>
-                <div className="pd-colors__swatches">
-                  {product.colors.map((c, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      className={`pd-color-swatch${selectedColor?.name === c.name ? ' pd-color-swatch--active' : ''}`}
-                      style={{ background: c.hex }}
-                      title={c.name}
-                      onClick={() => selectColor(c)}
-                      aria-label={c.name}
-                      aria-pressed={selectedColor?.name === c.name}
-                    >
-                      {/* Captura del material impreso en ese color: el hex de
-                          fondo queda de respaldo mientras carga. */}
-                      {c.swatch && <img src={c.swatch} alt="" loading="lazy" decoding="async" />}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Info */}
@@ -156,6 +126,38 @@ export default function ProductDetail() {
                 <span className="pd-spec__val">{product.material}</span>
               </div>
             </div>
+
+            {/* Los colores van aca, debajo de las specs: colgados abajo de la
+                foto quedaban lejos del resto de la info y en escritorio
+                dejaban esta columna con un hueco grande al final.
+                Cada circulito trae la captura del material en ese color. */}
+            {product.colors?.length > 0 && (
+              <div className="pd-info__colors">
+                <p className="pd-colors__label">
+                  {t('color')}:{' '}
+                  <span className="pd-colors__selected">
+                    {selectedColor ? selectedColor.name : t('elegirColor')}
+                  </span>
+                </p>
+                <div className="pd-colors__swatches">
+                  {product.colors.map((c, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      className={`pd-color-swatch${selectedColor?.name === c.name ? ' pd-color-swatch--active' : ''}`}
+                      style={{ background: c.hex }}
+                      title={c.name}
+                      onClick={() => selectColor(c)}
+                      aria-label={c.name}
+                      aria-pressed={selectedColor?.name === c.name}
+                    >
+                      {/* El hex de fondo queda de respaldo mientras carga. */}
+                      {c.swatch && <img src={c.swatch} alt="" loading="lazy" decoding="async" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

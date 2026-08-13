@@ -66,13 +66,6 @@
 }
 .pd-gallery__zoom:hover { background: var(--white); }
 
-/* ── Colores debajo de la foto (reemplazan a las miniaturas) ── */
-.pd-gallery__colors {
-  margin-top: 14px;
-  text-align: center;
-}
-.pd-gallery__colors .pd-colors__swatches { justify-content: center; }
-
 /* ── Info ── */
 .pd-info { display: flex; flex-direction: column; gap: 22px; }
 
@@ -362,6 +355,13 @@
 @media (max-width: 900px) {
   .pd-layout { grid-template-columns: 1fr; gap: 36px; }
   .pd-related__grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Apilado, los colores al final quedan lejos de la foto: tocas un color y
+     el cambio pasa fuera de pantalla. Aca suben justo debajo de la
+     descripcion empujando el boton y las specs. En escritorio no aplica, que
+     es donde se pidieron abajo de medidas y material. */
+  .pd-info__actions { order: 1; }
+  .pd-specs { order: 2; }
 }
 
 @media (max-width: 600px) {
@@ -371,6 +371,6 @@
 }
 
 @media (max-width: 400px) {
-  .pd-gallery__colors .pd-colors__swatches { gap: 6px; }
-  .pd-gallery__colors .pd-color-swatch { width: 38px; height: 38px; }
+  .pd-info__colors .pd-colors__swatches { gap: 6px; }
+  .pd-info__colors .pd-color-swatch { width: 38px; height: 38px; }
 }
