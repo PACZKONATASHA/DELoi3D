@@ -10,25 +10,22 @@ import ReviewsCarousel from '../components/ReviewsCarousel';
 import LocationMap from '../components/LocationMap';
 import './Home.css';
 
+// Foto de portada de cada categoria del carrusel del home.
 const CATEGORY_IMAGES = {
-  // Fotos propias
-  'porta-difusores': '/porta-difusores/nilo.webp',
-  'bandejas': '/bandejas/bandeja-oval.webp',
-  'tierra': '/iluminacion/tierra/tierra-1-960.jpg',
-  'mar': '/iluminacion/mar/mar-1-960.jpg',
+  // Iluminacion
   'aire': '/iluminacion/aire/aire-1-960.jpg',
-  'robert-plant': 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&q=80',
-  'macetas': 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80',
-  'bazar': 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80',
-  'mates': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80',
-  'iluminacion': '/iluminacion/mar/mar-1-960.jpg',
-  'lamparas': '/iluminacion/mar/mar-1-960.jpg',
-  'soportes': 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=400&q=80',
-  'juguetes': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
-  'mascotas': 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80',
-  'llaveros': 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80',
-  'vasos': 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&q=80',
+  'mar': '/iluminacion/mar/mar-1-960.jpg',
+  'tierra': '/iluminacion/tierra/tierra-1-960.jpg',
+  // Decoracion para el hogar
+  'bandejas': '/decoracion/bandejas/bandeja-oval.webp',
+  'floreros': '/decoracion/floreros/florero-terracota.png',
+  'porta-difusores': '/decoracion/porta-difusores/cobre.webp',
+  // Jardineria
+  'macetas': '/jardineria/macetas/maceta-redonda.png',
+  'tutores': '/jardineria/tutores/tutor-floral.webp',
 };
+
+const CATEGORY_IMAGE_FALLBACK = '/iluminacion/mar/mar-1-960.jpg';
 
 const CUSTOM_STEPS = [
   {
@@ -154,8 +151,8 @@ export default function Home() {
                 className="category-card"
               >
                 <img
-                  src={CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGES['bazar']}
-                  srcSet={srcSetFor(CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGES['bazar'])}
+                  src={CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGE_FALLBACK}
+                  srcSet={srcSetFor(CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGE_FALLBACK)}
                   sizes={IMG_SIZES.category}
                   alt={cat.name}
                   className="category-card__img"

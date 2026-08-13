@@ -10,22 +10,6 @@ export default function Gallery() {
   const [activeCat, setActiveCat] = useState('todas');
   const [lightbox, setLightbox] = useState(null);
 
-  // Mapping for gallery image names
-  const imageNameMap = {
-    'Macetas Robert Plant': 'galeriaMacetasRobert',
-    'Macetas de diseño': 'galeriaMacetasDiseno',
-    'Gato deco': 'galeriaGatoDeco',
-    'Iluminación': 'galeriaIluminacion',
-    'Maceta Mickey': 'galeriaMacetaMickey',
-    'Mates diseño': 'galeriaMatesDiseno',
-    'Llaveros': 'galeriaLlaveros',
-    'Productos mascotas': 'galeriaProductosMascotas',
-    'Macetas suculentas': 'galeriaMacetasSuculentas',
-    'Bazar productos': 'galeriaBazarProductos',
-    'Juguetes': 'galeriaJuguetes',
-    'Soportes': 'galeriaSoportes',
-  };
-
   const galleryCategories = [
     { slug: 'todas', name: t('todas') },
     ...categories.filter(c => c.id !== 'todos'),
@@ -74,7 +58,7 @@ export default function Gallery() {
               key={img.id}
               className="gallery-item"
               onClick={() => openLightbox(i)}
-              aria-label={t(imageNameMap[img.alt] || img.alt)}
+              aria-label={img.alt}
             >
               <img
                 src={img.src}
@@ -86,7 +70,7 @@ export default function Gallery() {
                 className="gallery-item__img"
               />
               <div className="gallery-item__overlay">
-                <span className="gallery-item__label">{t(imageNameMap[img.alt] || img.alt)}</span>
+                <span className="gallery-item__label">{img.alt}</span>
               </div>
             </button>
           ))}

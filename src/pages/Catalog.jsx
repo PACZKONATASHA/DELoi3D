@@ -16,7 +16,7 @@ export default function Catalog() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState('relevance');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [openGroups, setOpenGroups] = useState({ decoracion: true, jardin: true, iluminacion: true });
+  const [openGroups, setOpenGroups] = useState({ iluminacion: true, decoracion: true, jardineria: true });
   const navigate = useNavigate();
 
   const activeCat = searchParams.get('cat') || 'todos';
