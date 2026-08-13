@@ -3,17 +3,33 @@
 const WIDTHS = [480, 960, 1600];
 const RESPONSIVE = /^(\/lamparas\/[a-z0-9-]+)-960\.jpg$/;
 
-// Devuelve el srcSet de una foto responsiva, o undefined si la imagen
-// es externa (Unsplash) o de un solo tamaño: el <img> usa solo src.
+// Unsplash sirve cualquier ancho con el parametro ?w=, asi que tambien
+// puede armar un srcSet en vez de bajar siempre la misma foto.
+const UNSPLASH = /^https:\/\/images\.unsplash\.com\/.+[?&]w=\d+/;
+
+// Devuelve el srcSet de una foto, o undefined si es de un solo tamaño:
+// en ese caso el <img> usa solo src.
 export function srcSetFor(src) {
-  const match = typeof src === 'string' ? RESPONSIVE.exec(src) : null;
-  if (!match) return undefined;
-  return WIDTHS.map(w => `${match[1]}-${w}.jpg ${w}w`).join(', ');
+  if (typeof src !== 'string') return undefined;
+
+  const propia = RESPONSIVE.exec(src);
+  if (propia) {
+    return WIDTHS.map(w => `${propia[1]}-${w}.jpg ${w}w`).join(', ');
+  }
+
+  if (UNSPLASH.test(src)) {
+    return WIDTHS.map(w => `${src.replace(/([?&]w=)\d+/, `$1${w}`)} ${w}w`).join(', ');
+  }
+
+  return undefined;
 }
 
-// Anchos aproximados de cada lugar donde se muestra una foto de producto.
+// Anchos aproximados de cada lugar donde se muestra una foto.
+// En celular casi todo ocupa media pantalla (grillas de 2 columnas).
 export const IMG_SIZES = {
-  card: '(max-width: 600px) 92vw, (max-width: 1024px) 45vw, 320px',
+  card: '(max-width: 600px) 46vw, (max-width: 1024px) 45vw, 320px',
   detail: '(max-width: 900px) 92vw, 560px',
   thumb: '90px',
+  category: '(max-width: 600px) 45vw, 220px',
+  gallery: '(max-width: 600px) 46vw, (max-width: 1024px) 30vw, 300px',
 };

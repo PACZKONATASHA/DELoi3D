@@ -14,14 +14,14 @@ const CATEGORY_IMAGES = {
   // Fotos propias
   'porta-difusores': '/porta-difusores/nilo.webp',
   'bandejas': '/porta-difusores/bandeja-oval.webp',
-  'tierra': '/lamparas/tierra-1-480.jpg',
-  'mar': '/lamparas/mar-1-480.jpg',
+  'tierra': '/lamparas/tierra-1-960.jpg',
+  'mar': '/lamparas/mar-1-960.jpg',
   'robert-plant': 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&q=80',
   'macetas': 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80',
   'bazar': 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80',
   'mates': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80',
   'iluminacion': 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&q=80',
-  'lamparas': '/lamparas/mar-1-480.jpg',
+  'lamparas': '/lamparas/mar-1-960.jpg',
   'soportes': 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=400&q=80',
   'juguetes': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
   'mascotas': 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80',
@@ -66,26 +66,6 @@ const OCCASIONS = [
       { img: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80', name: 'Figura Navideña 3D', colors: ['#1A1A1A', '#F5F5F5', '#D32F2F', '#B87333'] },
       { img: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=400&q=80', name: 'Estrella Impresa 3D', colors: ['#B87333', '#F5F5F5', '#D32F2F', '#9E9E9E'] },
       { img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80', name: 'Muñeco de Nieve 3D', colors: ['#F5F5F5', '#1A1A1A', '#D32F2F', '#2E7D32'] },
-    ],
-  },
-  {
-    key: 'san-valentin',
-    label: 'San Valentín',
-    items: [
-      { img: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80', name: 'Corazón Personalizado 3D', colors: ['#D32F2F', '#F5F5F5', '#E88EA8', '#1A1A1A'] },
-      { img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80', name: 'Mate del Amor 3D', colors: ['#D32F2F', '#E88EA8', '#F5F5F5', '#1A1A1A'] },
-      { img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&q=80', name: 'Caja Romántica 3D', colors: ['#E88EA8', '#D32F2F', '#F5F5F5', '#9575CD'] },
-      { img: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&q=80', name: 'Figura Pareja 3D', colors: ['#D32F2F', '#F5F5F5', '#E88EA8', '#B87333'] },
-    ],
-  },
-  {
-    key: 'cumpleanos',
-    label: 'Cumpleaños',
-    items: [
-      { img: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400&q=80', name: 'Figura Personalizada 3D', colors: ['#7EC8E3', '#E88EA8', '#9575CD', '#F9A825'] },
-      { img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80', name: 'Souvenir con Nombre 3D', colors: ['#F5F5F5', '#7EC8E3', '#E88EA8', '#9575CD'] },
-      { img: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&q=80', name: 'Topper para Torta 3D', colors: ['#F5F5F5', '#B87333', '#E88EA8', '#7EC8E3'] },
-      { img: 'https://images.unsplash.com/photo-1509557965875-b88c97052f0e?w=400&q=80', name: 'Llavero Recordatorio 3D', colors: ['#7EC8E3', '#E88EA8', '#F5F5F5', '#9575CD'] },
     ],
   },
 ];
@@ -174,8 +154,12 @@ export default function Home() {
               >
                 <img
                   src={CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGES['bazar']}
+                  srcSet={srcSetFor(CATEGORY_IMAGES[cat.id] || CATEGORY_IMAGES['bazar'])}
+                  sizes={IMG_SIZES.category}
                   alt={cat.name}
                   className="category-card__img"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="category-card__overlay">
                   <span className="category-card__name">{cat.name}</span>
@@ -357,7 +341,15 @@ export default function Home() {
             {currentOccasion?.items.map((item, i) => (
               <div key={i} className="occ-card">
                 <div className="occ-card__img-wrap">
-                  <img src={item.img} alt={item.name} className="occ-card__img" loading="lazy" />
+                  <img
+                    src={item.img}
+                    srcSet={srcSetFor(item.img)}
+                    sizes={IMG_SIZES.card}
+                    alt={item.name}
+                    className="occ-card__img"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <div className="occ-card__body">
                   <h3 className="occ-card__name">{item.name}</h3>

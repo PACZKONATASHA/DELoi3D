@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { galleryImages, categories } from '../data/products';
+import { srcSetFor, IMG_SIZES } from '../utils/images';
 import './Gallery.css';
 
 export default function Gallery() {
@@ -75,7 +76,15 @@ export default function Gallery() {
               onClick={() => openLightbox(i)}
               aria-label={t(imageNameMap[img.alt] || img.alt)}
             >
-              <img src={img.src} alt={img.alt} loading="lazy" className="gallery-item__img" />
+              <img
+                src={img.src}
+                srcSet={srcSetFor(img.src)}
+                sizes={IMG_SIZES.gallery}
+                alt={img.alt}
+                loading="lazy"
+                decoding="async"
+                className="gallery-item__img"
+              />
               <div className="gallery-item__overlay">
                 <span className="gallery-item__label">{t(imageNameMap[img.alt] || img.alt)}</span>
               </div>

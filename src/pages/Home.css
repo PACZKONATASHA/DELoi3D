@@ -1063,6 +1063,43 @@
   .category-card { flex: 0 0 160px; height: 200px; }
   /* Texto del card más compacto */
   .product-card__name { font-size: .78rem; }
-  .product-card__price { font-size: .85rem; }
   .product-card__btn { padding: 8px 6px; font-size: .7rem; letter-spacing: .5px; }
+}
+
+/* ── Celular: todas las grillas de fotos a 2 columnas parejas ── */
+@media (max-width: 600px) {
+  .light-group__grid,
+  .ofertas__grid,
+  .occasions__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .light-group + .light-group { margin-top: 36px; }
+
+  /* El titulo del grupo no entra con 6px de tracking en 360px */
+  .light-group__header {
+    gap: 4px 12px;
+    margin-bottom: 18px;
+  }
+  .light-group__name { font-size: 1.15rem; letter-spacing: 3px; }
+  .light-group__tagline { font-size: .8rem; min-width: 0; flex-basis: 100%; }
+  .light-group__link { font-size: .7rem; }
+
+  /* Cards de oferta y ocasion, mas compactas */
+  .oferta-card__body,
+  .occ-card__body { padding: 12px 10px; }
+  .oferta-card__name,
+  .occ-card__name { font-size: .78rem; }
+  .oferta-card__btn,
+  .occ-card__btn { padding: 8px 6px; font-size: .7rem; letter-spacing: .5px; }
+  .occ-card__colors-more { font-size: .68rem; }
+}
+
+@media (max-width: 400px) {
+  .light-group__grid,
+  .ofertas__grid,
+  .occasions__grid { gap: 8px; }
+  .oferta-card__name,
+  .occ-card__name { font-size: .74rem; }
 }

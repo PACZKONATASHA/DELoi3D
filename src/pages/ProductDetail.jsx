@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { MessageCircle, Ruler, Leaf, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { products } from '../data/products';
+import { srcSetFor, IMG_SIZES } from '../utils/images';
 import { productWhatsappLink } from '../utils/whatsapp';
 import Model3DViewer from '../components/Model3DViewer';
 import './ProductDetail.css';
@@ -103,6 +104,8 @@ export default function ProductDetail() {
             <div className="pd-gallery__main">
               <img
                 src={product.images[activeImg]}
+                srcSet={srcSetFor(product.images[activeImg])}
+                sizes={IMG_SIZES.detail}
                 alt={product.name}
                 className="pd-gallery__img"
                 style={selectedColor ? {
@@ -136,7 +139,14 @@ export default function ProductDetail() {
                     className={`pd-gallery__thumb${activeImg === i ? ' pd-gallery__thumb--active' : ''}`}
                     onClick={() => setActiveImg(i)}
                   >
-                    <img src={img} alt={`${product.name} vista ${i + 1}`} />
+                    <img
+                      src={img}
+                      srcSet={srcSetFor(img)}
+                      sizes={IMG_SIZES.thumb}
+                      alt={`${product.name} vista ${i + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </button>
                 ))}
               </div>
@@ -226,7 +236,14 @@ export default function ProductDetail() {
                   onClick={() => navigate(`/producto/${p.slug}`)}
                 >
                   <div className="pd-related-card__img-wrap">
-                    <img src={p.images[0]} alt={p.name} loading="lazy" />
+                    <img
+                      src={p.images[0]}
+                      srcSet={srcSetFor(p.images[0])}
+                      sizes={IMG_SIZES.card}
+                      alt={p.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                   <div className="pd-related-card__body">
                     <h4>{p.name}</h4>
