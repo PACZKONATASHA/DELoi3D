@@ -1,0 +1,50 @@
+# DELoi3D — configuración de Apache para la SPA (React Router)
+# Este archivo se copia solo a dist/ en cada `npm run build`.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Si el archivo o la carpeta existe de verdad (imágenes, JS, CSS), servirlo tal cual.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Cualquier otra URL (/catalogo, /producto/xxx) la resuelve React.
+  RewriteRule ^ /index.html [L]
+</IfModule>
+
+# Archivo de entrada
+DirectoryIndex index.html
+
+# Tipos MIME que algunos servidores viejos no reconocen
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+  AddType application/javascript .js
+  AddType model/stl .stl
+</IfModule>
+
+# Compresión (hace que el sitio cargue bastante más rápido)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Caché: los assets llevan hash en el nombre, así que se pueden cachear para siempre.
+# El index.html nunca se cachea, para que los cambios se vean al instante.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(js|css|webp|jpg|jpeg|png|svg|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
