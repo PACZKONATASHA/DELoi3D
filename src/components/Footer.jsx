@@ -22,17 +22,9 @@ export default function Footer() {
         <div className="footer__grid">
           {/* Brand */}
           <div className="footer__brand">
+            {/* El pie es negro: va la version con el texto en blanco. */}
             <div className="footer__logo">
-              <div className="footer__logo-pill">
-                <div>
-                  <div className="footer__logo-brand">DELoi3D</div>
-                  <div className="footer__logo-sub">Impresión 3D</div>
-                </div>
-                <div className="footer__logo-divider" />
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity=".7">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-                </svg>
-              </div>
+              <img src="/logo-claro.webp" alt="DELoi3D" className="footer__logo-img" />
             </div>
             <p className="footer__desc">
               Unique products made to order with high quality 3D printing. Personalized gifts, decor and much more.

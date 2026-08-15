@@ -1,43 +1,31 @@
-// Prepara las fotos del hero.
+// Prepara las fotos de las lamparas del hero.
 //
 //   npm run imagenes:lampara
 //
-// Son dos cosas distintas:
+// Los originales viven en assets-origen/hero/ (fuera del repo, ver
+// .gitignore), igual que las fotos de la linea de iluminacion, y son PNG de
+// dos megas cada uno.
 //
-// 1. El primer slide, la lampara que se prende: dos fotos que hay que dejar
-//    perfectamente encimadas (ver mas abajo).
-// 2. Los otros tres slides: fotos de lamparas que solo hay que achicar y pasar
-//    a webp, porque vienen en PNG de dos megas cada una.
-//
-// Los originales de los tres slides viven en assets-origen/hero/ (fuera del
-// repo, ver .gitignore), igual que las fotos de la linea de iluminacion.
-//
-// Las originales (public/lampara-1.png y lampara-2.png) vienen con distinto
-// encuadre y distinto tamaño de lienzo: 1536x1024 una y 1473x1068 la otra. Si
-// se superponen tal cual, la lampara cambia de tamaño y de lugar al prenderse
-// y se nota el salto. Este script recorta cada foto al borde real de la
-// lampara (por el canal alfa), las escala al mismo ancho y las centra en un
-// lienzo identico, asi las dos quedan pixel a pixel una arriba de la otra.
-// De paso salen en webp, que pesa como diez veces menos que el PNG original.
+// El problema que resuelve: cada foto viene con un encuadre distinto. En una
+// la lampara ocupa el 75% del ancho del archivo y en otra el 98%, asi que
+// puestas en el slider una se veia mucho mas grande que la otra aunque las
+// lamparas midan parecido. Por eso no alcanza con achicarlas: hay que
+// recortar cada una al borde real de la lampara (por el canal alfa), llevarlas
+// todas al mismo alto y centrarlas en un lienzo identico. Recien ahi las tres
+// se ven del mismo tamaño. De paso salen en webp, que pesa como diez veces
+// menos que el PNG.
 import sharp from 'sharp';
 
-const ORIGENES = [
-  { origen: 'public/lampara-1.png', destino: 'public/hero-lampara-apagada.webp' },
-  { origen: 'public/lampara-2.png', destino: 'public/hero-lampara-encendida.webp' },
-];
-
-// Los otros tres slides: mismo orden que en HeroSlider.jsx.
+// Mismo orden que en HeroSlider.jsx.
 const SLIDES = [
   { origen: 'assets-origen/hero/lampara-1.png', destino: 'public/hero-lampara-1.webp' },
   { origen: 'assets-origen/hero/lampara-2.png', destino: 'public/hero-lampara-2.webp' },
   { origen: 'assets-origen/hero/lampara-3.png', destino: 'public/hero-lampara-3.webp' },
 ];
 
-const ANCHO_SLIDE = 1400;   // de sobra: el panel del hero no pasa de 900px
-
-const ANCHO_LAMPARA = 1000;  // ancho final de la lampara en las dos fotos
-const MARGEN = 60;           // aire alrededor, para que el resplandor no se corte
-const ALFA_MINIMA = 16;      // debajo de esto es fondo, no lampara
+const ALTO_LAMPARA = 900;              // alto final de la lampara en las tres
+const LIENZO = { width: 1200, height: 1000 };  // el mismo para las tres
+const ALFA_MINIMA = 16;                // debajo de esto es fondo, no lampara
 
 // Borde real del objeto: la primera y la ultima fila/columna con algo opaco.
 async function recuadro(origen) {
@@ -60,51 +48,36 @@ async function recuadro(origen) {
   return { left: x0, top: y0, width: x1 - x0 + 1, height: y1 - y0 + 1 };
 }
 
-// Primera pasada: recortar y escalar las dos al mismo ancho.
-const recortadas = [];
-for (const { origen, destino } of ORIGENES) {
+for (const { origen, destino } of SLIDES) {
   const caja = await recuadro(origen);
-  const buffer = await sharp(origen)
+
+  // La lampara sola, recortada y llevada al alto comun. El ancho sale de la
+  // forma de cada una: una lampara mas panzona queda mas ancha, como
+  // corresponde.
+  const lampara = await sharp(origen)
     .extract(caja)
-    .resize({ width: ANCHO_LAMPARA })
+    .resize({ height: ALTO_LAMPARA })
     .png()
     .toBuffer();
-  const { height } = await sharp(buffer).metadata();
-  recortadas.push({ origen, destino, buffer, height });
-}
+  const { width } = await sharp(lampara).metadata();
 
-// Segunda pasada: un lienzo unico, del alto de la mas alta, con las dos
-// centradas adentro.
-const lienzo = {
-  width: ANCHO_LAMPARA + MARGEN * 2,
-  height: Math.max(...recortadas.map(r => r.height)) + MARGEN * 2,
-};
+  if (width > LIENZO.width) {
+    throw new Error(`${origen}: la lampara (${width}px) no entra en el lienzo`);
+  }
 
-for (const { origen, destino, buffer, height } of recortadas) {
   const { size } = await sharp({
-    create: { ...lienzo, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
+    create: { ...LIENZO, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
   })
     .composite([{
-      input: buffer,
-      left: MARGEN,
-      top: Math.round((lienzo.height - height) / 2),
+      input: lampara,
+      left: Math.round((LIENZO.width - width) / 2),
+      top: Math.round((LIENZO.height - ALTO_LAMPARA) / 2),
     }])
-    .webp({ quality: 90, alphaQuality: 90, effort: 6 })
-    .toFile(destino);
-
-  console.log(
-    `${origen} -> ${destino}  ${lienzo.width}x${lienzo.height}, ${Math.round(size / 1024)} kB`
-  );
-}
-
-// Los tres slides sueltos: se dejan tal cual estan, solo mas chicos y en webp.
-// No se recortan ni se alinean entre si porque no se superponen: entra una,
-// sale la otra.
-for (const { origen, destino } of SLIDES) {
-  const { width, height, size } = await sharp(origen)
-    .resize({ width: ANCHO_SLIDE, withoutEnlargement: true })
     .webp({ quality: 88, alphaQuality: 90, effort: 6 })
     .toFile(destino);
 
-  console.log(`${origen} -> ${destino}  ${width}x${height}, ${Math.round(size / 1024)} kB`);
+  console.log(
+    `${origen} -> ${destino}  lampara ${width}x${ALTO_LAMPARA} en ` +
+    `${LIENZO.width}x${LIENZO.height}, ${Math.round(size / 1024)} kB`
+  );
 }

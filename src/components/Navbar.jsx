@@ -66,22 +66,10 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar__inner container">
-        {/* Logo alargado */}
+        {/* Logo del cliente. La barra es blanca, asi que va la version normal
+            (en el pie, que es negro, va logo-claro.webp). */}
         <Link to="/" className="navbar__logo">
-          <div className="navbar__logo-pill">
-            <div>
-              <div className="navbar__logo-brand">DELoi3D</div>
-              <div className="navbar__logo-sub">Impresión 3D</div>
-            </div>
-            <div className="navbar__logo-divider" />
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity=".7">
-              <g>
-                <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#00A9CE" fill="#00A9CE" fillOpacity="0.3"/>
-                <path d="M2 17l10 5 10-5" stroke="#6B2C42" fill="none"/>
-                <path d="M2 12l10 5 10-5" stroke="#D8C3A5" fill="none"/>
-              </g>
-            </svg>
-          </div>
+          <img src="/logo.webp" alt="DELoi3D" className="navbar__logo-img" />
         </Link>
 
         {/* Desktop nav */}

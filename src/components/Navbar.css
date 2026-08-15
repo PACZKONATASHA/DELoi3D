@@ -15,46 +15,21 @@
   padding: 0 20px;
 }
 
-/* ── Logo alargado ── */
-.navbar__logo-pill {
+/* ── Logo ── */
+.navbar__logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: var(--black);
-  border: 2px solid var(--celeste);
-  color: var(--white);
-  padding: 8px 20px;
-  border-radius: 4px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  transition: border-color var(--transition);
-}
-.navbar__logo:hover .navbar__logo-pill { border-color: var(--granate); }
-
-.navbar__logo-brand {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  line-height: 1;
+  flex-shrink: 0;
 }
 
-.navbar__logo-sub {
-  font-size: .6rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--sand);
-  font-weight: 400;
-  line-height: 1;
-  font-family: 'Poppins', sans-serif;
+.navbar__logo-img {
+  height: 42px;
+  width: auto;
+  display: block;
+  transition: opacity var(--transition);
 }
 
-.navbar__logo-divider {
-  width: 1px;
-  height: 28px;
-  background: rgba(255,255,255,.25);
-}
+.navbar__logo:hover .navbar__logo-img { opacity: .75; }
 
 /* ── Nav links ── */
 .navbar__links {
@@ -244,23 +219,7 @@
     padding: 0 12px;
   }
 
-  .navbar__logo-pill {
-    padding: 6px 10px;
-    gap: 6px;
-  }
-
-  .navbar__logo-brand {
-    font-size: 0.75rem;
-  }
-
-  .navbar__logo-sub {
-    font-size: 0.5rem;
-    letter-spacing: 2px;
-  }
-
-  .navbar__logo-divider {
-    height: 20px;
-  }
+  .navbar__logo-img { height: 32px; }
 
   .navbar__mobile-controls {
     gap: 2px;
@@ -285,24 +244,7 @@
     padding: 0 8px;
   }
 
-  .navbar__logo-pill {
-    padding: 5px 8px;
-    gap: 4px;
-  }
-
-  .navbar__logo-brand {
-    font-size: 0.68rem;
-  }
-
-  .navbar__logo-sub {
-    font-size: 0.45rem;
-    letter-spacing: 1px;
-  }
-
-  .navbar__logo-divider {
-    height: 18px;
-    width: 0.5px;
-  }
+  .navbar__logo-img { height: 27px; }
 
   .navbar__mobile-controls {
     gap: 0;

@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { products, categories, lightingGroups } from '../data/products';
 import { srcSetFor, IMG_SIZES } from '../utils/images';
@@ -26,21 +26,6 @@ const CATEGORY_IMAGES = {
 };
 
 const CATEGORY_IMAGE_FALLBACK = '/iluminacion/mar/mar-azul.jpg';
-
-const CUSTOM_STEPS = [
-  {
-    titleKey: 'contaTuIdea',
-    descKey: 'contaTuIdeaDesc',
-  },
-  {
-    titleKey: 'diseñamos3D',
-    descKey: 'diseñamos3DDesc',
-  },
-  {
-    titleKey: 'fabricamosEnviamos',
-    descKey: 'fabricamosEnvíamosDesc',
-  },
-];
 
 const OCCASIONS = [
   {
@@ -70,31 +55,12 @@ export default function Home() {
   const carouselRef = useRef(null);
   const navigate = useNavigate();
   const [activeOccasion, setActiveOccasion] = useState('pascua');
-  const displayCategories = categories.filter(c => c.id !== 'todos');
-
-  // Los numeros de los pasos entran animados recien cuando la seccion aparece
-  // en pantalla. Si el navegador no tiene IntersectionObserver arrancan ya
-  // mostrados, asi nunca quedan invisibles.
-  const stepsRef = useRef(null);
-  const [stepsVisible, setStepsVisible] = useState(
-    () => typeof IntersectionObserver === 'undefined'
+  // Aire, mar y tierra no van en el carrusel: las tres lineas ya aparecen
+  // completas arriba, en destacados, y repetirlas aca no suma nada.
+  const lineasDeLamparas = new Set(lightingGroups.map(g => g.id));
+  const displayCategories = categories.filter(
+    c => c.id !== 'todos' && !lineasDeLamparas.has(c.id)
   );
-
-  useEffect(() => {
-    const el = stepsRef.current;
-    if (!el || typeof IntersectionObserver === 'undefined') return;
-
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        setStepsVisible(true);
-        obs.disconnect();
-      },
-      { threshold: 0.3 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
 
   const scrollCarousel = (dir) => {
     if (!carouselRef.current) return;
@@ -120,7 +86,6 @@ export default function Home() {
               <h2 className="section-title">{t('destacados')}</h2>
               <p className="section-sub">{t('destacadosDesc')}</p>
             </div>
-            <Link to="/catalogo" className="ver-todas">{t('verTodos')}</Link>
           </div>
 
           {lightingGroups.map(group => (
@@ -139,12 +104,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-
-          <div className="featured__cta">
-            <Link to="/catalogo" className="btn btn-primary">
-              {t('verCatalogo')} <ArrowRight size={18} />
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -269,9 +228,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Reviews Carousel ── */}
-      <ReviewsCarousel />
-
       {/* ── Shipping Info ── */}
       <section className="shipping-info section">
         <div className="container">
@@ -306,14 +262,7 @@ export default function Home() {
                 href="https://wa.me/541161307110?text=Hola!+Quiero+consultar+sobre+envíos+de+mis+productos"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-sm"
-                style={{
-                  background: 'var(--white)',
-                  color: 'var(--granate)',
-                  border: '1.5px solid var(--white)',
-                  fontWeight: '700',
-                  letterSpacing: '0.5px'
-                }}
+                className="btn btn-sm shipping-card__btn"
               >
                 WhatsApp
               </a>
@@ -322,45 +271,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Custom orders ──
-          Va al final a proposito: el pedido a medida y el boton de WhatsApp
-          recien tienen sentido cuando el visitante ya vio las lamparas, el
-          catalogo y las reseñas. Es la salida para el que no encontro lo
-          que buscaba, no la puerta de entrada. */}
-      <section className="custom-orders section">
-        <div className="container">
-          <div className="custom-orders__intro">
-            <h2 className="section-title">{t('diseñoPersonalizado')}</h2>
-            <p className="section-sub">
-              {t('diseñoPersonalizadoSub')}
-            </p>
-          </div>
-          <div
-            ref={stepsRef}
-            className={`custom-steps${stepsVisible ? ' custom-steps--visible' : ''}`}
-          >
-            {CUSTOM_STEPS.map((step, i) => (
-              <div key={i} className="custom-step">
-                <span className="custom-step__number">{i + 1}</span>
-                <div className="custom-step__text">
-                  <h3 className="custom-step__title">{t(step.titleKey)}</h3>
-                  <p className="custom-step__desc">{t(step.descKey)}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="custom-orders__cta">
-            <a
-              href="https://wa.me/541161307110?text=Hola!+Quiero+consultar+por+un+producto+personalizado"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
-              {t('presupuesto')} <ArrowRight size={18} />
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* ── Reviews Carousel ── */}
+      <ReviewsCarousel />
 
       {/* ── Location Map ── */}
       <LocationMap />

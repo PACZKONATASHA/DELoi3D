@@ -4,18 +4,10 @@ import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import './HeroSlider.css';
 
-// La lampara es el producto estrella, asi que abre el slider. Es el unico
-// slide con dos fotos: la de abajo es la lampara apagada y encima se enciende
-// la de la luz prendida (ver la animacion "lampara-prende" en el CSS). Las dos
-// fotos salen alineadas de scripts/procesar-lampara-hero.mjs.
+// Las tres lamparas salen de scripts/procesar-lampara-hero.mjs, que las deja
+// del mismo tamaño y en el mismo lienzo para que ninguna se vea mas grande que
+// las otras al pasar de una a la otra.
 const SLIDES = [
-  {
-    apagada: '/hero-lampara-apagada.webp',
-    encendida: '/hero-lampara-encendida.webp',
-    alt: 'Lámpara 3D texturada, encendiéndose',
-    // Un toque mas de tiempo: el encendido tarda casi tres segundos.
-    espera: 7000,
-  },
   { src: '/hero-lampara-1.webp', alt: 'Lámpara 3D plisada azul noche' },
   { src: '/hero-lampara-2.webp', alt: 'Lámpara 3D acanalada color terracota' },
   { src: '/hero-lampara-3.webp', alt: 'Lámpara 3D calada negra con detalle azul' },
@@ -27,12 +19,12 @@ export default function HeroSlider() {
   const { t } = useLanguage();
   const [current, setCurrent] = useState(0);
 
-  // Timeout y no interval: cada slide dura lo suyo, y al tocar un punto el
-  // reloj arranca de nuevo en vez de cortar la foto a mitad de camino.
+  // Timeout y no interval: al tocar un punto el reloj arranca de nuevo en vez
+  // de cortar la foto a mitad de camino.
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrent(prev => (prev + 1) % SLIDES.length);
-    }, SLIDES[current].espera ?? INTERVAL);
+    }, INTERVAL);
     return () => clearTimeout(timer);
   }, [current]);
 
@@ -75,33 +67,14 @@ export default function HeroSlider() {
       {/* ── RIGHT: image slider ── */}
       <div className="hero-split__visual">
         <div className="hero-split__slider">
-          {SLIDES.map((slide, i) => {
-            const activo = i === current;
-            const clase = `hero-split__img${activo ? ' hero-split__img--active' : ''}`;
-
-            // La lampara: dos fotos superpuestas. La de la luz prendida y el
-            // resplandor de atras se animan cuando el slide entra, y se
-            // reinician al salir porque se les saca la clase --prendida.
-            if (slide.encendida) {
-              return (
-                <div
-                  key={i}
-                  className={`hero-lampara${activo ? ' hero-lampara--prendida' : ''}`}
-                >
-                  <span className="hero-lampara__resplandor" aria-hidden="true" />
-                  <img src={slide.apagada} alt={slide.alt} className={clase} />
-                  <img
-                    src={slide.encendida}
-                    alt=""
-                    aria-hidden="true"
-                    className="hero-split__img hero-lampara__luz"
-                  />
-                </div>
-              );
-            }
-
-            return <img key={i} src={slide.src} alt={slide.alt} className={clase} />;
-          })}
+          {SLIDES.map((slide, i) => (
+            <img
+              key={i}
+              src={slide.src}
+              alt={slide.alt}
+              className={`hero-split__img${i === current ? ' hero-split__img--active' : ''}`}
+            />
+          ))}
         </div>
 
         {/* Counter */}
