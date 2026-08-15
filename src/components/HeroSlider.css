@@ -301,45 +301,54 @@
   .hero-split__title { font-size: clamp(2.6rem, 5vw, 4.5rem); }
 }
 
-/* Mobile: stack — text top, image TALL below */
+/* Mobile: el hero entero entra en una pantalla — texto arriba, lampara abajo.
+   Antes el texto ocupaba lo suyo y la foto arrancaba con 340px fijos abajo de
+   todo, asi que habia que scrollear para verla. Ahora el alto total es el de
+   la pantalla menos la barra de arriba (que es sticky), el texto se lleva lo
+   que necesita y la lampara se queda con TODO el resto. */
 @media (max-width: 768px) {
   .hero-split {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    min-height: unset;
+    /* minmax(0, 1fr): sin el 0 la fila no puede achicarse y se desborda. */
+    grid-template-rows: auto minmax(0, 1fr);
+    min-height: calc(100vh - var(--nav-h));
+    /* dvh: en el celular la barra del navegador se muestra y se esconde, y
+       con vh la foto quedaba empujada fuera de la pantalla. */
+    min-height: calc(100dvh - var(--nav-h));
   }
 
-  /* ── Text panel: compact ── */
+  /* ── Text panel: compacto, para dejarle lugar a la lampara ── */
   .hero-split__text {
-    padding: 40px 24px 28px;
+    padding: 24px 22px 14px;
     text-align: center;
     align-items: center;
   }
   .hero-split__text::after { display: none; }
 
   .hero-split__tag {
-    font-size: .62rem;
-    margin-bottom: 16px;
+    font-size: .58rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
   }
 
   .hero-split__title {
-    font-size: clamp(2.2rem, 9vw, 3rem);
+    font-size: clamp(1.8rem, 7.5vw, 2.5rem);
     letter-spacing: -.5px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
 
   .hero-split__sub {
     max-width: 100%;
-    font-size: .85rem;
-    margin-bottom: 24px;
-    line-height: 1.7;
+    font-size: .8rem;
+    margin-bottom: 16px;
+    line-height: 1.6;
   }
 
   /* Botones más chicos en mobile */
   .hero-split__actions {
     justify-content: center;
     gap: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 14px;
     flex-direction: row;
   }
 
@@ -351,18 +360,17 @@
 
   .hero-split__dots { justify-content: center; }
 
-  /* ── Imagen: TALL para que se vea el reflejo completo ── */
+  /* ── Imagen: se queda con el alto que sobra, sin medida propia ── */
   .hero-split__visual {
     width: 100%;
-    /* aspect-ratio portrait: el producto + reflejo entran bien */
-    aspect-ratio: 4 / 5;
+    aspect-ratio: auto;
     height: auto;
-    min-height: 340px;
-    max-height: none;          /* sin límite → imagen no se corta */
+    min-height: 0;   /* si no, no puede achicarse y desborda la pantalla */
+    max-height: none;
   }
 
   .hero-split__img {
-    padding: 0;                /* sin padding → máximo tamaño */
+    padding: 10px;   /* que no toque los bordes */
     object-fit: contain;
     object-position: center;
   }
@@ -377,9 +385,8 @@
   .hero-split__actions { flex-direction: row; flex-wrap: wrap; }
   .hero-split__btn { padding: 9px 16px; font-size: .65rem; }
 
-  /* Aún más altura en pantallas pequeñas */
-  .hero-split__visual {
-    aspect-ratio: 3 / 4;
-    min-height: 300px;
-  }
+  /* Pantallas chicas: el texto se aprieta un poco mas y la lampara gana ese
+     espacio, porque la fila de la foto es la que absorbe lo que sobra. */
+  .hero-split__text { padding: 18px 18px 12px; }
+  .hero-split__sub { margin-bottom: 12px; }
 }
