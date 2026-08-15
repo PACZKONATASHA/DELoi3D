@@ -353,10 +353,15 @@
   }
 
   .hero-split__btn {
-    padding: 10px 20px;
-    font-size: .68rem;
-    letter-spacing: 1px;
+    padding: 8px 16px;
+    font-size: .6rem;
+    letter-spacing: .8px;
+    gap: 6px;
   }
+
+  /* La flecha viene de lucide con 16px fijos: con el boton mas chico queda
+     desproporcionada. */
+  .hero-split__btn svg { width: 13px; height: 13px; }
 
   .hero-split__dots { justify-content: center; }
 
@@ -383,7 +388,7 @@
 
 @media (max-width: 480px) {
   .hero-split__actions { flex-direction: row; flex-wrap: wrap; }
-  .hero-split__btn { padding: 9px 16px; font-size: .65rem; }
+  .hero-split__btn { padding: 7px 13px; font-size: .56rem; letter-spacing: .6px; }
 
   /* Pantallas chicas: el texto se aprieta un poco mas y la lampara gana ese
      espacio, porque la fila de la foto es la que absorbe lo que sobra. */
