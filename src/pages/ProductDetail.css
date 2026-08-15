@@ -18,14 +18,27 @@
 .pd-breadcrumb a:hover { color: var(--granate); }
 .pd-breadcrumb span:last-child { color: var(--dark); font-weight: 500; font-style: italic; }
 
-/* ── Layout ── */
+/* ── Layout ──
+   La foto ocupa la columna izquierda entera y la derecha se arma por filas:
+   colores, titulo y el resto de la info. En celular las mismas areas se
+   reacomodan a una sola columna (ver el media query del final). */
 .pd-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 56px;
+  grid-template-areas:
+    "gallery colors"
+    "gallery title"
+    "gallery info";
+  grid-template-rows: auto auto 1fr;
+  gap: 22px 56px;
   align-items: start;
   margin-bottom: 72px;
 }
+
+.pd-layout > .pd-gallery      { grid-area: gallery; }
+.pd-layout > .pd-info__colors { grid-area: colors; }
+.pd-layout > .pd-info__title  { grid-area: title; }
+.pd-layout > .pd-info         { grid-area: info; }
 
 /* ── Gallery ── */
 .pd-gallery__main {
@@ -338,7 +351,18 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .pd-layout { grid-template-columns: 1fr; gap: 36px; }
+  /* En celular: primero el nombre, despues la foto, abajo la paleta de
+     colores y recien ahi la descripcion. */
+  .pd-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "title"
+      "gallery"
+      "colors"
+      "info";
+    gap: 24px;
+  }
   .pd-related__grid { grid-template-columns: repeat(2, 1fr); }
 }
 

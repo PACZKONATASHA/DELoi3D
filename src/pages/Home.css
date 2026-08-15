@@ -968,91 +968,42 @@
   margin: 0 auto 56px;
 }
 
+/* Sin cajas: cada paso es el numero arriba y el texto debajo, sobre el fondo
+   de la seccion. */
 .custom-steps {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 36px;
   max-width: 740px;
   margin: 0 auto 48px;
 }
 
 .custom-step {
   display: flex;
-  align-items: stretch;
-  background: var(--granate-shine);
-  border: none;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  transition: background var(--transition), box-shadow var(--transition);
-  box-shadow: 0 4px 16px rgba(125, 30, 58, 0.3);
-  position: relative;
-}
-
-.custom-step::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s;
-}
-
-.custom-step:hover::before {
-  left: 100%;
-}
-
-.custom-step:hover {
-  background: var(--granate-shine);
-  box-shadow: var(--granate-glow), 0 12px 32px rgba(125, 30, 58, 0.5);
-  transform: translateY(-3px);
+  flex-direction: column;
+  gap: 10px;
 }
 
 .custom-step__number {
-  font-size: 3.8rem;
-  font-weight: 700;
+  font-size: 3.4rem;
+  font-weight: 300; /* lo mas fino que trae Poppins */
   font-style: italic;
-  color: var(--white);
+  color: var(--granate);
   line-height: 1;
-  min-width: 88px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 16px;
-  border-right: 1px solid rgba(255,255,255,.15);
-  background: rgba(0,0,0,.1);
-  flex-shrink: 0;
 }
-
-.custom-step__content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 24px 28px;
-  flex: 1;
-}
-
-.custom-step__icon {
-  color: var(--white);
-  flex-shrink: 0;
-  display: flex;
-}
-
-.custom-step__text { flex: 1; }
 
 .custom-step__title {
   font-size: .78rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--white);
+  color: var(--dark);
   margin-bottom: 6px;
 }
 
 .custom-step__desc {
   font-size: .85rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--gray-700);
   font-style: italic;
   line-height: 1.6;
 }
@@ -1138,7 +1089,7 @@
   .featured__grid { grid-template-columns: repeat(2, 1fr); }
   .ofertas__grid { grid-template-columns: repeat(2, 1fr); }
   .shipping-cards { grid-template-columns: repeat(2, 1fr); }
-  .custom-steps { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .custom-steps { max-width: 480px; margin-left: auto; margin-right: auto; }
   .dates-grid { grid-template-columns: repeat(2, 1fr); }
   .occasions__grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1155,10 +1106,8 @@
 @media (max-width: 600px) {
   .dates-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .date-card { padding: 24px 14px 20px; }
-  .custom-steps { max-width: 100%; }
-  .custom-step__number { min-width: 56px; font-size: 2.8rem; padding: 16px 10px; }
-  .custom-step__content { padding: 18px 16px; gap: 14px; }
-  .custom-step__icon { display: none; }
+  .custom-steps { max-width: 100%; gap: 28px; }
+  .custom-step__number { font-size: 2.8rem; }
 
   /* Envíos: UNA columna en mobile */
   .shipping-cards { grid-template-columns: 1fr; gap: 16px; }

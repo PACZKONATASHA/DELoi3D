@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, ArrowRight, MessageCircle, PenLine, Package } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { products, categories, lightingGroups } from '../data/products';
 import { srcSetFor, IMG_SIZES } from '../utils/images';
@@ -29,17 +29,14 @@ const CATEGORY_IMAGE_FALLBACK = '/iluminacion/mar/mar-azul.jpg';
 
 const CUSTOM_STEPS = [
   {
-    icon: <MessageCircle size={32} />,
     titleKey: 'contaTuIdea',
     descKey: 'contaTuIdeaDesc',
   },
   {
-    icon: <PenLine size={32} />,
     titleKey: 'diseñamos3D',
     descKey: 'diseñamos3DDesc',
   },
   {
-    icon: <Package size={32} />,
     titleKey: 'fabricamosEnviamos',
     descKey: 'fabricamosEnvíamosDesc',
   },
@@ -101,12 +98,9 @@ export default function Home() {
             {CUSTOM_STEPS.map((step, i) => (
               <div key={i} className="custom-step">
                 <span className="custom-step__number">{i + 1}</span>
-                <div className="custom-step__content">
-                  <div className="custom-step__icon">{step.icon}</div>
-                  <div className="custom-step__text">
-                    <h3 className="custom-step__title">{t(step.titleKey)}</h3>
-                    <p className="custom-step__desc">{t(step.descKey)}</p>
-                  </div>
+                <div className="custom-step__text">
+                  <h3 className="custom-step__title">{t(step.titleKey)}</h3>
+                  <p className="custom-step__desc">{t(step.descKey)}</p>
                 </div>
               </div>
             ))}
