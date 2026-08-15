@@ -75,13 +75,27 @@
   font-weight: 400;
 }
 
+/* "Productos mayorista": el dato que manda en la pagina, en blanco pleno
+   sobre el fondo negro para que se lea antes que el resto. */
+.hero-split__wholesale {
+  font-size: clamp(1.1rem, 1.9vw, 1.6rem);
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 0 18px rgba(255, 255, 255, .25);
+}
+
 .hero-split__sub {
   font-size: clamp(.88rem, 1.2vw, 1rem);
-  color: rgba(250,247,242,.6);
+  /* Blanco casi pleno: antes iba al 60% y el mayorista pasaba desapercibido. */
+  color: var(--white);
   line-height: 1.85;
   margin-bottom: 44px;
-  max-width: 380px;
-  font-style: italic;
+  max-width: 420px;
 }
 
 /* ── Buttons ── */
@@ -334,7 +348,14 @@
   .hero-split__title {
     font-size: clamp(1.8rem, 7.5vw, 2.5rem);
     letter-spacing: -.5px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+  }
+
+  /* El renglon de mayorista entra sin robarle pantalla a la lampara. */
+  .hero-split__wholesale {
+    font-size: clamp(.9rem, 4.2vw, 1.1rem);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
   }
 
   .hero-split__sub {
@@ -388,5 +409,6 @@
   /* Pantallas chicas: el texto se aprieta un poco mas y la lampara gana ese
      espacio, porque la fila de la foto es la que absorbe lo que sobra. */
   .hero-split__text { padding: 18px 18px 12px; }
+  .hero-split__wholesale { letter-spacing: 1.5px; margin-bottom: 5px; }
   .hero-split__sub { margin-bottom: 12px; }
 }

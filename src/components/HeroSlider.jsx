@@ -38,6 +38,10 @@ export default function HeroSlider() {
           {t('heroTitle')}<br />
         </h1>
 
+        {/* La pagina es de venta mayorista, y eso se dice de entrada: el
+            renglon en blanco y el subtitulo abajo, tambien en blanco. */}
+        <p className="hero-split__wholesale">{t('heroMayorista')}</p>
+
         <p className="hero-split__sub">
           {t('heroSubtitle')}
         </p>
