@@ -435,11 +435,40 @@
   display: block;
 }
 
-.feat-card__btn {
+/* Boton celeste con brillo, en la linea del "Explorar catalogo" del hero.
+   Va con doble clase para ganarle al granate que trae .btn-primary. */
+.feat-card .feat-card__btn {
   padding: 12px 32px;
   font-size: .8rem;
   letter-spacing: 1.5px;
   white-space: nowrap;
+  background: linear-gradient(180deg, #2CC1E0 0%, var(--celeste) 55%, #0090B5 100%);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 10px;
+  box-shadow:
+    0 6px 18px rgba(0, 169, 206, .45),
+    0 0 22px rgba(0, 169, 206, .25),
+    inset 0 1px 0 rgba(255, 255, 255, .4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+}
+
+.feat-card .feat-card__btn:hover {
+  background: linear-gradient(180deg, #45CDE8 0%, #0FB4D6 55%, #0099C0 100%);
+  border-color: rgba(255, 255, 255, .5);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 28px rgba(0, 169, 206, .55),
+    0 0 30px rgba(0, 169, 206, .4),
+    inset 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+.feat-card .feat-card__btn:active {
+  transform: translateY(-1px);
+  box-shadow:
+    0 5px 14px rgba(0, 169, 206, .4),
+    inset 0 1px 0 rgba(255, 255, 255, .35);
 }
 
 /* ── Featured CTA ── */
@@ -1122,7 +1151,7 @@
 
   /* ── Botones de las secciones, mas chicos en el celular ──
      Bajan padding y letra a la par, para que no queden achatados. */
-  .feat-card__btn { padding: 8px 18px; font-size: .68rem; letter-spacing: 1px; }
+  .feat-card .feat-card__btn { padding: 8px 18px; font-size: .68rem; letter-spacing: 1px; }
 
   /* Solapas de navidad / pascua */
   .occ-tab { padding: 9px 20px; font-size: .66rem; letter-spacing: .8px; }
@@ -1157,7 +1186,7 @@
 @media (max-width: 400px) {
   .ofertas__grid,
   .occasions__grid { gap: 8px; }
-  .feat-card__btn { width: 100%; justify-content: center; }
+  .feat-card .feat-card__btn { width: 100%; justify-content: center; }
   .oferta-card__name,
   .occ-card__name { font-size: .74rem; }
 }

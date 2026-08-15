@@ -219,7 +219,7 @@
     padding: 0 12px;
   }
 
-  .navbar__logo-img { height: 32px; }
+  .navbar__logo-img { height: 42px; }
 
   .navbar__mobile-controls {
     gap: 2px;
@@ -244,7 +244,7 @@
     padding: 0 8px;
   }
 
-  .navbar__logo-img { height: 27px; }
+  .navbar__logo-img { height: 36px; }
 
   .navbar__mobile-controls {
     gap: 0;
