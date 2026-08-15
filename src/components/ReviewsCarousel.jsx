@@ -3,46 +3,54 @@ import { ChevronLeft, ChevronRight, SendHorizontal } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import './ReviewsCarousel.css';
 
-const INITIAL_REVIEWS = [
-  {
-    id: 1,
-    author: 'María García',
-    comment: 'Me encantó la calidad de los productos. El detalle en 3D es impresionante, exactamente como lo imaginé.',
-    date: '2024-04-20',
-    timestamp: Date.now() - (2 * 60 * 60 * 1000),
-  },
-  {
-    id: 2,
-    author: 'Lucas Rodríguez',
-    comment: 'Excelente atención al cliente. Mi pedido llegó rápido y bien embalado. Volveré a comprar!',
-    date: '2024-04-15',
-    timestamp: Date.now() - (5 * 60 * 60 * 1000),
-  },
-  {
-    id: 3,
-    author: 'Sofia Martínez',
-    comment: 'El diseño que me propusieron fue mucho mejor que lo que esperaba. Muy profesionales.',
-    date: '2024-04-10',
-    timestamp: Date.now() - (8 * 60 * 60 * 1000),
-  },
-  {
-    id: 4,
-    author: 'Juan López',
-    comment: 'Perfecto para regalos. La presentación es muy premium. Recomiendo ampliamente.',
-    date: '2024-04-05',
-    timestamp: Date.now() - (12 * 60 * 60 * 1000),
-  },
-];
+const HORA = 60 * 60 * 1000;
+const DIA = 24 * HORA;
 
 const MAX_REVIEWS = 10;
-const REVIEW_DURATION = 30 * 24 * 60 * 60 * 1000; // 30 días
+const REVIEW_DURATION = 30 * DIA; // 30 días
+const STORAGE_KEY = 'reviews-v2';
+
+// Fecha del dia (la local, no la UTC: a la madrugada se irian un dia atras).
+const fechaDe = (ms) => {
+  const d = new Date(ms);
+  const mes = String(d.getMonth() + 1).padStart(2, '0');
+  const dia = String(d.getDate()).padStart(2, '0');
+  return `${d.getFullYear()}-${mes}-${dia}`;
+};
+
+// Los comentarios de ejemplo se anclan a "hace tanto" en vez de a una fecha
+// escrita a mano: asi la fecha que se muestra acompaña siempre al dia en que
+// se visita la pagina y no vuelve a quedar vieja. Tienen que caer dentro de
+// REVIEW_DURATION o el mismo filtro de abajo los esconde.
+const reseña = (id, author, comment, hace) => {
+  const timestamp = Date.now() - hace;
+  return { id, author, comment, timestamp, date: fechaDe(timestamp) };
+};
+
+const INITIAL_REVIEWS = [
+  reseña(1, 'María García',
+    'Me encantó la calidad de los productos. El detalle en 3D es impresionante, exactamente como lo imaginé.',
+    2 * HORA),
+  reseña(2, 'Lucas Rodríguez',
+    'Excelente atención al cliente. Mi pedido llegó rápido y bien embalado. Volveré a comprar!',
+    3 * DIA),
+  reseña(3, 'Sofia Martínez',
+    'El diseño que me propusieron fue mucho mejor que lo que esperaba. Muy profesionales.',
+    9 * DIA),
+  reseña(4, 'Juan López',
+    'Perfecto para regalos. La presentación es muy premium. Recomiendo ampliamente.',
+    16 * DIA),
+];
 
 export default function ReviewsCarousel() {
   const { t, language } = useLanguage();
   const carouselRef = useRef(null);
   const [reviews, setReviews] = useState(() => {
-    // Cargar comentarios del localStorage al iniciar
-    const savedReviews = localStorage.getItem('reviews');
+    // Cargar comentarios del localStorage al iniciar.
+    // La clave lleva version: los que ya habian visitado la pagina tenian
+    // guardados los comentarios de ejemplo con las fechas viejas, y sin esto
+    // los seguirian viendo.
+    const savedReviews = localStorage.getItem(STORAGE_KEY);
     if (savedReviews) {
       try {
         return JSON.parse(savedReviews);
@@ -58,17 +66,18 @@ export default function ReviewsCarousel() {
   const handleSubmitReview = (e) => {
     e.preventDefault();
     if (formData.author.trim() && formData.comment.trim()) {
+      const ahora = Date.now();
       const newReview = {
         id: reviews.length + 1,
         author: formData.author,
         comment: formData.comment,
-        date: new Date().toISOString().split('T')[0],
-        timestamp: Date.now(),
+        date: fechaDe(ahora),
+        timestamp: ahora,
       };
       const updatedReviews = [newReview, ...reviews].slice(0, MAX_REVIEWS);
       setReviews(updatedReviews);
       // Guardar en localStorage
-      localStorage.setItem('reviews', JSON.stringify(updatedReviews));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedReviews));
       setFormData({ author: '', comment: '' });
       setShowForm(false);
     }

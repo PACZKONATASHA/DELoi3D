@@ -30,16 +30,9 @@ const CATEGORY_IMAGE_FALLBACK = '/iluminacion/mar/mar-azul.jpg';
 // Fotos propias del cliente, procesadas por scripts/procesar-momentos.mjs.
 // El color de cada pieza es el que se ve en la foto: el resto de los colores
 // se consultan por WhatsApp, que es a donde lleva la card.
+// Navidad va primera: es la fecha que mas vende, asi que es la solapa que
+// tiene que estar abierta cuando alguien llega a la seccion.
 const OCCASIONS = [
-  {
-    key: 'pascua',
-    label: 'Pascua',
-    items: [
-      { img: '/momentos/pascua/1.webp', name: 'Conejo Florero Lila', colors: ['#C7C3E2'] },
-      { img: '/momentos/pascua/2.webp', name: 'Conejo Florero Marfil', colors: ['#EBE5D7'] },
-      { img: '/momentos/pascua/3.webp', name: 'Porta Huevo Conejo', colors: ['#2FA84F'] },
-    ],
-  },
   {
     key: 'navidad',
     label: 'Navidad',
@@ -50,13 +43,24 @@ const OCCASIONS = [
       { img: '/momentos/navidad/4.webp', name: 'Árbol Navideño', colors: ['#8FA37B'] },
     ],
   },
+  {
+    key: 'pascua',
+    label: 'Pascua',
+    items: [
+      { img: '/momentos/pascua/1.webp', name: 'Conejo Florero Lila', colors: ['#C7C3E2'] },
+      { img: '/momentos/pascua/2.webp', name: 'Conejo Florero Marfil', colors: ['#EBE5D7'] },
+      { img: '/momentos/pascua/3.webp', name: 'Porta Huevo Conejo', colors: ['#2FA84F'] },
+    ],
+  },
 ];
 
 export default function Home() {
   const { t } = useLanguage();
   const carouselRef = useRef(null);
   const navigate = useNavigate();
-  const [activeOccasion, setActiveOccasion] = useState('pascua');
+  // La primera de OCCASIONS, no una fija: si se cambia el orden, la solapa
+  // abierta acompaña sola.
+  const [activeOccasion, setActiveOccasion] = useState(OCCASIONS[0].key);
   // Aire, mar y tierra no van en el carrusel: las tres lineas ya aparecen
   // completas arriba, en destacados, y repetirlas aca no suma nada.
   const lineasDeLamparas = new Set(lightingGroups.map(g => g.id));
