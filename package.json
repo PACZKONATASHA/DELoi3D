@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "imagenes": "node scripts/procesar-iluminacion.mjs"
+    "imagenes": "node scripts/procesar-iluminacion.mjs",
+    "imagenes:lampara": "node scripts/procesar-lampara-hero.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.11.0",

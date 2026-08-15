@@ -968,11 +968,13 @@
   margin: 0 auto 56px;
 }
 
-/* Sin cajas: cada paso es el numero arriba y el texto debajo, sobre el fondo
-   de la seccion. */
+/* Sin cajas: cada paso es el numero arriba y el texto debajo, centrado en la
+   pantalla y sobre el fondo de la seccion. */
 .custom-steps {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 36px;
   max-width: 740px;
   margin: 0 auto 48px;
@@ -981,7 +983,9 @@
 .custom-step {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
+  max-width: 460px;
 }
 
 .custom-step__number {
@@ -990,6 +994,30 @@
   font-style: italic;
   color: var(--granate);
   line-height: 1;
+  /* Arrancan ocultos: la clase --visible (la pone el IntersectionObserver del
+     Home cuando la seccion entra en pantalla) dispara la animacion. */
+  opacity: 0;
+}
+
+@keyframes paso-numero {
+  0%   { opacity: 0; transform: translateY(24px) scale(.6); }
+  55%  { opacity: 1; transform: translateY(0) scale(1.18); }
+  75%  { transform: scale(.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.custom-steps--visible .custom-step__number {
+  animation: paso-numero .9s cubic-bezier(.2, .75, .3, 1) both;
+}
+
+/* Entran de a uno, no los tres juntos. */
+.custom-steps--visible .custom-step:nth-child(2) .custom-step__number { animation-delay: .22s; }
+.custom-steps--visible .custom-step:nth-child(3) .custom-step__number { animation-delay: .44s; }
+
+/* Si el usuario pidio menos movimiento, los numeros aparecen sin rebote. */
+@media (prefers-reduced-motion: reduce) {
+  .custom-step__number { opacity: 1; }
+  .custom-steps--visible .custom-step__number { animation: none; }
 }
 
 .custom-step__title {

@@ -280,6 +280,66 @@
   transform: scale(1);
 }
 
+/* ── Lampara: el slide que se prende ──
+   Dos fotos iguales una arriba de la otra (las alinea
+   scripts/procesar-lampara-hero.mjs): abajo la lampara apagada y encima la
+   misma lampara con la luz adentro. Al entrar el slide, la de arriba aparece
+   con un titileo, como cuando se prende de verdad. */
+.hero-lampara {
+  position: absolute;
+  inset: 0;
+}
+
+/* La capa de la luz sigue el mismo zoom de entrada que la de abajo, asi las
+   dos quedan encimadas durante toda la transicion. La opacidad la maneja la
+   animacion, no la clase --active. */
+.hero-lampara__luz { transform: scale(1.03); }
+.hero-lampara--prendida .hero-lampara__luz { transform: scale(1); }
+
+/* Resplandor violeta que sale de la lampara al prenderse. */
+.hero-lampara__resplandor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(205, 95, 255, .5) 0%,
+    rgba(150, 50, 220, .26) 45%,
+    transparent 72%);
+  filter: blur(30px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes lampara-prende {
+  0%, 16%   { opacity: 0; }
+  20%       { opacity: .8; }
+  25%       { opacity: .08; }
+  31%       { opacity: .95; }
+  36%       { opacity: .3; }
+  44%, 100% { opacity: 1; }
+}
+
+.hero-lampara--prendida .hero-lampara__luz,
+.hero-lampara--prendida .hero-lampara__resplandor {
+  animation: lampara-prende 2.6s ease-out .5s both;
+}
+
+/* Sin titileo si el usuario pidio menos movimiento: la luz simplemente sube. */
+@media (prefers-reduced-motion: reduce) {
+  @keyframes lampara-prende {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .hero-lampara--prendida .hero-lampara__luz,
+  .hero-lampara--prendida .hero-lampara__resplandor {
+    animation-duration: 1.2s;
+  }
+}
+
 /* Slide counter */
 .hero-split__counter {
   position: absolute;

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -72,6 +72,30 @@ export default function Home() {
   const [activeOccasion, setActiveOccasion] = useState('pascua');
   const displayCategories = categories.filter(c => c.id !== 'todos');
 
+  // Los numeros de los pasos entran animados recien cuando la seccion aparece
+  // en pantalla. Si el navegador no tiene IntersectionObserver arrancan ya
+  // mostrados, asi nunca quedan invisibles.
+  const stepsRef = useRef(null);
+  const [stepsVisible, setStepsVisible] = useState(
+    () => typeof IntersectionObserver === 'undefined'
+  );
+
+  useEffect(() => {
+    const el = stepsRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setStepsVisible(true);
+        obs.disconnect();
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   const scrollCarousel = (dir) => {
     if (!carouselRef.current) return;
     carouselRef.current.scrollBy({ left: dir * 280, behavior: 'smooth' });
@@ -94,7 +118,10 @@ export default function Home() {
               {t('diseñoPersonalizadoSub')}
             </p>
           </div>
-          <div className="custom-steps">
+          <div
+            ref={stepsRef}
+            className={`custom-steps${stepsVisible ? ' custom-steps--visible' : ''}`}
+          >
             {CUSTOM_STEPS.map((step, i) => (
               <div key={i} className="custom-step">
                 <span className="custom-step__number">{i + 1}</span>
@@ -371,7 +398,8 @@ function FeaturedCard({ product, navigate, t }) {
       <div className="feat-card__body">
         <div className="feat-card__info">
           <h3 className="feat-card__name">{product.name}</h3>
-          <p className="feat-card__desc">{product.description}</p>
+          {/* Mismo orden que la ficha del producto: primero los colores y
+              recien despues la descripcion. */}
           {product.colors && (
             <div className="feat-card__colors">
               {product.colors.slice(0, 5).map((c, i) => (
@@ -383,6 +411,7 @@ function FeaturedCard({ product, navigate, t }) {
               ))}
             </div>
           )}
+          <p className="feat-card__desc">{product.description}</p>
           <p className="feat-card__specs">{product.size} · {product.material}</p>
         </div>
         <button
