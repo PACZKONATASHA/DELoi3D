@@ -1119,7 +1119,19 @@
   /* Con la foto apilada arriba, la descripcion larga estiraba mucho la card. */
   .feat-card__desc { font-size: .82rem; -webkit-line-clamp: 2; margin-bottom: 12px; }
   .feat-card__colors { margin-bottom: 10px; }
-  .feat-card__btn { padding: 10px 22px; font-size: .75rem; }
+
+  /* ── Botones de las secciones, mas chicos en el celular ──
+     Bajan padding y letra a la par, para que no queden achatados. */
+  .feat-card__btn { padding: 8px 18px; font-size: .68rem; letter-spacing: 1px; }
+
+  /* Solapas de navidad / pascua */
+  .occ-tab { padding: 9px 20px; font-size: .66rem; letter-spacing: .8px; }
+
+  /* WhatsApp de envios */
+  .shipping-card__btn { padding: 8px 16px; font-size: .68rem; }
+
+  /* Consulta mayorista */
+  .banner__btn { padding: 11px 20px; font-size: .7rem; letter-spacing: .8px; }
 
   .light-group + .light-group { margin-top: 36px; }
 
@@ -1138,7 +1150,7 @@
   .oferta-card__name,
   .occ-card__name { font-size: .78rem; }
   .oferta-card__btn,
-  .occ-card__btn { padding: 8px 6px; font-size: .7rem; letter-spacing: .5px; }
+  .occ-card__btn { padding: 7px 6px; font-size: .64rem; letter-spacing: .4px; }
   .occ-card__colors-more { font-size: .68rem; }
 }
 

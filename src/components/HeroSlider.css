@@ -352,18 +352,11 @@
     flex-direction: row;
   }
 
-  /* Todo baja junto para que el boton no quede achatado: el padding sigue
-     siendo el doble a los costados que arriba y abajo, y la flecha acompaña
-     al tamaño de la letra. */
   .hero-split__btn {
-    padding: 7px 14px;
-    font-size: .55rem;
-    letter-spacing: .6px;
-    gap: 5px;
+    padding: 10px 20px;
+    font-size: .68rem;
+    letter-spacing: 1px;
   }
-
-  /* La flecha viene de lucide con 16px fijos. */
-  .hero-split__btn svg { width: 12px; height: 12px; }
 
   .hero-split__dots { justify-content: center; }
 
@@ -390,8 +383,7 @@
 
 @media (max-width: 480px) {
   .hero-split__actions { flex-direction: row; flex-wrap: wrap; }
-  .hero-split__btn { padding: 6px 12px; font-size: .52rem; letter-spacing: .5px; gap: 4px; }
-  .hero-split__btn svg { width: 11px; height: 11px; }
+  .hero-split__btn { padding: 9px 16px; font-size: .65rem; }
 
   /* Pantallas chicas: el texto se aprieta un poco mas y la lampara gana ese
      espacio, porque la fila de la foto es la que absorbe lo que sobra. */
