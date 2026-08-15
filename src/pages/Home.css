@@ -1150,8 +1150,9 @@
   .feat-card__colors { margin-bottom: 10px; }
 
   /* ── Botones de las secciones, mas chicos en el celular ──
-     Bajan padding y letra a la par, para que no queden achatados. */
-  .feat-card .feat-card__btn { padding: 8px 18px; font-size: .68rem; letter-spacing: 1px; }
+     El "ver" queda del porte del cartelito de sin stock: letra mas grande
+     pero angosto, con el espaciado entre letras bajo para no estirarlo. */
+  .feat-card .feat-card__btn { padding: 6px 16px; font-size: .8rem; letter-spacing: .5px; }
 
   /* Solapas de navidad / pascua */
   .occ-tab { padding: 9px 20px; font-size: .66rem; letter-spacing: .8px; }
@@ -1186,7 +1187,8 @@
 @media (max-width: 400px) {
   .ofertas__grid,
   .occasions__grid { gap: 8px; }
-  .feat-card .feat-card__btn { width: 100%; justify-content: center; }
+  /* El "ver" se queda angosto: antes iba al 100% y cruzaba toda la card. */
+  .feat-card .feat-card__btn { width: auto; }
   .oferta-card__name,
   .occ-card__name { font-size: .74rem; }
 }
