@@ -109,38 +109,41 @@ export default function Home() {
       {/* ── Hero slider ── */}
       <HeroSlider />
 
-      {/* ── Custom orders ── */}
-      <section className="custom-orders section">
+      {/* ── Featured products ──
+          Van primero: la lampara del hero se sigue de largo con las tres
+          lineas (aire, mar y tierra), que son el producto estrella. Recien
+          despues aparece el resto del catalogo. */}
+      <section className="featured section">
         <div className="container">
-          <div className="custom-orders__intro">
-            <h2 className="section-title">{t('diseñoPersonalizado')}</h2>
-            <p className="section-sub">
-              {t('diseñoPersonalizadoSub')}
-            </p>
+          <div className="section-header">
+            <div>
+              <h2 className="section-title">{t('destacados')}</h2>
+              <p className="section-sub">{t('destacadosDesc')}</p>
+            </div>
+            <Link to="/catalogo" className="ver-todas">{t('verTodos')}</Link>
           </div>
-          <div
-            ref={stepsRef}
-            className={`custom-steps${stepsVisible ? ' custom-steps--visible' : ''}`}
-          >
-            {CUSTOM_STEPS.map((step, i) => (
-              <div key={i} className="custom-step">
-                <span className="custom-step__number">{i + 1}</span>
-                <div className="custom-step__text">
-                  <h3 className="custom-step__title">{t(step.titleKey)}</h3>
-                  <p className="custom-step__desc">{t(step.descKey)}</p>
-                </div>
+
+          {lightingGroups.map(group => (
+            <div key={group.id} className="light-group">
+              <div className="light-group__header">
+                <span className="light-group__name">{group.name}</span>
+                <p className="light-group__tagline">{group.tagline}</p>
+                <Link to={`/catalogo?cat=${group.id}`} className="light-group__link">
+                  {t('verTodos')}
+                </Link>
               </div>
-            ))}
-          </div>
-          <div className="custom-orders__cta">
-            <a
-              href="https://wa.me/541161307110?text=Hola!+Quiero+consultar+por+un+producto+personalizado"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
-              {t('presupuesto')} <ArrowRight size={18} />
-            </a>
+              <div className="light-group__grid">
+                {products.filter(p => p.category === group.id).map(p => (
+                  <FeaturedCard key={p.id} product={p} navigate={navigate} t={t} />
+                ))}
+              </div>
+            </div>
+          ))}
+
+          <div className="featured__cta">
+            <Link to="/catalogo" className="btn btn-primary">
+              {t('verCatalogo')} <ArrowRight size={18} />
+            </Link>
           </div>
         </div>
       </section>
@@ -199,92 +202,6 @@ export default function Home() {
                 </Link>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Featured products ── */}
-      <section className="featured section">
-        <div className="container">
-          <div className="section-header">
-            <div>
-              <h2 className="section-title">{t('destacados')}</h2>
-              <p className="section-sub">{t('destacadosDesc')}</p>
-            </div>
-            <Link to="/catalogo" className="ver-todas">{t('verTodos')}</Link>
-          </div>
-
-          {lightingGroups.map(group => (
-            <div key={group.id} className="light-group">
-              <div className="light-group__header">
-                <span className="light-group__name">{group.name}</span>
-                <p className="light-group__tagline">{group.tagline}</p>
-                <Link to={`/catalogo?cat=${group.id}`} className="light-group__link">
-                  {t('verTodos')}
-                </Link>
-              </div>
-              <div className="light-group__grid">
-                {products.filter(p => p.category === group.id).map(p => (
-                  <FeaturedCard key={p.id} product={p} navigate={navigate} t={t} />
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <div className="featured__cta">
-            <Link to="/catalogo" className="btn btn-primary">
-              {t('verCatalogo')} <ArrowRight size={18} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Shipping Info ── */}
-      <section className="shipping-info section">
-        <div className="container">
-          <h2 className="section-title">{t('envios')}</h2>
-          <div className="shipping-cards">
-            <div className="shipping-card">
-              <div className="shipping-card__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-                </svg>
-              </div>
-              <h3 className="shipping-card__title">{t('ambaYCaba')}</h3>
-              <p className="shipping-card__desc">{t('sinCosto')}</p>
-            </div>
-            <div className="shipping-card">
-              <div className="shipping-card__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><polyline points="9 11 12 14 15 11"/>
-                </svg>
-              </div>
-              <h3 className="shipping-card__title">{t('interior')}</h3>
-              <p className="shipping-card__desc">Andreani / {t('conCosto')}</p>
-            </div>
-            <div className="shipping-card">
-              <div className="shipping-card__icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                </svg>
-              </div>
-              <h3 className="shipping-card__title">{t('contacto')}</h3>
-              <a 
-                href="https://wa.me/541161307110?text=Hola!+Quiero+consultar+sobre+envíos+de+mis+productos"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-sm"
-                style={{
-                  background: 'var(--white)',
-                  color: 'var(--granate)',
-                  border: '1.5px solid var(--white)',
-                  fontWeight: '700',
-                  letterSpacing: '0.5px'
-                }}
-              >
-                WhatsApp
-              </a>
-            </div>
           </div>
         </div>
       </section>
@@ -354,6 +271,96 @@ export default function Home() {
 
       {/* ── Reviews Carousel ── */}
       <ReviewsCarousel />
+
+      {/* ── Shipping Info ── */}
+      <section className="shipping-info section">
+        <div className="container">
+          <h2 className="section-title">{t('envios')}</h2>
+          <div className="shipping-cards">
+            <div className="shipping-card">
+              <div className="shipping-card__icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <h3 className="shipping-card__title">{t('ambaYCaba')}</h3>
+              <p className="shipping-card__desc">{t('sinCosto')}</p>
+            </div>
+            <div className="shipping-card">
+              <div className="shipping-card__icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><polyline points="9 11 12 14 15 11"/>
+                </svg>
+              </div>
+              <h3 className="shipping-card__title">{t('interior')}</h3>
+              <p className="shipping-card__desc">Andreani / {t('conCosto')}</p>
+            </div>
+            <div className="shipping-card">
+              <div className="shipping-card__icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <h3 className="shipping-card__title">{t('contacto')}</h3>
+              <a
+                href="https://wa.me/541161307110?text=Hola!+Quiero+consultar+sobre+envíos+de+mis+productos"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-sm"
+                style={{
+                  background: 'var(--white)',
+                  color: 'var(--granate)',
+                  border: '1.5px solid var(--white)',
+                  fontWeight: '700',
+                  letterSpacing: '0.5px'
+                }}
+              >
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Custom orders ──
+          Va al final a proposito: el pedido a medida y el boton de WhatsApp
+          recien tienen sentido cuando el visitante ya vio las lamparas, el
+          catalogo y las reseñas. Es la salida para el que no encontro lo
+          que buscaba, no la puerta de entrada. */}
+      <section className="custom-orders section">
+        <div className="container">
+          <div className="custom-orders__intro">
+            <h2 className="section-title">{t('diseñoPersonalizado')}</h2>
+            <p className="section-sub">
+              {t('diseñoPersonalizadoSub')}
+            </p>
+          </div>
+          <div
+            ref={stepsRef}
+            className={`custom-steps${stepsVisible ? ' custom-steps--visible' : ''}`}
+          >
+            {CUSTOM_STEPS.map((step, i) => (
+              <div key={i} className="custom-step">
+                <span className="custom-step__number">{i + 1}</span>
+                <div className="custom-step__text">
+                  <h3 className="custom-step__title">{t(step.titleKey)}</h3>
+                  <p className="custom-step__desc">{t(step.descKey)}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="custom-orders__cta">
+            <a
+              href="https://wa.me/541161307110?text=Hola!+Quiero+consultar+por+un+producto+personalizado"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+            >
+              {t('presupuesto')} <ArrowRight size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* ── Location Map ── */}
       <LocationMap />

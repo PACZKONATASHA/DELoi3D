@@ -16,9 +16,9 @@ const SLIDES = [
     // Un toque mas de tiempo: el encendido tarda casi tres segundos.
     espera: 7000,
   },
-  { src: '/hero-1.png', alt: 'Florero 3D terracota con ramo de flores' },
-  { src: '/hero-2.png', alt: 'Difusor 3D geométrico con palitos' },
-  { src: '/hero-3.png', alt: 'Florero 3D blanco texturado con espigas' },
+  { src: '/hero-lampara-1.webp', alt: 'Lámpara 3D plisada azul noche' },
+  { src: '/hero-lampara-2.webp', alt: 'Lámpara 3D acanalada color terracota' },
+  { src: '/hero-lampara-3.webp', alt: 'Lámpara 3D calada negra con detalle azul' },
 ];
 
 const INTERVAL = 4500;

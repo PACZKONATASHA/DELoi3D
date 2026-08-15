@@ -1,7 +1,16 @@
-// Prepara las dos fotos de la lampara del hero (apagada y encendida) para que
-// el crossfade se vea como si la lampara se prendiera de verdad.
+// Prepara las fotos del hero.
 //
 //   npm run imagenes:lampara
+//
+// Son dos cosas distintas:
+//
+// 1. El primer slide, la lampara que se prende: dos fotos que hay que dejar
+//    perfectamente encimadas (ver mas abajo).
+// 2. Los otros tres slides: fotos de lamparas que solo hay que achicar y pasar
+//    a webp, porque vienen en PNG de dos megas cada una.
+//
+// Los originales de los tres slides viven en assets-origen/hero/ (fuera del
+// repo, ver .gitignore), igual que las fotos de la linea de iluminacion.
 //
 // Las originales (public/lampara-1.png y lampara-2.png) vienen con distinto
 // encuadre y distinto tamaño de lienzo: 1536x1024 una y 1473x1068 la otra. Si
@@ -16,6 +25,15 @@ const ORIGENES = [
   { origen: 'public/lampara-1.png', destino: 'public/hero-lampara-apagada.webp' },
   { origen: 'public/lampara-2.png', destino: 'public/hero-lampara-encendida.webp' },
 ];
+
+// Los otros tres slides: mismo orden que en HeroSlider.jsx.
+const SLIDES = [
+  { origen: 'assets-origen/hero/lampara-1.png', destino: 'public/hero-lampara-1.webp' },
+  { origen: 'assets-origen/hero/lampara-2.png', destino: 'public/hero-lampara-2.webp' },
+  { origen: 'assets-origen/hero/lampara-3.png', destino: 'public/hero-lampara-3.webp' },
+];
+
+const ANCHO_SLIDE = 1400;   // de sobra: el panel del hero no pasa de 900px
 
 const ANCHO_LAMPARA = 1000;  // ancho final de la lampara en las dos fotos
 const MARGEN = 60;           // aire alrededor, para que el resplandor no se corte
@@ -77,4 +95,16 @@ for (const { origen, destino, buffer, height } of recortadas) {
   console.log(
     `${origen} -> ${destino}  ${lienzo.width}x${lienzo.height}, ${Math.round(size / 1024)} kB`
   );
+}
+
+// Los tres slides sueltos: se dejan tal cual estan, solo mas chicos y en webp.
+// No se recortan ni se alinean entre si porque no se superponen: entra una,
+// sale la otra.
+for (const { origen, destino } of SLIDES) {
+  const { width, height, size } = await sharp(origen)
+    .resize({ width: ANCHO_SLIDE, withoutEnlargement: true })
+    .webp({ quality: 88, alphaQuality: 90, effort: 6 })
+    .toFile(destino);
+
+  console.log(`${origen} -> ${destino}  ${width}x${height}, ${Math.round(size / 1024)} kB`);
 }
