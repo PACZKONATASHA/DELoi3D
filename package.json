@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "imagenes": "node scripts/procesar-iluminacion.mjs",
     "imagenes:lampara": "node scripts/procesar-lampara-hero.mjs",
-    "imagenes:logo": "node scripts/procesar-logo.mjs"
+    "imagenes:logo": "node scripts/procesar-logo.mjs",
+    "imagenes:momentos": "node scripts/procesar-momentos.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.11.0",

@@ -27,25 +27,27 @@ const CATEGORY_IMAGES = {
 
 const CATEGORY_IMAGE_FALLBACK = '/iluminacion/mar/mar-azul.jpg';
 
+// Fotos propias del cliente, procesadas por scripts/procesar-momentos.mjs.
+// El color de cada pieza es el que se ve en la foto: el resto de los colores
+// se consultan por WhatsApp, que es a donde lleva la card.
 const OCCASIONS = [
   {
     key: 'pascua',
     label: 'Pascua',
     items: [
-      { img: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&q=80', name: 'Porta Huevos 3D', colors: ['#F5F5F5', '#F8BBD0', '#7EC8E3', '#F9A825'] },
-      { img: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=400&q=80', name: 'Conejito Impreso 3D', colors: ['#F5F5F5', '#F8BBD0', '#C8E6C9', '#FFF9C4'] },
-      { img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80', name: 'Figura Pascual 3D', colors: ['#F5F5F5', '#8A9179', '#F8BBD0', '#7EC8E3'] },
-      { img: 'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=400&q=80', name: 'Canasta Deco 3D', colors: ['#F5F5F5', '#C8E6C9', '#F9A825', '#F8BBD0'] },
+      { img: '/momentos/pascua/1.webp', name: 'Conejo Florero Lila', colors: ['#C7C3E2'] },
+      { img: '/momentos/pascua/2.webp', name: 'Conejo Florero Marfil', colors: ['#EBE5D7'] },
+      { img: '/momentos/pascua/3.webp', name: 'Porta Huevo Conejo', colors: ['#2FA84F'] },
     ],
   },
   {
     key: 'navidad',
     label: 'Navidad',
     items: [
-      { img: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&q=80', name: 'Adorno Navideño 3D', colors: ['#F5F5F5', '#D32F2F', '#2E7D32', '#B87333'] },
-      { img: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80', name: 'Figura Navideña 3D', colors: ['#1A1A1A', '#F5F5F5', '#D32F2F', '#B87333'] },
-      { img: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=400&q=80', name: 'Estrella Impresa 3D', colors: ['#B87333', '#F5F5F5', '#D32F2F', '#9E9E9E'] },
-      { img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80', name: 'Muñeco de Nieve 3D', colors: ['#F5F5F5', '#1A1A1A', '#D32F2F', '#2E7D32'] },
+      { img: '/momentos/navidad/1.webp', name: 'Ciervo Navideño', colors: ['#A08D80'] },
+      { img: '/momentos/navidad/2.webp', name: 'Estrella para el Árbol', colors: ['#F2EDE2'] },
+      { img: '/momentos/navidad/3.webp', name: 'Muñeco de Nieve', colors: ['#F5F2EA', '#8DA07A'] },
+      { img: '/momentos/navidad/4.webp', name: 'Árbol Navideño', colors: ['#8FA37B'] },
     ],
   },
 ];
