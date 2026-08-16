@@ -65,7 +65,17 @@
 
   /* Motion */
   --transition: .2s ease;
+
+  /* Ancho de los dos botones grandes: el "Explorar catalogo" del hero y el
+     "Ver" de los destacados. Los dos salen de esta misma variable, asi miden
+     igual sin importar el idioma ni el largo del texto de cada uno.
+     Para agrandarlos o achicarlos se toca solo aca. */
+  --cta-w: 250px;
 }
+
+/* Los mismos quiebres que usan los botones para bajar de medida. */
+@media (max-width: 768px) { :root { --cta-w: 210px; } }
+@media (max-width: 480px) { :root { --cta-w: 200px; } }
 
 html { scroll-behavior: smooth; }
 body {

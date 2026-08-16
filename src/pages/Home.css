@@ -297,6 +297,9 @@
    mismo padding, misma letra, mismo tracking, mismo interlineado y mismo
    grosor de borde, para que los dos botones midan igual de alto. */
 .feat-card .feat-card__btn {
+  /* Mismo ancho que el "Explorar catalogo": los dos leen --cta-w. */
+  min-width: var(--cta-w);
+  justify-content: center;
   padding: 13px 28px;
   font-size: .75rem;
   letter-spacing: 1.5px;

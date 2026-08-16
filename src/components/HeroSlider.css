@@ -142,6 +142,9 @@
 }
 
 .hero-split__btn--primary {
+  /* Mismo ancho que el "Ver" de los destacados: los dos leen --cta-w. */
+  min-width: var(--cta-w);
+  justify-content: center;
   background: linear-gradient(135deg, var(--celeste) 0%, #0088b3 50%, #00d4ff 100%);
   color: var(--black);
   border: 1.5px solid #00d4ff;
