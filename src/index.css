@@ -201,41 +201,7 @@ input, select, textarea { font-family: 'Poppins', -apple-system, BlinkMacSystemF
   box-shadow: inset 0 0 0 20px var(--granate), var(--granate-glow), 0 0 0 3px rgba(125, 30, 58, 0.15);
 }
 
-/* Ghost */
-.btn-ghost {
-  background: transparent;
-  color: var(--dark);
-  box-shadow: 0 2px 8px rgba(216, 195, 165, 0.08);
-}
-.btn-ghost:hover { 
-  background: var(--sand-light); 
-  border-radius: var(--radius-sm);
-  box-shadow: 0 4px 12px rgba(216, 195, 165, 0.15);
-  transform: translateY(-2px);
-}
 
-.btn-ghost:focus {
-  outline: none;
-  box-shadow: 0 4px 12px rgba(216, 195, 165, 0.15), 0 0 0 3px rgba(216, 195, 165, 0.1);
-}
-
-/* Sand subtle */
-.btn-sand {
-  background: var(--sand-light);
-  color: var(--dark);
-  border: 1.5px solid var(--sand);
-  box-shadow: 0 4px 12px rgba(216, 195, 165, 0.15);
-}
-.btn-sand:hover { 
-  background: var(--sand);
-  box-shadow: 0 8px 24px rgba(216, 195, 165, 0.25);
-  transform: translateY(-2px);
-}
-
-.btn-sand:focus {
-  outline: none;
-  box-shadow: 0 8px 24px rgba(216, 195, 165, 0.25), 0 0 0 3px rgba(216, 195, 165, 0.15);
-}
 
 /* ─── Card ──────────────────────────────────────────────────────── */
 .card {
@@ -247,14 +213,10 @@ input, select, textarea { font-family: 'Poppins', -apple-system, BlinkMacSystemF
 }
 .card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
 
-/* ─── Price ─────────────────────────────────────────────────────── */
-.price { color: var(--granate); font-weight: 700; font-style: italic; }
 
 /* ─── Overlay ───────────────────────────────────────────────────── */
 .overlay { position: fixed; inset: 0; background: rgba(17,17,17,.5); z-index: 900; animation: fadeIn .2s ease; }
 
-/* ─── Divider ───────────────────────────────────────────────────── */
-.divider { height: 1px; background: var(--gray-200); margin: 24px 0; }
 
 /* ─── Scrollbar ─────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; height: 5px; }

@@ -20,8 +20,8 @@ const CROMA_MINIMA = 40;    // arriba de esto el pixel tiene color propio
 const base = sharp(ORIGEN).resize({ width: ANCHO }).ensureAlpha();
 
 const { size } = await base.clone().webp({ quality: 92, alphaQuality: 100, effort: 6 })
-  .toFile('public/logo.webp');
-console.log(`${ORIGEN} -> public/logo.webp  ${Math.round(size / 1024)} kB`);
+  .toFile('public/marca/logo.webp');
+console.log(`${ORIGEN} -> public/marca/logo.webp  ${Math.round(size / 1024)} kB`);
 
 // Version clara: se invierte el brillo solo donde el pixel es gris (el texto
 // negro y su antialias). Lo que tiene color, como el cubo, no se toca.
@@ -37,5 +37,5 @@ for (let i = 0; i < data.length; i += 4) {
 
 const claro = await sharp(data, { raw: { width: info.width, height: info.height, channels: 4 } })
   .webp({ quality: 92, alphaQuality: 100, effort: 6 })
-  .toFile('public/logo-claro.webp');
-console.log(`${ORIGEN} -> public/logo-claro.webp  ${Math.round(claro.size / 1024)} kB`);
+  .toFile('public/marca/logo-claro.webp');
+console.log(`${ORIGEN} -> public/marca/logo-claro.webp  ${Math.round(claro.size / 1024)} kB`);

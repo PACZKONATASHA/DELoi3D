@@ -131,32 +131,6 @@
 }
 
 .navbar__suggestion-name { font-size: .85rem; font-weight: 600; color: var(--dark); }
-.navbar__suggestion-price { font-size: .8rem; color: var(--granate); font-style: italic; margin-top: 2px; }
-
-/* ── Cart ── */
-.navbar__cart {
-  position: relative;
-  padding: 8px;
-  color: var(--dark);
-  transition: color var(--transition);
-}
-.navbar__cart:hover { color: var(--granate); }
-
-.navbar__cart-badge {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  background: var(--granate);
-  color: var(--white);
-  font-size: .6rem;
-  font-weight: 700;
-  width: 17px;
-  height: 17px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 /* ── Mobile controls ── */
 .navbar__mobile-controls {
@@ -208,8 +182,8 @@
   }
 
   .navbar__links,
-  .navbar__search,
-  .navbar__cart:not(.navbar__cart--mobile) { display: none; }
+
+  .navbar__search { display: none; }
   .navbar__mobile-controls { display: flex; }
 }
 
@@ -226,10 +200,6 @@
   }
 
   .navbar__mobile-search-btn {
-    padding: 6px;
-  }
-
-  .navbar__cart {
     padding: 6px;
   }
 
@@ -251,10 +221,6 @@
   }
 
   .navbar__mobile-search-btn {
-    padding: 4px;
-  }
-
-  .navbar__cart {
     padding: 4px;
   }
 

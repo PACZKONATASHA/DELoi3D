@@ -19,7 +19,7 @@ import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const ORIGEN = 'assets-origen/iluminacion';
-const DESTINO = 'public/iluminacion';
+const DESTINO = 'public/productos/iluminacion';
 const LADO_SWATCH = 128;
 const LINEAS = ['aire', 'mar', 'tierra'];
 

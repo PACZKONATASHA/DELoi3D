@@ -14,7 +14,7 @@ import { mkdir, readdir } from 'node:fs/promises';
 import path from 'node:path';
 
 const ORIGEN = 'assets-origen/momentos';
-const DESTINO = 'public/momentos';
+const DESTINO = 'public/ocasiones';
 const ANCHO = 800;   // la card mide ~300px, con esto sobra para pantallas retina
 
 for (const ocasion of await readdir(ORIGEN)) {

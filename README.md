@@ -1,16 +1,71 @@
-# React + Vite
+# DELoi3D
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tienda de productos impresos en 3D, con venta mayorista. Es un sitio de una sola
+página (React + Vite) sin backend: las consultas salen por WhatsApp.
 
-Currently, two official plugins are available:
+## Cómo se levanta
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev        # servidor de desarrollo
+npm run build      # deja el sitio listo en dist/
+npm run preview    # sirve dist/ para probarlo como en producción
+npm run lint
+```
 
-## React Compiler
+## Dónde está cada cosa
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+src/
+  components/   Piezas que se repiten en varias páginas (barra, pie, hero, visor 360…)
+  pages/        Una carpeta por ruta: Home, Catalog, ProductDetail, Gallery, Mayoristas
+  data/         products.js: el catálogo entero y las fotos de la galería
+  i18n/         translations.js: todos los textos, en español, inglés y chino
+  context/      LanguageContext: el idioma elegido, guardado en el navegador
+  utils/        Armado de links de WhatsApp y medidas de las fotos
+```
 
-## Expanding the ESLint configuration
+Cada componente y cada página llevan su `.css` al lado, con el mismo nombre.
+Los estilos comunes (colores, botones, cards) están en `src/index.css`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Las imágenes
+
+`public/` se publica tal cual, así que la ruta del archivo es la ruta de la web
+(`public/marca/logo.webp` se pide como `/marca/logo.webp`).
+
+```
+public/
+  marca/        Logos: logo.webp para fondo claro, logo-claro.webp para el pie negro
+  hero/         Las tres lámparas que rotan en la portada
+  productos/    Fotos del catálogo, por rubro: iluminacion/, decoracion/, jardineria/
+  ocasiones/    Navidad y Pascua, para la sección de ocasiones del inicio
+  360/          Series numeradas (01.jpg … 36.jpg) para el visor que gira la pieza
+  favicon.svg
+```
+
+Las fotos de producto se procesan con los scripts de `scripts/`, que las toman de
+`assets-origen/` (queda fuera del repo, es la carpeta con los originales pesados):
+
+```bash
+npm run imagenes           # línea de iluminación: fotos + círculos de color
+npm run imagenes:lampara   # las tres lámparas de la portada
+npm run imagenes:logo      # las dos versiones del logo
+npm run imagenes:momentos  # navidad y pascua
+```
+
+## Los textos
+
+Todo lo que se lee en pantalla sale de `src/i18n/translations.js`, nunca escrito
+a mano dentro de un componente. Tres reglas para no romperlo:
+
+- Los tres idiomas llevan las mismas claves y en el mismo orden.
+- Una clave se escribe una sola vez: si se repite, JavaScript se queda con la
+  última y la primera queda muerta sin avisar (`npm run lint` lo detecta).
+- Las secciones del archivo siguen el recorrido de la página, de arriba abajo.
+
+## El catálogo
+
+`src/data/products.js` es la única fuente: de ahí salen el catálogo, los
+destacados del inicio, el buscador de la barra y la galería. Cada producto lleva
+sus colores con el círculo de material (`swatch`), y opcionalmente `turntable`
+para mostrar la vuelta de 360°.

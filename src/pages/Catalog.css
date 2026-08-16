@@ -358,7 +358,6 @@
   font-size: .75rem;
   letter-spacing: 1px;
 }
-.cat-card__btn--added { background: var(--olive); border-color: var(--olive); }
 .cat-card__btn:disabled { background: var(--gray-300); border-color: var(--gray-300); color: var(--gray-700); cursor: not-allowed; }
 
 /* ── Empty ── */

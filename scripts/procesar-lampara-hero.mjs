@@ -18,9 +18,9 @@ import sharp from 'sharp';
 
 // Mismo orden que en HeroSlider.jsx.
 const SLIDES = [
-  { origen: 'assets-origen/hero/lampara-1.png', destino: 'public/hero-lampara-1.webp' },
-  { origen: 'assets-origen/hero/lampara-2.png', destino: 'public/hero-lampara-2.webp' },
-  { origen: 'assets-origen/hero/lampara-3.png', destino: 'public/hero-lampara-3.webp' },
+  { origen: 'assets-origen/hero/lampara-1.png', destino: 'public/hero/lampara-1.webp' },
+  { origen: 'assets-origen/hero/lampara-2.png', destino: 'public/hero/lampara-2.webp' },
+  { origen: 'assets-origen/hero/lampara-3.png', destino: 'public/hero/lampara-3.webp' },
 ];
 
 const ALTO_LAMPARA = 900;              // alto final de la lampara en las tres

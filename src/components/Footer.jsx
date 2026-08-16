@@ -24,7 +24,7 @@ export default function Footer() {
           <div className="footer__brand">
             {/* El pie es negro: va la version con el texto en blanco. */}
             <div className="footer__logo">
-              <img src="/logo-claro.webp" alt="DELoi3D" className="footer__logo-img" />
+              <img src="/marca/logo-claro.webp" alt="DELoi3D" className="footer__logo-img" />
             </div>
             <p className="footer__desc">
               Unique products made to order with high quality 3D printing. Personalized gifts, decor and much more.

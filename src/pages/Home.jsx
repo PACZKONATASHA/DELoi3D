@@ -13,19 +13,19 @@ import './Home.css';
 // Foto de portada de cada categoria del carrusel del home.
 const CATEGORY_IMAGES = {
   // Iluminacion
-  'aire': '/iluminacion/aire/aire-rosa.jpg',
-  'mar': '/iluminacion/mar/mar-azul.jpg',
-  'tierra': '/iluminacion/tierra/tierra-marron.jpg',
+  'aire': '/productos/iluminacion/aire/aire-rosa.jpg',
+  'mar': '/productos/iluminacion/mar/mar-azul.jpg',
+  'tierra': '/productos/iluminacion/tierra/tierra-marron.jpg',
   // Decoracion
-  'bandejas': '/decoracion/bandejas/bandeja-oval.webp',
-  'floreros': '/decoracion/floreros/florero-terracota.png',
-  'porta-difusores': '/decoracion/porta-difusores/cobre.webp',
+  'bandejas': '/productos/decoracion/bandejas/bandeja-oval.webp',
+  'floreros': '/productos/decoracion/floreros/florero-terracota.png',
+  'porta-difusores': '/productos/decoracion/porta-difusores/cobre.webp',
   // Jardineria
-  'macetas': '/jardineria/macetas/maceta-redonda.png',
-  'tutores': '/jardineria/tutores/tutor-floral.webp',
+  'macetas': '/productos/jardineria/macetas/maceta-redonda.png',
+  'tutores': '/productos/jardineria/tutores/tutor-floral.webp',
 };
 
-const CATEGORY_IMAGE_FALLBACK = '/iluminacion/mar/mar-azul.jpg';
+const CATEGORY_IMAGE_FALLBACK = '/productos/iluminacion/mar/mar-azul.jpg';
 
 // Fotos propias del cliente, procesadas por scripts/procesar-momentos.mjs.
 // El color de cada pieza es el que se ve en la foto: el resto de los colores
@@ -37,19 +37,19 @@ const OCCASIONS = [
     key: 'navidad',
     label: 'Navidad',
     items: [
-      { img: '/momentos/navidad/1.webp', name: 'Ciervo Navideño', colors: ['#A08D80'] },
-      { img: '/momentos/navidad/2.webp', name: 'Estrella para el Árbol', colors: ['#F2EDE2'] },
-      { img: '/momentos/navidad/3.webp', name: 'Muñeco de Nieve', colors: ['#F5F2EA', '#8DA07A'] },
-      { img: '/momentos/navidad/4.webp', name: 'Árbol Navideño', colors: ['#8FA37B'] },
+      { img: '/ocasiones/navidad/1.webp', name: 'Ciervo Navideño', colors: ['#A08D80'] },
+      { img: '/ocasiones/navidad/2.webp', name: 'Estrella para el Árbol', colors: ['#F2EDE2'] },
+      { img: '/ocasiones/navidad/3.webp', name: 'Muñeco de Nieve', colors: ['#F5F2EA', '#8DA07A'] },
+      { img: '/ocasiones/navidad/4.webp', name: 'Árbol Navideño', colors: ['#8FA37B'] },
     ],
   },
   {
     key: 'pascua',
     label: 'Pascua',
     items: [
-      { img: '/momentos/pascua/1.webp', name: 'Conejo Florero Lila', colors: ['#C7C3E2'] },
-      { img: '/momentos/pascua/2.webp', name: 'Conejo Florero Marfil', colors: ['#EBE5D7'] },
-      { img: '/momentos/pascua/3.webp', name: 'Porta Huevo Conejo', colors: ['#2FA84F'] },
+      { img: '/ocasiones/pascua/1.webp', name: 'Conejo Florero Lila', colors: ['#C7C3E2'] },
+      { img: '/ocasiones/pascua/2.webp', name: 'Conejo Florero Marfil', colors: ['#EBE5D7'] },
+      { img: '/ocasiones/pascua/3.webp', name: 'Porta Huevo Conejo', colors: ['#2FA84F'] },
     ],
   },
 ];
@@ -347,42 +347,5 @@ function FeaturedCard({ product, navigate, t }) {
         </button>
       </div>
     </article>
-  );
-}
-
-function ProductCard({ product, navigate, t }) {
-  return (
-    <div className="product-card card" onClick={() => navigate(`/producto/${product.slug}`)}>
-      <div className="product-card__img-wrap">
-        <img
-          src={product.images[0]}
-          srcSet={srcSetFor(product.images[0])}
-          sizes={IMG_SIZES.card}
-          alt={product.name}
-          className="product-card__img"
-          loading="lazy"
-        />
-        <span className="product-card__badge">{t('destacado')}</span>
-        {!product.inStock && <span className="product-card__stock">{t('sinStock')}</span>}
-      </div>
-      <div className="product-card__body">
-        <h3 className="product-card__name">{product.name}</h3>
-        {product.colors && (
-          <div className="product-card__colors">
-            {product.colors.slice(0, 5).map((c, i) => (
-              <span key={i} className="product-card__color" style={{ background: c.hex }} title={c.name} />
-            ))}
-          </div>
-        )}
-        <div className="product-card__actions">
-          <button
-            className="btn btn-primary product-card__btn"
-            onClick={(e) => { e.stopPropagation(); navigate(`/producto/${product.slug}`); }}
-          >
-            {t('ver')}
-          </button>
-        </div>
-      </div>
-    </div>
   );
 }

@@ -69,7 +69,7 @@ export default function Navbar() {
         {/* Logo del cliente. La barra es blanca, asi que va la version normal
             (en el pie, que es negro, va logo-claro.webp). */}
         <Link to="/" className="navbar__logo">
-          <img src="/logo.webp" alt="DELoi3D" className="navbar__logo-img" />
+          <img src="/marca/logo.webp" alt="DELoi3D" className="navbar__logo-img" />
         </Link>
 
         {/* Desktop nav */}

@@ -1,4 +1,4 @@
-// Las fotos propias (public/iluminacion/, generadas por
+// Las fotos propias (public/productos/iluminacion/, generadas por
 // scripts/procesar-iluminacion.mjs) son un archivo por foto: no hay copias en
 // varios anchos, asi que no llevan srcSet y el <img> usa solo src. Se adaptan
 // igual a la pantalla porque el CSS las escala al ancho del contenedor.

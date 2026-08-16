@@ -8,9 +8,9 @@ import './HeroSlider.css';
 // del mismo tamaño y en el mismo lienzo para que ninguna se vea mas grande que
 // las otras al pasar de una a la otra.
 const SLIDES = [
-  { src: '/hero-lampara-1.webp', alt: 'Lámpara 3D plisada azul noche' },
-  { src: '/hero-lampara-2.webp', alt: 'Lámpara 3D acanalada color terracota' },
-  { src: '/hero-lampara-3.webp', alt: 'Lámpara 3D calada negra con detalle azul' },
+  { src: '/hero/lampara-1.webp', alt: 'Lámpara 3D plisada azul noche' },
+  { src: '/hero/lampara-2.webp', alt: 'Lámpara 3D acanalada color terracota' },
+  { src: '/hero/lampara-3.webp', alt: 'Lámpara 3D calada negra con detalle azul' },
 ];
 
 const INTERVAL = 4500;

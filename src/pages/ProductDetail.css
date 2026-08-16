@@ -280,7 +280,6 @@
   color: var(--dark);
   margin-bottom: 4px;
 }
-.pd-related-card__body .price { font-size: .9rem; }
 
 /* ── Not found ── */
 .not-found {

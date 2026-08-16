@@ -64,11 +64,11 @@ export const products = [
     slug: 'lampara-aire',
     category: 'aire',
     images: [
-      '/iluminacion/aire/aire-rosa.jpg',
-      '/iluminacion/aire/aire-violeta.jpg',
-      '/iluminacion/aire/aire-purpura.jpg',
-      '/iluminacion/aire/aire-negro.jpg',
-      '/iluminacion/aire/aire-colores.jpg',
+      '/productos/iluminacion/aire/aire-rosa.jpg',
+      '/productos/iluminacion/aire/aire-violeta.jpg',
+      '/productos/iluminacion/aire/aire-purpura.jpg',
+      '/productos/iluminacion/aire/aire-negro.jpg',
+      '/productos/iluminacion/aire/aire-colores.jpg',
     ],
     description: 'Lámpara de mesa con pantalla cilíndrica calada de textura tramada. La luz atraviesa los miles de perforaciones y proyecta un manto de puntos sobre la mesa y la pared. Impresa en PLA Eco-Friendly, disponible en rosa, violeta, púrpura y negro, con luz LED de bajo consumo.',
     size: '14 cm',
@@ -78,18 +78,18 @@ export const products = [
     // Vuelta de 360 grados: son fotos numeradas (01.jpg .. 36.jpg), no el
     // modelo 3D, asi que el STL nunca viaja al navegador. Es opcional: el
     // producto que no la tiene no muestra la seccion.
-    // OJO: por ahora apunta a la carpeta demo-360, que es una pieza de prueba.
+    // OJO: por ahora apunta a public/360/demo/, que es una pieza de prueba.
     // Cuando lleguen los renders del cliente, cambiar esta ruta.
-    turntable: { base: '/models/demo-360/', cantidad: 36, ext: 'jpg' },
+    turntable: { base: '/360/demo/', cantidad: 36, ext: 'jpg' },
     // El hex es el promedio real de la captura (ver scripts/colores-detectados.json)
     // y solo se usa de respaldo mientras el swatch carga.
     // `imageNight` es la misma lampara prendida a oscuras: es opcional, y el
     // color que no la tenga simplemente no muestra el boton de prender.
     colors: [
-      { name: 'Rosa', hex: '#BE7682', swatch: '/iluminacion/aire/swatch-rosa.jpg', image: '/iluminacion/aire/aire-rosa.jpg' },
-      { name: 'Violeta', hex: '#8669CE', swatch: '/iluminacion/aire/swatch-violeta.jpg', image: '/iluminacion/aire/aire-violeta.jpg' },
-      { name: 'Púrpura', hex: '#1D1334', swatch: '/iluminacion/aire/swatch-purpura.jpg', image: '/iluminacion/aire/aire-purpura.jpg', imageNight: '/iluminacion/aire/aire-purpura-encendida.jpg' },
-      { name: 'Negro', hex: '#172128', swatch: '/iluminacion/aire/swatch-negro.jpg', image: '/iluminacion/aire/aire-negro.jpg' },
+      { name: 'Rosa', hex: '#BE7682', swatch: '/productos/iluminacion/aire/swatch-rosa.jpg', image: '/productos/iluminacion/aire/aire-rosa.jpg' },
+      { name: 'Violeta', hex: '#8669CE', swatch: '/productos/iluminacion/aire/swatch-violeta.jpg', image: '/productos/iluminacion/aire/aire-violeta.jpg' },
+      { name: 'Púrpura', hex: '#1D1334', swatch: '/productos/iluminacion/aire/swatch-purpura.jpg', image: '/productos/iluminacion/aire/aire-purpura.jpg', imageNight: '/productos/iluminacion/aire/aire-purpura-encendida.jpg' },
+      { name: 'Negro', hex: '#172128', swatch: '/productos/iluminacion/aire/swatch-negro.jpg', image: '/productos/iluminacion/aire/aire-negro.jpg' },
     ],
   },
   {
@@ -98,12 +98,12 @@ export const products = [
     slug: 'lampara-mar',
     category: 'mar',
     images: [
-      '/iluminacion/mar/mar-azul.jpg',
-      '/iluminacion/mar/mar-negro.jpg',
-      '/iluminacion/mar/mar-gris.jpg',
-      '/iluminacion/mar/mar-plata.jpg',
-      '/iluminacion/mar/mar-blanco.jpg',
-      '/iluminacion/mar/mar-colores.jpg',
+      '/productos/iluminacion/mar/mar-azul.jpg',
+      '/productos/iluminacion/mar/mar-negro.jpg',
+      '/productos/iluminacion/mar/mar-gris.jpg',
+      '/productos/iluminacion/mar/mar-plata.jpg',
+      '/productos/iluminacion/mar/mar-blanco.jpg',
+      '/productos/iluminacion/mar/mar-colores.jpg',
     ],
     description: 'Lámpara de mesa con pantalla cónica estriada de estilo nórdico. Su plisado marca la luz y crea un juego de sombras suave sobre la mesa. Impresa en PLA Eco-Friendly, disponible en la gama azul, gris y neutros, con luz LED de bajo consumo.',
     size: '16 cm',
@@ -111,11 +111,11 @@ export const products = [
     featured: true,
     inStock: true,
     colors: [
-      { name: 'Azul marino', hex: '#222D50', swatch: '/iluminacion/mar/swatch-azul.jpg', image: '/iluminacion/mar/mar-azul.jpg' },
-      { name: 'Negro', hex: '#1F1F2B', swatch: '/iluminacion/mar/swatch-negro.jpg', image: '/iluminacion/mar/mar-negro.jpg' },
-      { name: 'Gris', hex: '#717075', swatch: '/iluminacion/mar/swatch-gris.jpg', image: '/iluminacion/mar/mar-gris.jpg' },
-      { name: 'Plata', hex: '#949090', swatch: '/iluminacion/mar/swatch-plata.jpg', image: '/iluminacion/mar/mar-plata.jpg' },
-      { name: 'Blanco', hex: '#DAD9DF', swatch: '/iluminacion/mar/swatch-blanco.jpg', image: '/iluminacion/mar/mar-blanco.jpg' },
+      { name: 'Azul marino', hex: '#222D50', swatch: '/productos/iluminacion/mar/swatch-azul.jpg', image: '/productos/iluminacion/mar/mar-azul.jpg' },
+      { name: 'Negro', hex: '#1F1F2B', swatch: '/productos/iluminacion/mar/swatch-negro.jpg', image: '/productos/iluminacion/mar/mar-negro.jpg' },
+      { name: 'Gris', hex: '#717075', swatch: '/productos/iluminacion/mar/swatch-gris.jpg', image: '/productos/iluminacion/mar/mar-gris.jpg' },
+      { name: 'Plata', hex: '#949090', swatch: '/productos/iluminacion/mar/swatch-plata.jpg', image: '/productos/iluminacion/mar/mar-plata.jpg' },
+      { name: 'Blanco', hex: '#DAD9DF', swatch: '/productos/iluminacion/mar/swatch-blanco.jpg', image: '/productos/iluminacion/mar/mar-blanco.jpg' },
     ],
   },
   {
@@ -124,11 +124,11 @@ export const products = [
     slug: 'lampara-tierra',
     category: 'tierra',
     images: [
-      '/iluminacion/tierra/tierra-marron.jpg',
-      '/iluminacion/tierra/tierra-dorado.jpg',
-      '/iluminacion/tierra/tierra-durazno.jpg',
-      '/iluminacion/tierra/tierra-blanco.jpg',
-      '/iluminacion/tierra/tierra-colores.jpg',
+      '/productos/iluminacion/tierra/tierra-marron.jpg',
+      '/productos/iluminacion/tierra/tierra-dorado.jpg',
+      '/productos/iluminacion/tierra/tierra-durazno.jpg',
+      '/productos/iluminacion/tierra/tierra-blanco.jpg',
+      '/productos/iluminacion/tierra/tierra-colores.jpg',
     ],
     description: 'Lámpara de mesa con pantalla esférica estriada de líneas suaves y cálidas. La textura acanalada filtra la luz y genera un ambiente íntimo, ideal para living, dormitorio o mesa de luz. Impresa en PLA Eco-Friendly, con base a tono y luz LED cálida.',
     size: '18 cm',
@@ -136,10 +136,10 @@ export const products = [
     featured: true,
     inStock: true,
     colors: [
-      { name: 'Marrón tierra', hex: '#5B3225', swatch: '/iluminacion/tierra/swatch-marron.jpg', image: '/iluminacion/tierra/tierra-marron.jpg' },
-      { name: 'Dorado', hex: '#BEA742', swatch: '/iluminacion/tierra/swatch-dorado.jpg', image: '/iluminacion/tierra/tierra-dorado.jpg' },
-      { name: 'Durazno', hex: '#CBA58E', swatch: '/iluminacion/tierra/swatch-durazno.jpg', image: '/iluminacion/tierra/tierra-durazno.jpg' },
-      { name: 'Blanco', hex: '#CECCC8', swatch: '/iluminacion/tierra/swatch-blanco.jpg', image: '/iluminacion/tierra/tierra-blanco.jpg' },
+      { name: 'Marrón tierra', hex: '#5B3225', swatch: '/productos/iluminacion/tierra/swatch-marron.jpg', image: '/productos/iluminacion/tierra/tierra-marron.jpg' },
+      { name: 'Dorado', hex: '#BEA742', swatch: '/productos/iluminacion/tierra/swatch-dorado.jpg', image: '/productos/iluminacion/tierra/tierra-dorado.jpg' },
+      { name: 'Durazno', hex: '#CBA58E', swatch: '/productos/iluminacion/tierra/swatch-durazno.jpg', image: '/productos/iluminacion/tierra/tierra-durazno.jpg' },
+      { name: 'Blanco', hex: '#CECCC8', swatch: '/productos/iluminacion/tierra/swatch-blanco.jpg', image: '/productos/iluminacion/tierra/tierra-blanco.jpg' },
     ],
   },
 
@@ -150,7 +150,7 @@ export const products = [
     slug: 'bandeja-oval',
     category: 'bandejas',
     images: [
-      '/decoracion/bandejas/bandeja-oval.webp',
+      '/productos/decoracion/bandejas/bandeja-oval.webp',
     ],
     description: 'Bandeja oval de borde bajo, pensada como base para porta difusores, velas o perfumes. Ordena el conjunto y suma una terminación prolija sobre la mesa, el aparador o el baño. Disponible en tres medidas y en blanco, negro y arena.',
     size: '24 cm',
@@ -169,7 +169,7 @@ export const products = [
     slug: 'bandeja-rectangular',
     category: 'bandejas',
     images: [
-      '/decoracion/bandejas/bandeja-rectangular.webp',
+      '/productos/decoracion/bandejas/bandeja-rectangular.webp',
     ],
     description: 'Bandeja rectangular de líneas rectas y perfil bajo, ideal para mesas de luz y estantes angostos. Sirve para apoyar difusores con sus varillas, joyas o artículos de baño. Disponible en blanco, negro, gris y beige.',
     size: '26 cm',
@@ -189,7 +189,7 @@ export const products = [
     slug: 'florero-espiga',
     category: 'floreros',
     images: [
-      '/decoracion/floreros/florero-blanco.png',
+      '/productos/decoracion/floreros/florero-blanco.png',
     ],
     description: 'Florero de silueta redondeada con espigas y ondas en relieve. Un clásico de mesa que funciona con flores secas, ramas o solo como pieza decorativa. Impreso en PLA Eco-Friendly con terminación mate.',
     size: '22 cm',
@@ -209,7 +209,7 @@ export const products = [
     slug: 'florero-facetado',
     category: 'floreros',
     images: [
-      '/decoracion/floreros/florero-negro.png',
+      '/productos/decoracion/floreros/florero-negro.png',
     ],
     description: 'Florero de caras geométricas y boca angosta, de estilo moderno y presencia fuerte. Ideal para una sola flor o un ramo chico, sobre una bandeja o una mesa de entrada.',
     size: '16 cm',
@@ -229,7 +229,7 @@ export const products = [
     slug: 'florero-onda',
     category: 'floreros',
     images: [
-      '/decoracion/floreros/florero-terracota.png',
+      '/productos/decoracion/floreros/florero-terracota.png',
     ],
     description: 'Florero alto de silueta ondulada y textura estriada en toda su altura. Sostiene bien los ramos de flores secas y aporta volumen a la mesa. Impreso en PLA Eco-Friendly, se destaca en terracota.',
     size: '25 cm',
@@ -250,9 +250,9 @@ export const products = [
     category: 'porta-difusores',
     offer: 10,
     images: [
-      '/decoracion/porta-difusores/cobre.webp',
-      '/decoracion/porta-difusores/marmol.webp',
-      '/decoracion/porta-difusores/negro.webp',
+      '/productos/decoracion/porta-difusores/cobre.webp',
+      '/productos/decoracion/porta-difusores/marmol.webp',
+      '/productos/decoracion/porta-difusores/negro.webp',
     ],
     description: 'Porta difusor con espiral marcada en toda la pieza, la textura que más juego hace con la luz. Se usa con varillas de fibra y esencia, y combina con las bandejas y las varillas decorativas de la línea. Disponible en cobre, mármol, negro y blanco mate.',
     size: '20 cm',
@@ -261,9 +261,9 @@ export const products = [
     inStock: true,
     colors: [
       // Los tres primeros tienen foto propia; el blanco todavia no.
-      { name: 'Cobre', hex: '#B87333', image: '/decoracion/porta-difusores/cobre.webp' },
-      { name: 'Mármol', hex: '#E7E1D5', image: '/decoracion/porta-difusores/marmol.webp' },
-      { name: 'Negro', hex: '#1A1A1A', image: '/decoracion/porta-difusores/negro.webp' },
+      { name: 'Cobre', hex: '#B87333', image: '/productos/decoracion/porta-difusores/cobre.webp' },
+      { name: 'Mármol', hex: '#E7E1D5', image: '/productos/decoracion/porta-difusores/marmol.webp' },
+      { name: 'Negro', hex: '#1A1A1A', image: '/productos/decoracion/porta-difusores/negro.webp' },
       { name: 'Blanco', hex: '#F5F5F5' },
     ],
   },
@@ -273,7 +273,7 @@ export const products = [
     slug: 'porta-difusor-plisado',
     category: 'porta-difusores',
     images: [
-      '/decoracion/porta-difusores/blanco.webp',
+      '/productos/decoracion/porta-difusores/blanco.webp',
     ],
     description: 'Porta difusor de plisado horizontal y boca angosta, de aire nórdico. Su terminación mate lo hace ideal para ambientes claros: living, baño o mesa de entrada. Se puede acompañar con las varillas decorativas de la línea.',
     size: '18 cm',
@@ -293,7 +293,7 @@ export const products = [
     slug: 'porta-difusor-cairo',
     category: 'porta-difusores',
     images: [
-      '/decoracion/porta-difusores/negro.webp',
+      '/productos/decoracion/porta-difusores/negro.webp',
     ],
     description: 'Porta difusor de caras geométricas, la versión más sobria de la línea. Combina con el modelo Nilo para armar un dúo sobre la bandeja. Disponible en negro, blanco y gris.',
     size: '18 cm',
@@ -315,7 +315,7 @@ export const products = [
     category: 'macetas',
     offer: 20,
     images: [
-      '/jardineria/macetas/maceta-redonda.png',
+      '/productos/jardineria/macetas/maceta-redonda.png',
     ],
     description: 'Maceta cilíndrica con estrías verticales y plato a tono incluido. Pensada para plantas de interior chicas y medianas, con drenaje en la base. Impresa en PLA Eco-Friendly.',
     size: '14 cm',
@@ -337,7 +337,7 @@ export const products = [
     category: 'macetas',
     offer: 20,
     images: [
-      '/jardineria/macetas/maceta-cuadrada.png',
+      '/productos/jardineria/macetas/maceta-cuadrada.png',
     ],
     description: 'Maceta cuadrada de esquinas redondeadas y estrías verticales. Ideal para suculentas y cactus, o para agrupar varias sobre un estante. Impresa en PLA Eco-Friendly, con drenaje en la base.',
     size: '12 cm',
@@ -358,7 +358,7 @@ export const products = [
     slug: 'tutor-floral',
     category: 'tutores',
     images: [
-      '/jardineria/tutores/tutor-floral.webp',
+      '/productos/jardineria/tutores/tutor-floral.webp',
     ],
     description: 'Tutor decorativo con forma de rama florecida para acompañar plantas de maceta. Se clava en la tierra y guía el tallo sin que se note el soporte. También se usa como varilla decorativa dentro de un porta difusor. Disponible en negro, verde, blanco y beige.',
     size: '30 cm',
@@ -378,7 +378,7 @@ export const products = [
     slug: 'tutor-luto',
     category: 'tutores',
     images: [
-      '/jardineria/tutores/tutor-luto.webp',
+      '/productos/jardineria/tutores/tutor-luto.webp',
     ],
     description: 'Tutor Luto, con hoja calada de tallo largo y fino. Aporta altura a las macetas chicas y también queda muy bien como varilla decorativa en floreros y porta difusores. Disponible en beige, blanco, verde y negro.',
     size: '28 cm',
@@ -398,28 +398,28 @@ export const galleryImages = [
   // Iluminación
   // Solo fotos cuadradas: la grilla recorta a 1:1 y las grupales (apaisadas)
   // perderian las lamparas de los costados.
-  { id: 1, src: '/iluminacion/aire/aire-rosa.jpg', alt: 'Lámpara Aire en rosa', category: 'aire' },
-  { id: 2, src: '/iluminacion/aire/aire-violeta.jpg', alt: 'Lámpara Aire en violeta', category: 'aire' },
-  { id: 3, src: '/iluminacion/aire/aire-purpura.jpg', alt: 'Lámpara Aire en púrpura', category: 'aire' },
-  { id: 4, src: '/iluminacion/mar/mar-azul.jpg', alt: 'Lámpara Mar en azul marino', category: 'mar' },
-  { id: 5, src: '/iluminacion/mar/mar-plata.jpg', alt: 'Lámpara Mar en plata', category: 'mar' },
-  { id: 6, src: '/iluminacion/mar/mar-blanco.jpg', alt: 'Lámpara Mar en blanco', category: 'mar' },
-  { id: 7, src: '/iluminacion/tierra/tierra-marron.jpg', alt: 'Lámpara Tierra en marrón', category: 'tierra' },
-  { id: 21, src: '/iluminacion/tierra/tierra-dorado.jpg', alt: 'Lámpara Tierra en dorado', category: 'tierra' },
-  { id: 22, src: '/iluminacion/tierra/tierra-durazno.jpg', alt: 'Lámpara Tierra en durazno', category: 'tierra' },
+  { id: 1, src: '/productos/iluminacion/aire/aire-rosa.jpg', alt: 'Lámpara Aire en rosa', category: 'aire' },
+  { id: 2, src: '/productos/iluminacion/aire/aire-violeta.jpg', alt: 'Lámpara Aire en violeta', category: 'aire' },
+  { id: 3, src: '/productos/iluminacion/aire/aire-purpura.jpg', alt: 'Lámpara Aire en púrpura', category: 'aire' },
+  { id: 4, src: '/productos/iluminacion/mar/mar-azul.jpg', alt: 'Lámpara Mar en azul marino', category: 'mar' },
+  { id: 5, src: '/productos/iluminacion/mar/mar-plata.jpg', alt: 'Lámpara Mar en plata', category: 'mar' },
+  { id: 6, src: '/productos/iluminacion/mar/mar-blanco.jpg', alt: 'Lámpara Mar en blanco', category: 'mar' },
+  { id: 7, src: '/productos/iluminacion/tierra/tierra-marron.jpg', alt: 'Lámpara Tierra en marrón', category: 'tierra' },
+  { id: 21, src: '/productos/iluminacion/tierra/tierra-dorado.jpg', alt: 'Lámpara Tierra en dorado', category: 'tierra' },
+  { id: 22, src: '/productos/iluminacion/tierra/tierra-durazno.jpg', alt: 'Lámpara Tierra en durazno', category: 'tierra' },
   // Decoración
-  { id: 8, src: '/decoracion/bandejas/bandeja-oval.webp', alt: 'Bandeja oval', category: 'bandejas' },
-  { id: 9, src: '/decoracion/bandejas/bandeja-rectangular.webp', alt: 'Bandeja rectangular', category: 'bandejas' },
-  { id: 10, src: '/decoracion/floreros/florero-blanco.png', alt: 'Florero Espiga', category: 'floreros' },
-  { id: 11, src: '/decoracion/floreros/florero-negro.png', alt: 'Florero Facetado', category: 'floreros' },
-  { id: 12, src: '/decoracion/floreros/florero-terracota.png', alt: 'Florero Onda', category: 'floreros' },
-  { id: 13, src: '/decoracion/porta-difusores/cobre.webp', alt: 'Porta Difusor Nilo en cobre', category: 'porta-difusores' },
-  { id: 14, src: '/decoracion/porta-difusores/marmol.webp', alt: 'Porta Difusor Nilo en mármol', category: 'porta-difusores' },
-  { id: 15, src: '/decoracion/porta-difusores/blanco.webp', alt: 'Porta Difusor Plisado', category: 'porta-difusores' },
-  { id: 16, src: '/decoracion/porta-difusores/negro.webp', alt: 'Porta Difusores en negro', category: 'porta-difusores' },
+  { id: 8, src: '/productos/decoracion/bandejas/bandeja-oval.webp', alt: 'Bandeja oval', category: 'bandejas' },
+  { id: 9, src: '/productos/decoracion/bandejas/bandeja-rectangular.webp', alt: 'Bandeja rectangular', category: 'bandejas' },
+  { id: 10, src: '/productos/decoracion/floreros/florero-blanco.png', alt: 'Florero Espiga', category: 'floreros' },
+  { id: 11, src: '/productos/decoracion/floreros/florero-negro.png', alt: 'Florero Facetado', category: 'floreros' },
+  { id: 12, src: '/productos/decoracion/floreros/florero-terracota.png', alt: 'Florero Onda', category: 'floreros' },
+  { id: 13, src: '/productos/decoracion/porta-difusores/cobre.webp', alt: 'Porta Difusor Nilo en cobre', category: 'porta-difusores' },
+  { id: 14, src: '/productos/decoracion/porta-difusores/marmol.webp', alt: 'Porta Difusor Nilo en mármol', category: 'porta-difusores' },
+  { id: 15, src: '/productos/decoracion/porta-difusores/blanco.webp', alt: 'Porta Difusor Plisado', category: 'porta-difusores' },
+  { id: 16, src: '/productos/decoracion/porta-difusores/negro.webp', alt: 'Porta Difusores en negro', category: 'porta-difusores' },
   // Jardinería
-  { id: 17, src: '/jardineria/macetas/maceta-redonda.png', alt: 'Maceta Redonda Estriada', category: 'macetas' },
-  { id: 18, src: '/jardineria/macetas/maceta-cuadrada.png', alt: 'Maceta Cuadrada Estriada', category: 'macetas' },
-  { id: 19, src: '/jardineria/tutores/tutor-floral.webp', alt: 'Tutor Floral', category: 'tutores' },
-  { id: 20, src: '/jardineria/tutores/tutor-luto.webp', alt: 'Tutor Luto', category: 'tutores' },
+  { id: 17, src: '/productos/jardineria/macetas/maceta-redonda.png', alt: 'Maceta Redonda Estriada', category: 'macetas' },
+  { id: 18, src: '/productos/jardineria/macetas/maceta-cuadrada.png', alt: 'Maceta Cuadrada Estriada', category: 'macetas' },
+  { id: 19, src: '/productos/jardineria/tutores/tutor-floral.webp', alt: 'Tutor Floral', category: 'tutores' },
+  { id: 20, src: '/productos/jardineria/tutores/tutor-luto.webp', alt: 'Tutor Luto', category: 'tutores' },
 ];
