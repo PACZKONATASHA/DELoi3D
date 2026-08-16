@@ -22,7 +22,6 @@ DirectoryIndex index.html
   AddType image/webp .webp
   AddType image/svg+xml .svg
   AddType application/javascript .js
-  AddType model/stl .stl
 </IfModule>
 
 # Compresión (hace que el sitio cargue bastante más rápido)

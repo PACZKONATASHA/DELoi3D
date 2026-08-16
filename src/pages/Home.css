@@ -292,15 +292,19 @@
 }
 
 /* Boton celeste con brillo, en la linea del "Explorar catalogo" del hero.
-   Va con doble clase para ganarle al granate que trae .btn-primary. */
+   Va con doble clase para ganarle al granate que trae .btn-primary.
+   La medida es la misma que la del "Explorar catalogo" (HeroSlider.css):
+   mismo padding, misma letra, mismo tracking, mismo interlineado y mismo
+   grosor de borde, para que los dos botones midan igual de alto. */
 .feat-card .feat-card__btn {
-  padding: 12px 32px;
-  font-size: .8rem;
+  padding: 13px 28px;
+  font-size: .75rem;
   letter-spacing: 1.5px;
+  line-height: 1.6;
   white-space: nowrap;
   background: linear-gradient(180deg, #2CC1E0 0%, var(--celeste) 55%, #0090B5 100%);
   color: var(--white);
-  border: 1px solid rgba(255, 255, 255, .3);
+  border: 1.5px solid rgba(255, 255, 255, .3);
   border-radius: 10px;
   box-shadow:
     0 6px 18px rgba(0, 169, 206, .45),
@@ -627,6 +631,14 @@
   .banner__inner { flex-direction: column; align-items: flex-start; }
   /* Sin height fijo: manda el aspect-ratio, asi la foto nunca se recorta. */
   .category-card { flex: 0 0 clamp(150px, 42vw, 200px); }
+
+  /* El "ver" baja de medida en el mismo ancho que el "Explorar catalogo",
+     asi los dos siguen midiendo igual al pasar a celular. */
+  .feat-card .feat-card__btn {
+    padding: 10px 20px;
+    font-size: .68rem;
+    letter-spacing: 1px;
+  }
 }
 
 /* ── Mobile: feature cards ONE per row ── */
@@ -649,6 +661,9 @@
   .shipping-card__title { font-size: .9rem; margin-bottom: 8px; }
   .shipping-card__desc { font-size: .8rem; margin-bottom: 12px; }
   .btn-sm { padding: 8px 12px; font-size: .75rem; }
+
+  /* Segundo escalon, otra vez a la par del "Explorar catalogo". */
+  .feat-card .feat-card__btn { padding: 9px 16px; font-size: .65rem; }
 }
 
 /* Mantener 2 columnas incluso en pantallas muy pequeñas */
@@ -674,17 +689,10 @@
   .feat-card__desc { font-size: .82rem; -webkit-line-clamp: 2; margin-bottom: 12px; }
   .feat-card__colors { margin-bottom: 10px; }
 
-  /* ── Botones de las secciones, mas chicos en el celular ──
-     El "ver" copia la medida del "ver galeria" del hero (HeroSlider.css,
-     bloque de 768px): mismo padding, misma letra y mismo tracking.
-     Va centrado; el cuerpo de la card alinea todo a la izquierda, asi que
-     se despega con align-self. */
-  .feat-card .feat-card__btn {
-    padding: 10px 20px;
-    font-size: .68rem;
-    letter-spacing: 1px;
-    align-self: center;
-  }
+  /* La medida del "ver" ya viene del bloque de 768px, igual que la del
+     "Explorar catalogo". Aca solo se centra: con la card apilada, el cuerpo
+     alinea todo a la izquierda y el boton se despega con align-self. */
+  .feat-card .feat-card__btn { align-self: center; }
 
   /* Solapas de navidad / pascua */
   .occ-tab { padding: 9px 20px; font-size: .66rem; letter-spacing: .8px; }
@@ -716,8 +724,7 @@
 @media (max-width: 400px) {
   .occasions__grid { gap: 8px; }
   /* El "ver" se queda angosto: antes iba al 100% y cruzaba toda la card.
-     La medida sigue siendo la del "ver galeria" del hero, que en pantallas
-     chicas tambien baja un escalon. */
-  .feat-card .feat-card__btn { width: auto; padding: 9px 16px; font-size: .65rem; }
+     La medida ya baja un escalon en el bloque de 480px, a la par del hero. */
+  .feat-card .feat-card__btn { width: auto; }
   .occ-card__name { font-size: .74rem; }
 }
