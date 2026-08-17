@@ -6,8 +6,6 @@ import { products, categories, lightingGroups } from '../data/products';
 import { srcSetFor, IMG_SIZES } from '../utils/images';
 import { whatsappLink } from '../utils/whatsapp';
 import HeroSlider from '../components/HeroSlider';
-import ReviewsCarousel from '../components/ReviewsCarousel';
-import LocationMap from '../components/LocationMap';
 import './Home.css';
 
 // Foto de portada de cada categoria del carrusel del home.
@@ -255,7 +253,7 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="shipping-card__title">{t('interior')}</h3>
-              <p className="shipping-card__desc">Andreani / {t('conCosto')}</p>
+              <p className="shipping-card__desc">Andreani · Vía Cargo / {t('conCosto')}</p>
             </div>
             <div className="shipping-card">
               <div className="shipping-card__icon">
@@ -277,11 +275,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Reviews Carousel ── */}
-      <ReviewsCarousel />
-
-      {/* ── Location Map ── */}
-      <LocationMap />
+      {/* La ubicacion y las opiniones se mudaron a /contacto: son las dos
+          secciones de esa pagina. */}
 
       {/* ── Banner mayorista ── */}
       <section className="banner">

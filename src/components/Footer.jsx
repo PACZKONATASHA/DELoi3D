@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Clock } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { DIRECCION } from '../data/ubicacion';
 import './Footer.css';
 
 function InstagramIcon() {
@@ -39,6 +40,7 @@ export default function Footer() {
               <li><Link to="/catalogo">{t('catalogo')}</Link></li>
               <li><Link to="/galeria">{t('galeria')}</Link></li>
               <li><Link to="/mayoristas">{t('mayorista')}</Link></li>
+              <li><Link to="/contacto">{t('contacto')}</Link></li>
             </ul>
           </div>
 
@@ -48,7 +50,7 @@ export default function Footer() {
             <ul className="footer__info">
               <li>
                 <MapPin size={14} />
-                <span>Av. General Eutaquio Frías 3354, Buenos Aires, Argentina</span>
+                <span>{DIRECCION}</span>
               </li>
               <li>
                 <Clock size={14} />

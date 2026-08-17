@@ -93,7 +93,9 @@ export const translations = {
     dias: 'días',
     horas: 'horas',
 
-    // ── Ubicacion y horarios ──
+    // ── Pagina de contacto: ubicacion y horarios ──
+    contactoTitulo: 'Contacto',
+    contactoDesc: 'Dónde encontrarnos, en qué horarios y qué opinan quienes ya nos compraron.',
     ubicacion: 'Ubicación',
     visitanos: 'Nos encantaría que nos visites. Estamos en Buenos Aires.',
     direccion: 'Dirección',
@@ -101,7 +103,6 @@ export const translations = {
     horarios: 'Horarios',
     lunes_viernes: 'Lunes a Sábado: 10:00 - 13:00 y 14:00 - 19:00 hs',
     sabados: 'Domingo: Cerrado',
-    domingos: 'Domingos: Cerrado',
 
     // ── Pie de pagina ──
     navegacion: 'Navegación',
@@ -334,7 +335,9 @@ export const translations = {
     dias: 'days',
     horas: 'hours',
 
-    // ── Ubicacion y horarios ──
+    // ── Pagina de contacto: ubicacion y horarios ──
+    contactoTitulo: 'Contact',
+    contactoDesc: 'Where to find us, our opening hours, and what our customers say.',
     ubicacion: 'Location',
     visitanos: 'We would love to see you. We are located in Buenos Aires.',
     direccion: 'Address',
@@ -342,7 +345,6 @@ export const translations = {
     horarios: 'Hours',
     lunes_viernes: 'Monday to Saturday: 10:00 AM - 1:00 PM and 2:00 PM - 7:00 PM',
     sabados: 'Sunday: Closed',
-    domingos: 'Sundays: Closed',
 
     // ── Pie de pagina ──
     navegacion: 'Navigation',
@@ -575,7 +577,9 @@ export const translations = {
     dias: '天前',
     horas: '小时前',
 
-    // ── Ubicacion y horarios ──
+    // ── Pagina de contacto: ubicacion y horarios ──
+    contactoTitulo: '联系方式',
+    contactoDesc: '我们的位置、营业时间以及顾客的评价。',
     ubicacion: '位置',
     visitanos: '我们希望您能来拜访我们。我们位于布宜诺斯艾利斯。',
     direccion: '地址',
@@ -583,7 +587,6 @@ export const translations = {
     horarios: '营业时间',
     lunes_viernes: '周一至周六：上午 10:00 - 下午 1:00 和 下午 2:00 - 晚上 7:00',
     sabados: '周日：关闭',
-    domingos: '周日：已关闭',
 
     // ── Pie de pagina ──
     navegacion: '导航',
